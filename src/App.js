@@ -1,9 +1,13 @@
+//components
+import TopSlider from './components/TopSlider';
+//styles
 import './css/App.css';
+
 
 function App() {
   return (
     <div className="app">
-      <h1>Panda Gin</h1>
+      <TopSlider />
     </div>
   );
 }

@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
-//images
+//assets
 import cancel from '../assets/cancel.jpg'
 import nextBtn from '../assets/next-btn.jpg'
 import prevBtn from '../assets/prev-btn.jpg'
+//customhooks
+import useAppContext from '../customhooks/useAppContext'
+//actions
+import { CLOSE_TOPSLIDER } from '../actions/appStateActions'
 
-function TopSliderNavigator({ setIsCanceled, intervalID, changeSlide }) {
+function TopSliderNavigator({ intervalID, changeSlide }) {
+
+    const { dispatch } = useAppContext()
 
     function handleCancel() {
         clearInterval(intervalID);
-        setIsCanceled(true);
+        dispatch({ type: CLOSE_TOPSLIDER });
+
     }
 
     function handleClick(direction) {
@@ -46,8 +53,7 @@ function TopSliderNavigator({ setIsCanceled, intervalID, changeSlide }) {
 }
 
 TopSliderNavigator.propTypes = {
-    setIsCanceled: PropTypes.func.isRequired,
-    intervalID: PropTypes.number.isRequired,
+    intervalID: PropTypes.number,
     changeSlide: PropTypes.func.isRequired
 }
 

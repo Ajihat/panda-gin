@@ -19,6 +19,7 @@ html {
   background-color: black;
   -webkit-transition: height .4s, padding .4s;
   transition: height .4s, padding .4s;
+  z-index: 1;
 }
 
 .topslider.topslider-canceled {
@@ -143,5 +144,22 @@ html {
 .topslidernavigator__next {
   -webkit-transition-delay: .1s;
           transition-delay: .1s;
+}
+
+.main {
+  height: 200vh;
+  background-color: orange;
+  margin-top: 65px;
+  z-index: 2;
+}
+
+.navigation {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  background-color: red;
+  height: 65px;
+  padding: 15px 50px;
+  z-index: 3;
 }
 /*# sourceMappingURL=App.css.map */

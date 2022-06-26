@@ -3,14 +3,17 @@ import { useState, useEffect, useRef } from 'react'
 import topSlides from '../data/topSlider'
 //components
 import TopSlide from "./TopSlide"
-import TopSliderNavigator from './TopSliderNavigator';
+import TopSliderNavigator from './TopSliderNavigator'
+//customhooks
+import useAppContext from '../customhooks/useAppContext'
 
 function TopSlider() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [slidingDirection, setSlidingDirection] = useState("forward");
-    const [isCanceled, setIsCanceled] = useState(false);
     const intervalRef = useRef(null);
+
+    const { isTopSliderClosed } = useAppContext();
 
 
     function changeSlide(direction) {
@@ -46,7 +49,7 @@ function TopSlider() {
 
 
     return (
-        <div className={isCanceled ? "topslider topslider-canceled" : "topslider"}>
+        <div className={isTopSliderClosed ? "topslider topslider-canceled" : "topslider"}>
             <div className="topslider__inner">
                 {topSlides.map((topSlide, index) => {
                     const { id } = topSlide;
@@ -60,7 +63,6 @@ function TopSlider() {
                     />
                 })}
                 <TopSliderNavigator
-                    setIsCanceled={setIsCanceled}
                     changeSlide={changeSlide}
                     intervalID={intervalRef.current}
                 />

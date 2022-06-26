@@ -1,0 +1,6 @@
+const CLOSE_TOPSLIDER = "CLOSE_TOPSLIDER";
+
+
+
+
+export { CLOSE_TOPSLIDER }

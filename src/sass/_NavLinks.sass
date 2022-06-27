@@ -1,0 +1,21 @@
+.navlinks
+    position: absolute
+    +positioning(flex,row,center,center,nowrap)
+    left: 0
+    bottom: -57px
+    padding: 0px 50px
+    width: 100%
+    overflow: hidden
+    height: 57px
+    background-color: $secondary-color
+    transition: bottom .3s
+    z-index: 2
+    &.navlinks--hidden
+        bottom: 0px
+    &__list
+        +positioning(flex,row,space-between,center,nowrap)
+        gap: 70px
+        opacity: 1
+        transition: opacity .2s
+        &.navlinks__list--hidden
+            opacity: 0

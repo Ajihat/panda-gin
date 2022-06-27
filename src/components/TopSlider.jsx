@@ -49,7 +49,7 @@ function TopSlider() {
 
 
     return (
-        <div className={isTopSliderClosed ? "topslider topslider-canceled" : "topslider"}>
+        <div className={isTopSliderClosed ? "topslider topslider--closed" : "topslider"}>
             <div className="topslider__inner">
                 {topSlides.map((topSlide, index) => {
                     const { id } = topSlide;

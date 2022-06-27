@@ -1,0 +1,24 @@
+const navLinksData = [
+    {
+        id: 1,
+        name: "Shop",
+        url: "/shop"
+    },
+    {
+        id: 2,
+        name: "About us",
+        url: "/about-us"
+    },
+    {
+        id: 3,
+        name: "FAQ",
+        url: "/faq"
+    },
+    {
+        id: 4,
+        name: "Contact",
+        url: "/contact"
+    }
+]
+
+export default navLinksData

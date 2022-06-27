@@ -1,8 +1,11 @@
-import React from 'react'
+//customhooks
+import useAppContext from "../customhooks/useAppContext"
 
 function Main({ children }) {
+    const { isTopSliderClosed } = useAppContext();
+
     return (
-        <main className="main">
+        <main className={isTopSliderClosed ? "main main--notopslider" : "main"}>
             {children}
         </main>
     )

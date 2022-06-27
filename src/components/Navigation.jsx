@@ -7,13 +7,13 @@ import cart from '../assets/cart.jpg'
 //components
 import NavLinks from './NavLinks'
 import { FaFacebookF, FaPinterestP } from 'react-icons/fa';
-import { AiOutlineInstagram } from 'react-icons/ai';
+import { SiInstagram } from 'react-icons/si';
 
 
 function Navigation() {
 
     const [navBarsAreHidden, setNavBarsAreHidden] = useState(false);
-    const lastScrollPositionRef = useRef(0)
+    const lastScrollPositionRef = useRef(0);
 
     function checkScrollingDirection() {
         const scroll = window.pageYOffset;
@@ -35,7 +35,7 @@ function Navigation() {
             <div className="navigation__wrapper">
                 <div className="navigation__inner navigation__inner--left">
                     <FaFacebookF className="navigation__social-icon" />
-                    <AiOutlineInstagram className="navigation__social-icon" />
+                    <SiInstagram className="navigation__social-icon" />
                     <FaPinterestP className="navigation__social-icon" />
                 </div>
                 <div className="navigation__inner">

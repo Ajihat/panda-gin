@@ -154,7 +154,6 @@ html {
 
 .main {
   height: 200vh;
-  background-color: orange;
   margin-top: 65px;
   z-index: 2;
   -webkit-transition: margin-top .4s;
@@ -231,7 +230,7 @@ html {
 }
 
 .navigation__social-icon, .navigation__utils-icon {
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -356,10 +355,51 @@ html {
 
 .innercontainer {
   padding-top: 57px;
-  background-color: red;
 }
 
 .shop {
-  padding: 100px 100px;
+  padding: 120px 100px;
+}
+
+.header {
+  text-align: center;
+}
+
+.header.header--left {
+  text-align: left;
+}
+
+.header.header--right {
+  text-align: right;
+}
+
+.header__small-title {
+  position: relative;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+  letter-spacing: .6px;
+  margin: 15px 0px;
+  padding-bottom: 10px;
+}
+
+.header__big-title {
+  font-family: "Playfair display", sans-serif;
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: .6px;
+}
+
+.header__bottom-line {
+  position: absolute;
+  width: 40px;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  background-color: black;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-weight: 400;
 }
 /*# sourceMappingURL=App.css.map */

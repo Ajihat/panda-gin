@@ -5,7 +5,8 @@ import appReducer from '../reducers/appReducer'
 const AppContext = createContext();
 
 const initialAppState = {
-    isTopSliderClosed: false
+    isTopSliderClosed: false,
+    isCurtainOpen: false
 }
 
 

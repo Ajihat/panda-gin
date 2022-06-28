@@ -2,7 +2,7 @@ const navLinksData = [
     {
         id: 1,
         name: "Shop",
-        url: "/shop"
+        url: "/"
     },
     {
         id: 2,

@@ -4,6 +4,8 @@ import TopSlider from './components/TopSlider';
 import Navigation from './components/Navigation';
 import Main from './components/Main';
 import InnerContainer from './components/InnerContainer'
+import Newsletter from './components/Newsletter'
+import Curtain from './components/Curtain';
 //pages
 import Shop from './pages/Shop'
 //styles
@@ -18,12 +20,13 @@ function App() {
         <Navigation />
         <InnerContainer>
           <Routes>
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/" element={<Shop />} />
           </Routes>
         </InnerContainer>
-        <h1>Newsletter</h1>
+        <Newsletter />
         <h1>Footer</h1>
       </Main>
+      <Curtain />
     </div>
   );
 }

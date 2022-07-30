@@ -1,0 +1,19 @@
+.navlink
+    +positioning(flex,row,center,center,nowrap)
+    height: 28px
+    font-size: 1.4rem
+    margin: 14px 0px
+    font-family: $second-font
+    text-transform: uppercase
+    color: $main-color
+    font-weight: 600
+    letter-spacing: 1.2px
+    text-decoration: none
+    box-sizing: content-box
+    transition: color .3s
+    &.navlink--active
+        border-top: 1px solid $main-color
+    &.navlink--active:hover
+        color: $main-color
+    &:hover
+        color: $text-hover-color

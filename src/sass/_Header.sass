@@ -1,0 +1,43 @@
+.header
+    text-align: center
+    letter-spacing: .6px
+    margin-bottom: 100px
+    &.header--left
+        text-align: left
+    &.header--left &__bottom-line
+        left: 0px
+        transform: translateX(0%)
+    &.header--right
+        text-align: right
+    &.header--right &__bottom-line
+        left: initial
+        right: 0px
+        transform: translateX(0%)
+    &__small-title
+        position: relative
+        font-size: 2rem
+        text-transform: uppercase
+        font-family: $second-font
+        font-weight: 300
+        margin: 15px 0px
+        padding-bottom: 10px
+    &__big-title
+        font-family: $main-font
+        font-size: 64px
+        font-weight: 500
+    &__bottom-line
+        position: absolute
+        width: 40px
+        height: 1px
+        bottom: 0
+        left: 50%
+        background-color: $main-color
+        transform: translateX(-50%)
+        font-weight: 400
+    &__text
+        font-family: $second-font
+        margin: 24px auto 24px auto
+        font-size: 2.4rem
+        font-weight: 300
+        line-height: 150%
+        max-width: 700px

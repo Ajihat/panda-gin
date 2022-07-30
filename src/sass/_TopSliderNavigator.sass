@@ -1,0 +1,24 @@
+.topslidernavigator
+    +positioning(flex,row,space-between,center,nowrap)
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%)
+    height: 100%
+    width: 120px
+    background-color: $main-color
+    z-index: 2
+    padding-right: 20px
+    overflow: hidden
+    &__cancel
+        cursor: pointer
+    &__prev, &__next
+        position: relative
+        top: 25px
+        transition: top .3s
+        cursor: pointer
+    &__prev
+        margin-right: 15px
+        transition-delay: 0s
+    &__next
+        transition-delay: .1s

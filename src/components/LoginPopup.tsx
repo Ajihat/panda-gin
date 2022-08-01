@@ -1,9 +1,10 @@
-import { FC, useRef, useEffect } from "react"
+import { FC, useRef, useEffect, useState } from "react"
 import ReactDom from 'react-dom'
 //components
 import Header from "./Header"
 import { IoIosClose } from 'react-icons/io';
 import PrimaryButton from "./PrimaryButton";
+import Loader from "./Loader";
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 //actions
@@ -12,6 +13,7 @@ import { HIDE_LOGINPOPUP } from '../actions/appStateActions'
 const LoginPopup: FC = () => {
 
     const loginInputRef = useRef<HTMLInputElement | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
 
@@ -59,6 +61,7 @@ const LoginPopup: FC = () => {
                             className="loginpopup__input"
                             placeholder="Enter your email address"
                             ref={loginInputRef}
+                            disabled={isLoading}
                         />
                         {/* <p className="loginpopup__error-info">This should be valid email</p> */}
                     </div>
@@ -71,12 +74,14 @@ const LoginPopup: FC = () => {
                             id="password"
                             className="loginpopup__input"
                             placeholder="Enter your password"
+                            disabled={isLoading}
                         />
                         {/* <p className="loginpopup__error-info">This should be valid password</p> */}
                     </div>
                     <div className="loginpopup__btn-holder" onClick={handleClick}>
                         <PrimaryButton text="Sign in" />
                     </div>
+                    {isLoading && <Loader />}
                 </form>
                 <div className="loginpopup__cta">
                     <p className="loginpopup__text">

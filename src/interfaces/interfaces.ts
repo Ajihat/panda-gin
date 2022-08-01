@@ -1,7 +1,9 @@
 export interface IAppState {
     isTopSliderClosed: boolean,
     isCurtainOpen: boolean,
-    navBarsAreHidden: boolean
+    navBarsAreHidden: boolean,
+    isUserLoggedIn: boolean,
+    isLoginPopupOpen: boolean
 }
 
 export interface SingleQuestion {

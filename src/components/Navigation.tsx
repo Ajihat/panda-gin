@@ -11,11 +11,11 @@ import { SiInstagram } from 'react-icons/si';
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 //actions
-import { HIDE_NAVBARS, SHOW_NAVBARS } from '../actions/appStateActions'
+import { HIDE_NAVBARS, SHOW_NAVBARS, OPEN_LOGINPOPUP } from '../actions/appStateActions'
 
 const Navigation: FC = () => {
 
-    const { dispatch, navBarsAreHidden }: any = useAppContext(); //ANY
+    const { dispatch, navBarsAreHidden, isUserLoggedIn }: any = useAppContext(); //ANY
     const lastScrollPositionRef = useRef<number>(0);
 
 
@@ -27,6 +27,14 @@ const Navigation: FC = () => {
             dispatch({ type: SHOW_NAVBARS })
         }
         lastScrollPositionRef.current = scroll <= 0 ? 0 : scroll;
+    }
+
+    function handleAccountClick() {
+        if (!isUserLoggedIn) {
+            dispatch({ type: OPEN_LOGINPOPUP })
+        } else {
+            //TUTAJ OTWARCIE PANELU UŻYTKOWNIKA JEŚLI JEST ZALOGOWANY
+        }
     }
 
     useEffect(() => {
@@ -47,7 +55,7 @@ const Navigation: FC = () => {
                     <img src={pandaLogo} alt="panda-gin-logo" className="navigation__logo" />
                 </div>
                 <div className="navigation__inner navigation__inner--right">
-                    <img src={account} alt="account-icon" className="navigation__utils-icon" />
+                    <img src={account} alt="account-icon" className="navigation__utils-icon" onClick={handleAccountClick} />
                     <img src={cart} alt="cart-icon" className="navigation__utils-icon" />
                 </div>
                 <img src={subLogo} alt="sub-logo" className={navBarsAreHidden ? "navigation__sublogo navigation__sublogo--hidden" : "navigation__sublogo"} />

@@ -1,4 +1,4 @@
-import { CLOSE_TOPSLIDER, OPEN_CURTAIN, CLOSE_CURTAIN, SHOW_NAVBARS, HIDE_NAVBARS } from '../actions/appStateActions'
+import { CLOSE_TOPSLIDER, OPEN_CURTAIN, CLOSE_CURTAIN, SHOW_NAVBARS, HIDE_NAVBARS, OPEN_LOGINPOPUP, HIDE_LOGINPOPUP } from '../actions/appStateActions'
 import { IAppState } from "../interfaces/interfaces"
 
 
@@ -32,6 +32,18 @@ export const appReducer = (state: IAppState, action: { type: string }): IAppStat
         return {
             ...state,
             navBarsAreHidden: true
+        }
+    }
+    if (action.type === OPEN_LOGINPOPUP) {
+        return {
+            ...state,
+            isLoginPopupOpen: true
+        }
+    }
+    if (action.type === HIDE_LOGINPOPUP) {
+        return {
+            ...state,
+            isLoginPopupOpen: false
         }
     }
     return state // if there is no match

@@ -6,6 +6,7 @@ import Main from './components/Main'
 import Navigation from './components/Navigation';
 import InnerContainer from './components/InnerContainer';
 import Curtain from './components/Curtain';
+import LoginPopup from './components/LoginPopup';
 //pages
 import Shop from './pages/Shop';
 import Faq from './pages/Faq';
@@ -25,6 +26,7 @@ const App: FC = () => {
           </Routes>
         </InnerContainer>
       </Main>
+      <LoginPopup />
       <Curtain />
     </>
   );

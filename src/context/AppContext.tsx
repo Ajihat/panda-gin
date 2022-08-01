@@ -12,7 +12,9 @@ const AppContext = createContext({})
 const initialAppState: IAppState = {
     isTopSliderClosed: false,
     isCurtainOpen: false,
-    navBarsAreHidden: false
+    navBarsAreHidden: false,
+    isUserLoggedIn: false,
+    isLoginPopupOpen: false
 }
 
 interface AppProviderProps {

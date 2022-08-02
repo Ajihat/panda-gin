@@ -14,7 +14,8 @@ const initialAppState: IAppState = {
     isCurtainOpen: false,
     navBarsAreHidden: false,
     isUserLoggedIn: false,
-    isLoginPopupOpen: false
+    isLoginPopupOpen: false,
+    isSubscribePopupOpen: false
 }
 
 interface AppProviderProps {

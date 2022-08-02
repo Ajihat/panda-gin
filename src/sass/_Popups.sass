@@ -1,4 +1,4 @@
-.loginpopup
+.loginpopup, .subscribepopup
     position: fixed
     top: 0
     left: 0
@@ -19,18 +19,25 @@
         left: 50%
         width: 60%
         min-height: 75%
+        max-height: 95%
         transform: translate(-50%,-50%)
         background-color: $secondary-color
         z-index: 5
         padding: 50px 125px
+        overflow-y: scroll
     &__close-btn
         position: absolute
         top: 10px
         right: 10px
         cursor: pointer
     &__close-icon
+        color: $main-color
         font-size: 40px
+        transition: color .4s
+        &:hover
+            color: $text-hover-color
     &__cta
+        width: 100%
         +positioning(flex,row,center,center,nowrap)
     &__text
         display: block

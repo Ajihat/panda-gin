@@ -11,7 +11,7 @@ import { SiInstagram } from 'react-icons/si';
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 //actions
-import { HIDE_NAVBARS, SHOW_NAVBARS, OPEN_LOGINPOPUP } from '../actions/appStateActions'
+import { HIDE_NAVBARS, SHOW_NAVBARS, OPEN_LOGIN_POPUP } from '../actions/appStateActions'
 
 const Navigation: FC = () => {
 
@@ -31,7 +31,7 @@ const Navigation: FC = () => {
 
     function handleAccountClick() {
         if (!isUserLoggedIn) {
-            dispatch({ type: OPEN_LOGINPOPUP })
+            dispatch({ type: OPEN_LOGIN_POPUP })
         } else {
             //TUTAJ OTWARCIE PANELU UŻYTKOWNIKA JEŚLI JEST ZALOGOWANY
         }

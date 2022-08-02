@@ -3,7 +3,8 @@ export interface IAppState {
     isCurtainOpen: boolean,
     navBarsAreHidden: boolean,
     isUserLoggedIn: boolean,
-    isLoginPopupOpen: boolean
+    isLoginPopupOpen: boolean,
+    isSubscribePopupOpen: boolean
 }
 
 export interface SingleQuestion {

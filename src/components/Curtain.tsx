@@ -9,21 +9,20 @@ import { useAppContext } from '../customhooks/useAppContext'
 
 const Curtain: FC = () => {
 
-    const { isCurtainOpen, dispatch }: any = useAppContext();  //ANY
+    const { dispatch }: any = useAppContext();  //ANY
     const timeoutRef = useRef<ReturnType<typeof setInterval>>();
 
     useEffect(() => {
-        if (isCurtainOpen) {
-            window.scroll(0, 0)
-            timeoutRef.current = setTimeout(() => {
-                dispatch({ type: CLOSE_CURTAIN })
-                window.scroll(0, 0)
-            }, 1500)
-        }
-        return () => clearTimeout(timeoutRef.current)
-    })
 
-    if (!isCurtainOpen) return null;
+        window.scroll(0, 0)
+        timeoutRef.current = setTimeout(() => {
+            dispatch({ type: CLOSE_CURTAIN })
+            window.scroll(0, 0)
+        }, 1500)
+
+        return () => clearTimeout(timeoutRef.current)
+    }, [])
+
 
     return ReactDom.createPortal(
         <div className="curtain">

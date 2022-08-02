@@ -1,4 +1,4 @@
-import { CLOSE_TOPSLIDER, OPEN_CURTAIN, CLOSE_CURTAIN, SHOW_NAVBARS, HIDE_NAVBARS, OPEN_LOGINPOPUP, HIDE_LOGINPOPUP } from '../actions/appStateActions'
+import { CLOSE_TOPSLIDER, OPEN_CURTAIN, CLOSE_CURTAIN, SHOW_NAVBARS, HIDE_NAVBARS, OPEN_LOGIN_POPUP, HIDE_LOGIN_POPUP, OPEN_SUBSCRIBE_POPUP, HIDE_SUBSCRIBE_POPUP } from '../actions/appStateActions'
 import { IAppState } from "../interfaces/interfaces"
 
 
@@ -34,16 +34,28 @@ export const appReducer = (state: IAppState, action: { type: string }): IAppStat
             navBarsAreHidden: true
         }
     }
-    if (action.type === OPEN_LOGINPOPUP) {
+    if (action.type === OPEN_LOGIN_POPUP) {
         return {
             ...state,
             isLoginPopupOpen: true
         }
     }
-    if (action.type === HIDE_LOGINPOPUP) {
+    if (action.type === HIDE_LOGIN_POPUP) {
         return {
             ...state,
             isLoginPopupOpen: false
+        }
+    }
+    if (action.type === OPEN_SUBSCRIBE_POPUP) {
+        return {
+            ...state,
+            isSubscribePopupOpen: true
+        }
+    }
+    if (action.type === HIDE_SUBSCRIBE_POPUP) {
+        return {
+            ...state,
+            isSubscribePopupOpen: false
         }
     }
     return state // if there is no match

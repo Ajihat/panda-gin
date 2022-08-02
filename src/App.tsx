@@ -7,6 +7,9 @@ import Navigation from './components/Navigation';
 import InnerContainer from './components/InnerContainer';
 import Curtain from './components/Curtain';
 import LoginPopup from './components/LoginPopup';
+import SubscribePopup from './components/SubscribePopup';
+//customhooks
+import { useAppContext } from './customhooks/useAppContext'
 //pages
 import Shop from './pages/Shop';
 import Faq from './pages/Faq';
@@ -14,6 +17,9 @@ import Faq from './pages/Faq';
 import './css/App.css'
 
 const App: FC = () => {
+
+  const { isCurtainOpen, isLoginPopupOpen, isSubscribePopupOpen }: any = useAppContext();  //ANY
+
   return (
     <>
       <TopSlider />
@@ -26,8 +32,9 @@ const App: FC = () => {
           </Routes>
         </InnerContainer>
       </Main>
-      <LoginPopup />
-      <Curtain />
+      {isLoginPopupOpen && <LoginPopup />}
+      {isSubscribePopupOpen && <SubscribePopup />}
+      {isCurtainOpen && <Curtain />}
     </>
   );
 }

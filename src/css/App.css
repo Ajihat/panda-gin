@@ -246,6 +246,7 @@
   text-align: center;
   letter-spacing: 0.6px;
   margin-bottom: 30px;
+  width: 100%;
 }
 .header.header--left {
   text-align: left;
@@ -475,7 +476,7 @@
   top: 147px;
 }
 
-.loginpopup {
+.loginpopup, .subscribepopup {
   position: fixed;
   top: 0;
   left: 0;
@@ -489,54 +490,62 @@
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
-.loginpopup__black-layer {
+.loginpopup__black-layer, .subscribepopup__black-layer {
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0);
   opacity: 0.75;
 }
-.loginpopup__content {
+.loginpopup__content, .subscribepopup__content {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 60%;
   min-height: 75%;
+  max-height: 95%;
   transform: translate(-50%, -50%);
   background-color: rgb(255, 255, 255);
   z-index: 5;
   padding: 50px 125px;
+  overflow-y: scroll;
 }
-.loginpopup__close-btn {
+.loginpopup__close-btn, .subscribepopup__close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
 }
-.loginpopup__close-icon {
+.loginpopup__close-icon, .subscribepopup__close-icon {
+  color: rgb(0, 0, 0);
   font-size: 40px;
+  transition: color 0.4s;
 }
-.loginpopup__cta {
+.loginpopup__close-icon:hover, .subscribepopup__close-icon:hover {
+  color: rgb(148, 229, 200);
+}
+.loginpopup__cta, .subscribepopup__cta {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
 }
-.loginpopup__text {
+.loginpopup__text, .subscribepopup__text {
   display: block;
   font-size: 1.5rem;
   letter-spacing: 2.4px;
   text-transform: uppercase;
   margin-top: 25px;
 }
-.loginpopup__text.loginpopup__text--gray {
+.loginpopup__text.loginpopup__text--gray, .subscribepopup__text.loginpopup__text--gray {
   color: rgb(129, 129, 129);
   text-decoration: underline;
   font-size: 1.4rem;
   letter-spacing: 0.8px;
   cursor: pointer;
 }
-.loginpopup__btn-holder {
+.loginpopup__btn-holder, .subscribepopup__btn-holder {
   margin-top: 38px;
 }
 
@@ -557,20 +566,21 @@
     opacity: 1;
   }
 }
-.loginpopup {
+.loginpopup, .subscribepopup {
   font-family: "Work Sans", sans-serif;
 }
-.loginpopup__form {
+.loginpopup__form, .subscribepopup__form {
   position: relative;
+  width: 100%;
 }
-.loginpopup__label {
+.loginpopup__label, .subscribepopup__label {
   display: block;
   font-size: 1.5rem;
   letter-spacing: 2.4px;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
-.loginpopup__input {
+.loginpopup__input, .subscribepopup__input {
   display: block;
   width: 100%;
   padding: 15px;
@@ -587,32 +597,32 @@
   border-radius: 0px;
   transition: 0.3s;
 }
-.loginpopup__input::-moz-placeholder {
+.loginpopup__input::-moz-placeholder, .subscribepopup__input::-moz-placeholder {
   font-size: 1rem;
   letter-spacing: 2px;
 }
-.loginpopup__input:-ms-input-placeholder {
+.loginpopup__input:-ms-input-placeholder, .subscribepopup__input:-ms-input-placeholder {
   font-size: 1rem;
   letter-spacing: 2px;
 }
-.loginpopup__input::placeholder {
+.loginpopup__input::placeholder, .subscribepopup__input::placeholder {
   font-size: 1rem;
   letter-spacing: 2px;
 }
-.loginpopup__input:focus {
+.loginpopup__input:focus, .subscribepopup__input:focus {
   border: 1px solid rgb(0, 0, 0);
 }
-.loginpopup__error-info {
+.loginpopup__error-info, .subscribepopup__error-info {
   font-size: 1.3rem;
   letter-spacing: 2.4px;
   text-transform: uppercase;
   margin-top: 10px;
   color: rgb(207, 41, 64);
 }
-.loginpopup__form-section {
+.loginpopup__form-section, .subscribepopup__form-section {
   margin-bottom: 20px;
 }
-.loginpopup__api-error {
+.loginpopup__api-error, .subscribepopup__api-error {
   font-size: 1.5rem;
   letter-spacing: 2.4px;
   background-color: rgb(207, 41, 64);

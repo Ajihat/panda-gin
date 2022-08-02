@@ -8,7 +8,7 @@ import Loader from "./Loader";
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 //actions
-import { HIDE_LOGINPOPUP } from '../actions/appStateActions'
+import { HIDE_LOGIN_POPUP, OPEN_SUBSCRIBE_POPUP } from '../actions/appStateActions'
 
 const LoginPopup: FC = () => {
 
@@ -16,20 +16,24 @@ const LoginPopup: FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
-
-    const { isLoginPopupOpen, dispatch }: any = useAppContext();  //ANY
+    const { dispatch, isSubscribePopupOpen }: any = useAppContext();  //ANY
 
     function closeLoginPopup() {
-        dispatch({ type: HIDE_LOGINPOPUP });
+        dispatch({ type: HIDE_LOGIN_POPUP });
+    }
+
+    function openSubscribePopup() {
+        dispatch({ type: OPEN_SUBSCRIBE_POPUP })
+
     }
 
     useEffect(() => {
         const timeoutID = setTimeout(() => {
             loginInputRef.current?.focus();
 
-        }, 500)
+        }, 400)
         return () => clearTimeout(timeoutID)
-    })
+    }, [isSubscribePopupOpen])
 
     function handleClick(e: React.SyntheticEvent) {
         e.preventDefault();
@@ -38,7 +42,7 @@ const LoginPopup: FC = () => {
 
     }
 
-    if (!isLoginPopupOpen) return null;
+
 
     return ReactDom.createPortal(
         <div className="loginpopup">
@@ -87,7 +91,7 @@ const LoginPopup: FC = () => {
                     <p className="loginpopup__text">
                         Not yet member?
                     </p>
-                    <p className="loginpopup__text loginpopup__text--gray">
+                    <p className="loginpopup__text loginpopup__text--gray" onClick={openSubscribePopup}>
                         Subscribe
                     </p>
                 </div>

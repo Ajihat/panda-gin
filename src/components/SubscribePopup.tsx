@@ -42,7 +42,7 @@ const SubscribePopup: FC = () => {
                     Access your complete order history."
                 />
                 <form className="subscribepopup__form">
-                    {/* <div className="subscribepopup__api-error">Subscription failed</div> */}
+                    {/* <p className="subscribepopup__api-error">Subscription failed</p> */}
                     <div className="subscribepopup__form-section">
                         <label htmlFor="email" className="subscribepopup__label">
                             Email
@@ -86,6 +86,17 @@ const SubscribePopup: FC = () => {
                             type="password"
                             id="password"
                             className="subscribepopup__input"
+                        />
+                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                    </div>
+                    <div className="subscribepopup__form-section subscribepopup__form-section--horizontal">
+                        <label htmlFor="terms" className="subscribepopup__label-checkbox">
+                            I accept that Panda Gin will process my personal data (PRIVACY POLICY)
+                        </label>
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            className="subscribepopup__input-checkbox"
                         />
                         {/* <p className="subscribepopup__error-info">This value is required</p> */}
                     </div>

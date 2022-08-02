@@ -3,12 +3,22 @@
     &__form
         position: relative
         width: 100%
+    &__form-section.subscribepopup__form-section--horizontal
+        +positioning(flex,row,flex-start,center,wrap)
+        margin-top: 38px
     &__label
         display: block
         font-size: 1.5rem
         letter-spacing: 2.4px
         text-transform: uppercase
         margin-bottom: 10px
+    &__label-checkbox
+        font-size: 1rem
+        letter-spacing: 1.6px
+        width: calc( 100% - 20px - 12px )
+        order: 2
+        margin-left: 20px
+        cursor: pointer
     &__input
         display: block
         width: 100%
@@ -28,12 +38,23 @@
         letter-spacing: 2px
     &__input:focus
         border: 1px solid $main-color
+    &__input-checkbox
+        appearance: none
+        border: 1px solid $main-color
+        width: 12px
+        height: 12px
+        transition: background-color .4s
+        cursor: pointer
+    &__input-checkbox:checked
+        background-color: $main-color
     &__error-info
         font-size: 1.3rem
         letter-spacing: 2.4px
+        width: 100%
         text-transform: uppercase
         margin-top: 10px
         color: $error-color
+        order: 3
     &__form-section
         margin-bottom: 20px
     &__api-error

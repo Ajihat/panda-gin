@@ -9,14 +9,29 @@ import Loader from "./Loader";
 import { useAppContext } from '../customhooks/useAppContext'
 //actions
 import { HIDE_LOGIN_POPUP, OPEN_SUBSCRIBE_POPUP } from '../actions/appStateActions'
+//common
+import emailRegex from "../common/emailRegex";
 
 const LoginPopup: FC = () => {
 
+    const { dispatch, isSubscribePopupOpen }: any = useAppContext();  //ANY
+
     const loginInputRef = useRef<HTMLInputElement | null>(null);
+    const [loginInputText, setLoginInputText] = useState<string>("");
+    const [loginInputError, setLoginInputError] = useState<boolean>(false);
+    const [loginInputErrorText, setLoginInputErrorText] = useState<string>("");
+
+    const [passwordInputText, setPasswordInputText] = useState<string>("");
+    const [passwordInputError, setPasswordInputError] = useState<boolean>(false);
+    const [passwordInputErrorText, setPasswordInputErrorText] = useState<string>("");
+
+
+
+
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
-    const { dispatch, isSubscribePopupOpen }: any = useAppContext();  //ANY
+
 
     function closeLoginPopup() {
         dispatch({ type: HIDE_LOGIN_POPUP });
@@ -35,12 +50,45 @@ const LoginPopup: FC = () => {
         return () => clearTimeout(timeoutID)
     }, [isSubscribePopupOpen])
 
+
+
     function handleClick(e: React.SyntheticEvent) {
         e.preventDefault();
-        //Tutaj walidacja formularza po stronie frontu oraz call do API
+        setLoginInputError(false);
+        setLoginInputErrorText("")
+        setPasswordInputError(false);
+        setPasswordInputErrorText("");
+        let emailIsCorrect: boolean = false;
+        let passwordIsCorrect: boolean = false;
+        if (loginInputText.length === 0) {
+            setLoginInputError(true);
+            setLoginInputErrorText("This value is required");
+        } else {
+            if (emailRegex.test(loginInputText)) {
+                emailIsCorrect = true;
+            } else {
+                setLoginInputError(true);
+                setLoginInputErrorText("Invalid address email")
+            }
+        }
+        if (passwordInputText.length === 0) {
+            setPasswordInputError(true);
+            setPasswordInputErrorText("This value is required")
+        } else {
+            passwordIsCorrect = true;
+        }
+
+        if (emailIsCorrect && passwordIsCorrect) {
+            console.log("API calling");
+
+            setIsLoading(true);
+
+        }
 
 
     }
+
+
 
 
 
@@ -66,8 +114,10 @@ const LoginPopup: FC = () => {
                             placeholder="Enter your email address"
                             ref={loginInputRef}
                             disabled={isLoading}
+                            value={loginInputText}
+                            onChange={(e) => setLoginInputText(e.target.value)}
                         />
-                        {/* <p className="loginpopup__error-info">This should be valid email</p> */}
+                        {loginInputError && <p className="loginpopup__error-info">{loginInputErrorText}</p>}
                     </div>
                     <div className="loginpopup__form-section">
                         <label htmlFor="password" className="loginpopup__label">
@@ -79,8 +129,10 @@ const LoginPopup: FC = () => {
                             className="loginpopup__input"
                             placeholder="Enter your password"
                             disabled={isLoading}
+                            value={passwordInputText}
+                            onChange={(e) => setPasswordInputText(e.target.value)}
                         />
-                        {/* <p className="loginpopup__error-info">This should be valid password</p> */}
+                        {passwordInputError && <p className="loginpopup__error-info">{passwordInputErrorText}</p>}
                     </div>
                     <div className="loginpopup__btn-holder" onClick={handleClick}>
                         <PrimaryButton text="Sign in" />

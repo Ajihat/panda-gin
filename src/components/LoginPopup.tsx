@@ -1,4 +1,5 @@
-import { FC, useRef, useEffect, useState } from "react"
+import { FC, useEffect, useState, useRef } from "react"
+import { useForm } from "react-hook-form";
 import ReactDom from 'react-dom'
 //components
 import Header from "./Header"
@@ -7,88 +8,35 @@ import PrimaryButton from "./PrimaryButton";
 import Loader from "./Loader";
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
-//actions
-import { HIDE_LOGIN_POPUP, OPEN_SUBSCRIBE_POPUP } from '../actions/appStateActions'
+import { useLoginAndRegister } from '../customhooks/useLoginAndRegister'
 //common
 import emailRegex from "../common/emailRegex";
+//api
+import { LOGIN_URL } from "../api/api_endpoints";
+//interfaces
+import { ILoginInputs, IRegisterInputs } from "../interfaces/interfaces";
 
 const LoginPopup: FC = () => {
 
-    const { dispatch, isSubscribePopupOpen }: any = useAppContext();  //ANY
+    const { register, handleSubmit, setFocus, formState: { errors } } = useForm<ILoginInputs & IRegisterInputs>();
+    const { isSubscribePopupOpen, closeLoginPopup, openSubscribePopup }: any = useAppContext();  //ANY
+    const { apiError, apiErrorText, isLoading, abortControler, onMutate } = useLoginAndRegister(LOGIN_URL);
 
-    const loginInputRef = useRef<HTMLInputElement | null>(null);
-    const [loginInputText, setLoginInputText] = useState<string>("");
-    const [loginInputError, setLoginInputError] = useState<boolean>(false);
-    const [loginInputErrorText, setLoginInputErrorText] = useState<string>("");
-
-    const [passwordInputText, setPasswordInputText] = useState<string>("");
-    const [passwordInputError, setPasswordInputError] = useState<boolean>(false);
-    const [passwordInputErrorText, setPasswordInputErrorText] = useState<string>("");
-
-
-
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-
-
-
-    function closeLoginPopup() {
-        dispatch({ type: HIDE_LOGIN_POPUP });
-    }
-
-    function openSubscribePopup() {
-        dispatch({ type: OPEN_SUBSCRIBE_POPUP })
-
-    }
 
     useEffect(() => {
         const timeoutID = setTimeout(() => {
-            loginInputRef.current?.focus();
-
+            setFocus("username")
         }, 400)
-        return () => clearTimeout(timeoutID)
+        return () => {
+
+            clearTimeout(timeoutID)
+        }
     }, [isSubscribePopupOpen])
 
 
-
-    function handleClick(e: React.SyntheticEvent) {
-        e.preventDefault();
-        setLoginInputError(false);
-        setLoginInputErrorText("")
-        setPasswordInputError(false);
-        setPasswordInputErrorText("");
-        let emailIsCorrect: boolean = false;
-        let passwordIsCorrect: boolean = false;
-        if (loginInputText.length === 0) {
-            setLoginInputError(true);
-            setLoginInputErrorText("This value is required");
-        } else {
-            if (emailRegex.test(loginInputText)) {
-                emailIsCorrect = true;
-            } else {
-                setLoginInputError(true);
-                setLoginInputErrorText("Invalid address email")
-            }
-        }
-        if (passwordInputText.length === 0) {
-            setPasswordInputError(true);
-            setPasswordInputErrorText("This value is required")
-        } else {
-            passwordIsCorrect = true;
-        }
-
-        if (emailIsCorrect && passwordIsCorrect) {
-            console.log("API calling");
-
-            setIsLoading(true);
-
-        }
-
-
-    }
-
-
+    useEffect(() => {
+        return () => abortControler.current?.abort();
+    }, [])
 
 
 
@@ -101,23 +49,22 @@ const LoginPopup: FC = () => {
                     bigTitle="Log in"
                     text="Faster payment with address and payment details saved. Access your complete order history"
                 />
-                <form className="loginpopup__form">
-                    {/* <div className="loginpopup__api-error">Authentication failed</div> */}
+                <form className="loginpopup__form" noValidate onSubmit={handleSubmit(onMutate)}>
+                    {apiError && <p className="loginpopup__api-error">{apiErrorText}</p>}
                     <div className="loginpopup__form-section">
-                        <label htmlFor="login" className="loginpopup__label">
+                        <label htmlFor="username" className="loginpopup__label">
                             Login
                         </label>
                         <input
                             type="email"
-                            id="login"
+                            id="username"
+                            {...register("username", { required: "This value is required", pattern: { value: emailRegex, message: "Invalid email address" } })}
                             className="loginpopup__input"
                             placeholder="Enter your email address"
-                            ref={loginInputRef}
+                            autoComplete="off"
                             disabled={isLoading}
-                            value={loginInputText}
-                            onChange={(e) => setLoginInputText(e.target.value)}
                         />
-                        {loginInputError && <p className="loginpopup__error-info">{loginInputErrorText}</p>}
+                        {errors.username && <p className="loginpopup__error-info">{errors.username.message}</p>}
                     </div>
                     <div className="loginpopup__form-section">
                         <label htmlFor="password" className="loginpopup__label">
@@ -126,27 +73,27 @@ const LoginPopup: FC = () => {
                         <input
                             type="password"
                             id="password"
+                            {...register("password", { required: "This value is required" })}
                             className="loginpopup__input"
                             placeholder="Enter your password"
                             disabled={isLoading}
-                            value={passwordInputText}
-                            onChange={(e) => setPasswordInputText(e.target.value)}
                         />
-                        {passwordInputError && <p className="loginpopup__error-info">{passwordInputErrorText}</p>}
+                        {errors.password && <p className="loginpopup__error-info">{errors.password.message}</p>}
                     </div>
-                    <div className="loginpopup__btn-holder" onClick={handleClick}>
-                        <PrimaryButton text="Sign in" />
+                    <div className="loginpopup__btn-holder">
+                        <PrimaryButton text="Sign in" type="submit" />
+                    </div>
+                    <div className="loginpopup__cta">
+                        <p className="loginpopup__text">
+                            Not yet member?
+                        </p>
+                        <p className="loginpopup__text loginpopup__text--gray" onClick={openSubscribePopup}>
+                            Subscribe
+                        </p>
                     </div>
                     {isLoading && <Loader />}
                 </form>
-                <div className="loginpopup__cta">
-                    <p className="loginpopup__text">
-                        Not yet member?
-                    </p>
-                    <p className="loginpopup__text loginpopup__text--gray" onClick={openSubscribePopup}>
-                        Subscribe
-                    </p>
-                </div>
+
                 <div className="loginpopup__close-btn" onClick={closeLoginPopup}>
                     <IoIosClose className="loginpopup__close-icon" />
                 </div>

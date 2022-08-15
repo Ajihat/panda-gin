@@ -10,28 +10,27 @@ import { FaFacebookF, FaPinterestP } from 'react-icons/fa';
 import { SiInstagram } from 'react-icons/si';
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
-//actions
-import { HIDE_NAVBARS, SHOW_NAVBARS, OPEN_LOGIN_POPUP } from '../actions/appStateActions'
+
 
 const Navigation: FC = () => {
 
-    const { dispatch, navBarsAreHidden, isUserLoggedIn }: any = useAppContext(); //ANY
+    const { navBarsAreHidden, isUserLoggedIn, openLoginPopup, showNavbars, hideNavbars }: any = useAppContext(); //ANY
     const lastScrollPositionRef = useRef<number>(0);
 
 
     function checkScrollingDirection() {
         const scroll: number = window.pageYOffset;
         if (scroll > lastScrollPositionRef.current && scroll >= 120) {
-            dispatch({ type: HIDE_NAVBARS })
+            hideNavbars();
         } else {
-            dispatch({ type: SHOW_NAVBARS })
+            showNavbars();
         }
         lastScrollPositionRef.current = scroll <= 0 ? 0 : scroll;
     }
 
     function handleAccountClick() {
         if (!isUserLoggedIn) {
-            dispatch({ type: OPEN_LOGIN_POPUP })
+            openLoginPopup();
         } else {
             //TUTAJ OTWARCIE PANELU UŻYTKOWNIKA JEŚLI JEST ZALOGOWANY
         }

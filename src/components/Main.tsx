@@ -2,6 +2,7 @@ import { FC } from 'react'
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 
+
 interface MainProps {
     children: React.ReactNode
 }

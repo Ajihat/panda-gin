@@ -15,6 +15,8 @@ import Shop from './pages/Shop';
 import Faq from './pages/Faq';
 //styles
 import './css/App.css'
+//data
+import appRoutes from './data/appRoutes';
 
 const App: FC = () => {
 
@@ -27,8 +29,8 @@ const App: FC = () => {
         <Navigation />
         <InnerContainer>
           <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/faq" element={<Faq />} />
+            <Route path={appRoutes.shop} element={<Shop />} />
+            <Route path={appRoutes.faq} element={<Faq />} />
           </Routes>
         </InnerContainer>
       </Main>

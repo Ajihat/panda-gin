@@ -2,21 +2,19 @@ import { useEffect, useRef, FC } from 'react'
 import ReactDom from 'react-dom'
 //assets
 import pandaHead from '../assets/panda-head.svg'
-//actions
-import { CLOSE_CURTAIN } from '../actions/appStateActions'
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
 
 const Curtain: FC = () => {
 
-    const { dispatch }: any = useAppContext();  //ANY
+    const { closeCurtain }: any = useAppContext();  //ANY
     const timeoutRef = useRef<ReturnType<typeof setInterval>>();
 
     useEffect(() => {
 
         window.scroll(0, 0)
         timeoutRef.current = setTimeout(() => {
-            dispatch({ type: CLOSE_CURTAIN })
+            closeCurtain();
             window.scroll(0, 0)
         }, 1500)
 

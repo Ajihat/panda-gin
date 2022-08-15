@@ -1,4 +1,5 @@
 import { FC, useRef, useEffect, useState } from 'react'
+import { useForm } from "react-hook-form";
 import ReactDom from 'react-dom'
 //components
 import Header from "./Header"
@@ -7,24 +8,27 @@ import Loader from './Loader';
 import { IoIosClose } from 'react-icons/io';
 //customhooks
 import { useAppContext } from '../customhooks/useAppContext'
-//actions
-import { HIDE_SUBSCRIBE_POPUP } from '../actions/appStateActions'
+import { useLoginAndRegister } from '../customhooks/useLoginAndRegister'
+//common
+import emailRegex from '../common/emailRegex';
+import nameRegex from '../common/nameRegex';
+//api
+import axios from '../api/axios';
+import { SUBSCRIBE_URL } from '../api/api_endpoints';
+//interfaces
+import { ILoginInputs, IRegisterInputs } from "../interfaces/interfaces";
 
 const SubscribePopup: FC = () => {
 
-    const emailInputRef = useRef<HTMLInputElement | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { register, handleSubmit, setFocus, formState: { errors } } = useForm<ILoginInputs & IRegisterInputs>();
+    const { closeSubscribePopup }: any = useAppContext();  //ANY
+    const { apiError, apiErrorText, isLoading, abortControler, onMutate } = useLoginAndRegister(SUBSCRIBE_URL);
 
-    const { dispatch }: any = useAppContext();  //ANY
 
-    function closeSubscribePopup() {
-        dispatch({ type: HIDE_SUBSCRIBE_POPUP })
-    }
 
     useEffect(() => {
         const timeoutID = setTimeout(() => {
-            emailInputRef.current?.focus();
-
+            setFocus("username")
         }, 400)
         return () => clearTimeout(timeoutID)
     }, [])
@@ -41,8 +45,8 @@ const SubscribePopup: FC = () => {
                     Faster payment with address and payment details saved.
                     Access your complete order history."
                 />
-                <form className="subscribepopup__form">
-                    {/* <p className="subscribepopup__api-error">Subscription failed</p> */}
+                <form className="subscribepopup__form" noValidate onSubmit={handleSubmit(onMutate)}>
+                    {apiError && <p className="subscribepopup__api-error">{apiErrorText}</p>}
                     <div className="subscribepopup__form-section">
                         <label htmlFor="email" className="subscribepopup__label">
                             Email
@@ -50,11 +54,11 @@ const SubscribePopup: FC = () => {
                         <input
                             type="email"
                             id="email"
+                            {...register("username", { required: "This value is required", pattern: { value: emailRegex, message: "Invalid email address" } })}
                             className="subscribepopup__input"
                             autoComplete="off"
-                            ref={emailInputRef}
                         />
-                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                        {errors.username && <p className="subscribepopup__error-info">{errors.username.message}</p>}
                     </div>
                     <div className="subscribepopup__form-section">
                         <label htmlFor="firstname" className="subscribepopup__label">
@@ -63,9 +67,11 @@ const SubscribePopup: FC = () => {
                         <input
                             type="text"
                             id="firstname"
+                            {...register("firstname", { required: "This value is required", pattern: { value: nameRegex, message: "Invalid firstname" }, minLength: { value: 2, message: "Firstname must contain at least 2 characters" }, maxLength: { value: 14, message: "Firstname must contain less then 15 characters" } })}
                             className="subscribepopup__input"
+                            autoComplete="off"
                         />
-                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                        {errors.firstname && <p className="subscribepopup__error-info">{errors.firstname.message}</p>}
                     </div>
                     <div className="subscribepopup__form-section">
                         <label htmlFor="lastname" className="subscribepopup__label">
@@ -74,9 +80,11 @@ const SubscribePopup: FC = () => {
                         <input
                             type="text"
                             id="lastname"
+                            {...register("lastname", { required: "This value is required", pattern: { value: nameRegex, message: "Invalid lastname" }, minLength: { value: 2, message: "Lastname must contain at least 2 characters" }, maxLength: { value: 14, message: "Lastname must contain less then 15 characters" } })}
                             className="subscribepopup__input"
+                            autoComplete="off"
                         />
-                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                        {errors.lastname && <p className="subscribepopup__error-info">{errors.lastname.message}</p>}
                     </div>
                     <div className="subscribepopup__form-section">
                         <label htmlFor="password" className="subscribepopup__label">
@@ -85,9 +93,10 @@ const SubscribePopup: FC = () => {
                         <input
                             type="password"
                             id="password"
+                            {...register("password", { required: "This value is required", minLength: { value: 5, message: "Password must contain at least 5 characters" }, maxLength: { value: 14, message: "Password must contain less then 15 characters" } })}
                             className="subscribepopup__input"
                         />
-                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                        {errors.password && <p className="subscribepopup__error-info">{errors.password.message}</p>}
                     </div>
                     <div className="subscribepopup__form-section subscribepopup__form-section--horizontal">
                         <label htmlFor="terms" className="subscribepopup__label-checkbox">
@@ -96,12 +105,13 @@ const SubscribePopup: FC = () => {
                         <input
                             type="checkbox"
                             id="terms"
+                            {...register("termsChecked", { required: "This value is required" })}
                             className="subscribepopup__input-checkbox"
                         />
-                        {/* <p className="subscribepopup__error-info">This value is required</p> */}
+                        {errors.termsChecked && <p className="subscribepopup__error-info">{errors.termsChecked.message}</p>}
                     </div>
                     <div className="loginpopup__btn-holder">
-                        <PrimaryButton text="Become member" />
+                        <PrimaryButton text="Become member" type="submit" />
                     </div>
                     {isLoading && <Loader />}
                 </form>

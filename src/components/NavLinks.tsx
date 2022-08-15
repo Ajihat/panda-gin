@@ -2,8 +2,6 @@ import { FC } from 'react'
 import { NavLink, useLocation } from "react-router-dom"
 //data
 import navLinks from "../data/navLinks"
-//actions
-import { OPEN_CURTAIN } from '../actions/appStateActions'
 //customhooks
 import { useAppContext } from "../customhooks/useAppContext"
 
@@ -14,13 +12,13 @@ interface NavLinksProps {
 
 const NavLinks: FC<NavLinksProps> = ({ navBarsAreHidden }) => {
 
-    const { dispatch }: any = useAppContext(); // ANY
+    const { openCurtain }: any = useAppContext(); // ANY
     const { pathname } = useLocation(); // Czy powinno się to typowac?
 
 
     function handleClick(url: string): void {
         if (url !== pathname) {
-            dispatch({ type: OPEN_CURTAIN })
+            openCurtain();
         } else return
     }
 

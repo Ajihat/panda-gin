@@ -2,10 +2,11 @@ import { FC, useRef } from 'react'
 
 
 interface PrimaryButtonProps {
-    text: string
+    text: string,
+    type: "button" | "submit" | "reset"
 }
 
-const PrimaryButton: FC<PrimaryButtonProps> = ({ text }) => {
+const PrimaryButton: FC<PrimaryButtonProps> = ({ text, type }) => {
 
     const primaryButtonRef = useRef<HTMLButtonElement | null>(null);
     const primaryButtonLayerRef = useRef<HTMLDivElement | null>(null);
@@ -24,6 +25,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({ text }) => {
     return (
         <button
             className="primarybutton"
+            type={type}
             ref={primaryButtonRef}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

@@ -17,7 +17,7 @@ export const useLoginAndRegister = (url: string) => {
     const onMutate = (payload: ILoginInputs & IRegisterInputs) => {
         setApiError(false);
         setIsLoading(true);
-        if (payload.hasOwnProperty("termsChecked")) delete payload.termsChecked;
+        if (payload.hasOwnProperty("termsChecked")) delete payload.termsChecked; //Waliduję ten input ale przy rejestrowaniu nie jest potrzebny, więc usuwam jego wartość
         abortControler.current = new AbortController();
         axios({
             method: "POST",
@@ -42,6 +42,8 @@ export const useLoginAndRegister = (url: string) => {
                 setApiErrorText("No server response")
             } else if (error.response?.status === 401 && url === LOGIN_URL) {
                 setApiErrorText("Authentication failed")
+            } else if (error.response?.status === 400 && url === SUBSCRIBE_URL) {
+                setApiErrorText("User already exists")
             } else {
                 setApiErrorText("Sorry, something went wrong")
             }

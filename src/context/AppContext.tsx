@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, FC, useContext } from 'react'
+import React, { createContext, useReducer, FC } from 'react'
 //reducers
 import { appReducer } from '../reducers/appReducer'
 //actions

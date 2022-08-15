@@ -469,7 +469,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   height: 51px;
   background-color: rgb(255, 255, 255);
-  margin-bottom: 100px;
+  margin: 120px 0px;
   transition: top 0.35s;
 }
 .submenu.submenu--down {

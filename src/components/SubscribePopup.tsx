@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import ReactDom from 'react-dom'
 //components
@@ -13,7 +13,6 @@ import { useLoginAndRegister } from '../customhooks/useLoginAndRegister'
 import emailRegex from '../common/emailRegex';
 import nameRegex from '../common/nameRegex';
 //api
-import axios from '../api/axios';
 import { SUBSCRIBE_URL } from '../api/api_endpoints';
 //interfaces
 import { ILoginInputs, IRegisterInputs } from "../interfaces/interfaces";
@@ -31,6 +30,10 @@ const SubscribePopup: FC = () => {
             setFocus("username")
         }, 400)
         return () => clearTimeout(timeoutID)
+    }, [])
+
+    useEffect(() => {
+        return () => abortControler.current?.abort();
     }, [])
 
 

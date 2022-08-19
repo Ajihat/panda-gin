@@ -1,0 +1,14 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.submenu
+    position: sticky
+    top: 91px
+    +mixins.positioning(flex,row,space-between,center,nowrap)
+    border: 1px solid variables.$border-color
+    height: 51px
+    background-color: variables.$secondary-color
+    margin: 120px 0
+    transition: top .35s
+    &.submenu--down
+        top: 147px

@@ -1,17 +1,17 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from "react";
 //components
-import Header from '../components/Header'
-import FaqCategory from '../components/FaqCategory'
-import Submenu from '../components/Submenu'
+import Header from "../components/Header/Header";
+import FaqCategory from "../components/FaqCategory/FaqCategory";
+import Submenu from "../components/Submenu/Submenu";
 //data
-import { faqQuestions } from '../data/faqQuestions'
+import { faqQuestions } from "../data/faqQuestions/faqQuestions";
 
-const Faq: FC = () => {
+import "./Pages.sass";
 
+const Faq = () => {
     useEffect(() => {
-        document.title = "FAQ | Panda Gin"
-    }, [])
-
+        document.title = "FAQ | Panda Gin";
+    }, []);
 
     return (
         <div className="faq">
@@ -63,7 +63,7 @@ const Faq: FC = () => {
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Faq
+export default Faq;

@@ -1,0 +1,39 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.faqelement
+    margin-bottom: 15px
+    font-family: variables.$second-font
+    font-size: 1.5rem
+    font-weight: 400
+    text-transform: uppercase
+    letter-spacing: .6px
+    &__question
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        border: 1px solid variables.$border-color
+        padding: 8px 50px
+        cursor: pointer
+        transition: .4s
+        &:hover
+            border: 1px solid variables.$main-color
+    &__button
+        +mixins.positioning(flex,row,center,center,nowrap)
+        padding: 3px
+        border: 1px solid variables.$main-color
+        border-radius: 50%
+    &__icon
+        font-size: 2.3rem
+        color: rgba(0, 0, 0, 0.5)
+    &__answer
+        display: none
+        padding: 13px 50px 8px 50px
+        &.faqelement__answer--visible
+            display: block
+            animation-name: answer-opacity
+            animation-duration: 1s
+
+@keyframes answer-opacity
+    0%
+        opacity: 0
+    100%
+        opacity: 1

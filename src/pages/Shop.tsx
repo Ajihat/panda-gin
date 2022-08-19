@@ -1,8 +1,11 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 //components
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 
-const Shop: FC = () => {
+import './Pages.sass'
+
+
+const Shop = () => {
 
     useEffect(() => {
         document.title = "Shop | Panda Gin"

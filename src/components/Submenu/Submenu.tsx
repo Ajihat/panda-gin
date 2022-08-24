@@ -2,7 +2,7 @@ import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import "./Submenu.sass";
 
-const Submenu = () => {
+export const Submenu = () => {
     const { navBarsAreHidden } = useAppContext();
 
     return (
@@ -11,5 +11,3 @@ const Submenu = () => {
         ></ul>
     );
 };
-
-export default Submenu;

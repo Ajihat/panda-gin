@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
-import axios from "../../api/axios";
+import { axiosInstance as axios } from "../../api/axios";
 
 import { ISubscribeInputs } from "./SubscribePopup.types";
 
@@ -11,17 +11,17 @@ export const useSubscribe = (url: string) => {
     const [apiErrorText, setApiErrorText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { closeSubscribePopup } = useAppContext();
-    const abortControler = useRef<any>(); //ANY
+    const abortControler = useRef<AbortController>();
 
     const onMutate = (payload: ISubscribeInputs) => {
         setApiError(false);
         setIsLoading(true);
-        if (payload.hasOwnProperty("termsChecked")) delete payload.termsChecked;
+        const { termsChecked, ...newPayload } = payload;
         abortControler.current = new AbortController();
         axios({
             method: "POST",
             url,
-            data: payload,
+            data: newPayload,
             signal: abortControler.current.signal,
         })
             .then((res) => {
@@ -47,5 +47,3 @@ export const useSubscribe = (url: string) => {
 
     return { apiError, apiErrorText, isLoading, abortControler, onMutate };
 };
-
-export default useSubscribe;

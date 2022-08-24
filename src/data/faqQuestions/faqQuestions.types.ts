@@ -4,13 +4,14 @@ export interface SingleQuestion {
     answer: string;
 }
 
-export interface FaqQuestions {
-    orders: SingleQuestion[];
-    payments: SingleQuestion[];
-    delivery: SingleQuestion[];
-    complaint: SingleQuestion[];
-    return: SingleQuestion[];
-    warranty: SingleQuestion[];
-    fake: SingleQuestion[];
-    about: SingleQuestion[];
-}
+type QuestionCategory =
+    | "orders"
+    | "payments"
+    | "delivery"
+    | "complaint"
+    | "return"
+    | "warranty"
+    | "fake"
+    | "about";
+
+export type FaqQuestions = Record<QuestionCategory, SingleQuestion[]>;

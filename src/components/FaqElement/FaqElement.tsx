@@ -10,26 +10,33 @@ interface FaqElementProps {
     answer: string;
 }
 
-const FaqElement = ({ question, answer }: FaqElementProps) => {
+export const FaqElement = ({ question, answer }: FaqElementProps) => {
     const [isAnswerHidden, setIsAnswerHidden] = useState<boolean>(true);
 
-    function handleClick() {
-        if (isAnswerHidden === true) {
-            setIsAnswerHidden(false);
-        } else {
-            setIsAnswerHidden(true);
-        }
-    }
+    const handleClick = () => setIsAnswerHidden((prevState) => !prevState);
 
     return (
         <div className="faqelement">
-            <div className="faqelement__question" onClick={handleClick}>
+            <div
+                className={
+                    isAnswerHidden
+                        ? "faqelement__question"
+                        : "faqelement__question faqelement__question--active"
+                }
+                onClick={handleClick}
+            >
                 <p className="faqelement__text">{question}</p>
-                <div className="faqelement__button">
+                <div
+                    className={
+                        isAnswerHidden
+                            ? "faqelement__button"
+                            : "faqelement__button faqelement__button--active"
+                    }
+                >
                     {isAnswerHidden ? (
-                        <GoPlusSmall className="faqelement__icon" />
+                        <GoPlusSmall className="faqelement__icon-plus" />
                     ) : (
-                        <BsDash className="faqelement__icon" />
+                        <BsDash className="faqelement__icon-minus" />
                     )}
                 </div>
             </div>
@@ -45,5 +52,3 @@ const FaqElement = ({ question, answer }: FaqElementProps) => {
         </div>
     );
 };
-
-export default FaqElement;

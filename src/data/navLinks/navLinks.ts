@@ -1,6 +1,6 @@
-import { NavLinksData } from "./navLinks.types";
+import { NavLinks } from "./navLinks.types";
 
-const navLinksData: NavLinksData = [
+export const navLinks: NavLinks = [
     {
         id: 1,
         name: "Shop",
@@ -22,5 +22,3 @@ const navLinksData: NavLinksData = [
         url: "/contact",
     },
 ];
-
-export default navLinksData;

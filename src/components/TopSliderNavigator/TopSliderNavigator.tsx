@@ -1,32 +1,31 @@
-//assets
 import cancel from "../../assets/cancel.jpg";
 import nextBtn from "../../assets/next-btn.jpg";
 import prevBtn from "../../assets/prev-btn.jpg";
-//customhooks
+
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import "./TopSliderNavigator.sass";
 
 interface TopSliderNavigatorProps {
     changeSlide(direction: string): void;
-    intervalID: NodeJS.Timer | undefined;
+    intervalID: ReturnType<typeof setInterval> | undefined;
 }
 
-const TopSliderNavigator = ({
+export const TopSliderNavigator = ({
     changeSlide,
     intervalID,
 }: TopSliderNavigatorProps) => {
     const { closeTopSlider } = useAppContext();
 
-    function handleCancel() {
+    const handleCancel = () => {
         clearInterval(intervalID);
         closeTopSlider();
-    }
+    };
 
-    function handleClick(direction: string): void {
+    const handleClick = (direction: string) => {
         clearInterval(intervalID);
         changeSlide(direction);
-    }
+    };
 
     return (
         <div className="topslidernavigator">
@@ -54,5 +53,3 @@ const TopSliderNavigator = ({
         </div>
     );
 };
-
-export default TopSliderNavigator;

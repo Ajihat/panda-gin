@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import "./Curtain.sass";
 
-const Curtain = () => {
+export const Curtain = () => {
     const { closeCurtain } = useAppContext();
     const timeoutRef = useRef<ReturnType<typeof setInterval>>();
 
@@ -30,5 +30,3 @@ const Curtain = () => {
         document.getElementById("portal")!
     );
 };
-
-export default Curtain;

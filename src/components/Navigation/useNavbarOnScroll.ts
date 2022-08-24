@@ -5,7 +5,7 @@ export const useNavbarOnScroll = () => {
     const { hideNavbars, showNavbars } = useAppContext();
     const lastScrollPositionRef = useRef<number>(0);
 
-    function checkScrollingDirection() {
+    const checkScrollingDirection = () => {
         const scroll: number = window.pageYOffset;
         if (scroll > lastScrollPositionRef.current && scroll >= 120) {
             hideNavbars();
@@ -13,7 +13,7 @@ export const useNavbarOnScroll = () => {
             showNavbars();
         }
         lastScrollPositionRef.current = scroll <= 0 ? 0 : scroll;
-    }
+    };
 
     useEffect(() => {
         window.addEventListener("scroll", checkScrollingDirection);

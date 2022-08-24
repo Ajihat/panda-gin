@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
-import axios from "../../api/axios";
+import { axiosInstance as axios } from "../../api/axios";
 
 import { ILoginInputs } from "./LoginPopup.types";
 
@@ -11,7 +11,7 @@ export const useLogin = (url: string) => {
     const [apiErrorText, setApiErrorText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { closeLoginPopup } = useAppContext();
-    const abortControler = useRef<any>(); //ANY
+    const abortControler = useRef<AbortController>();
 
     const onMutate = (payload: ILoginInputs) => {
         setApiError(false);
@@ -46,5 +46,3 @@ export const useLogin = (url: string) => {
 
     return { apiError, apiErrorText, isLoading, abortControler, onMutate };
 };
-
-export default useLogin;

@@ -1,26 +1,26 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ReactDom from "react-dom";
-//components
-import Header from "../Header/Header";
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
-import Loader from "../Loader/Loader";
+
+import { Header } from "../Header/Header";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { Loader } from "../Loader/Loader";
 import { IoIosClose } from "react-icons/io";
-//customhooks
+
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useSubscribe } from "./useSubscribe";
-//common
+
 import { emailRegex } from "../../common/regexs/emailRegex";
 import { nameRegex } from "../../common/regexs/nameRegex";
-//api
+
 import { SUBSCRIBE_URL } from "../../api/api_endpoints";
-//interfaces
+
 import { ISubscribeInputs } from "./SubscribePopup.types";
 
 import "./SubscribePopup.sass";
 import "../../sass/Forms.sass";
 
-const SubscribePopup = () => {
+export const SubscribePopup = () => {
     const {
         register,
         handleSubmit,
@@ -237,5 +237,3 @@ const SubscribePopup = () => {
         document.getElementById("portal")!
     );
 };
-
-export default SubscribePopup;

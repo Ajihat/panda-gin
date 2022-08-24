@@ -1,6 +1,6 @@
-import { TopSliderData } from "./topSlider.types";
+import { TopSlides } from "./topSlider.types";
 
-const topSliderData: TopSliderData = [
+export const topSlides: TopSlides = [
     {
         id: 1,
         header: "Free shipping from 90 euros",
@@ -17,7 +17,5 @@ const topSliderData: TopSliderData = [
         text: "Discount on more items",
     },
 ];
-
-export default topSliderData;
 
 //TopSlider is fully scalable, just edit, add or remove objects in topSliderData array. For proper work, at least 3 objects(slides) needed!

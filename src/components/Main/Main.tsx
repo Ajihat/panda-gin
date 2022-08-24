@@ -6,7 +6,7 @@ interface MainProps {
     children: React.ReactNode;
 }
 
-const Main = ({ children }: MainProps) => {
+export const Main = ({ children }: MainProps) => {
     const { isTopSliderClosed } = useAppContext();
     return (
         <main className={isTopSliderClosed ? "main main--notopslider" : "main"}>
@@ -14,5 +14,3 @@ const Main = ({ children }: MainProps) => {
         </main>
     );
 };
-
-export default Main;

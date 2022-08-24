@@ -3,7 +3,7 @@ import subLogo from "../../assets/organic-gin.png";
 import account from "../../assets/account.jpg";
 import cart from "../../assets/cart.jpg";
 
-import NavLinks from "../NavLinks/NavLinks";
+import { NavLinks } from "../NavLinks/NavLinks";
 import { FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 
@@ -12,18 +12,18 @@ import { useNavbarOnScroll } from "./useNavbarOnScroll";
 
 import "./Navigation.sass";
 
-const Navigation = () => {
+export const Navigation = () => {
     const { navBarsAreHidden, isUserLoggedIn, openLoginPopup } =
         useAppContext();
     useNavbarOnScroll();
 
-    function handleAccountClick() {
+    const handleAccountClick = () => {
         if (!isUserLoggedIn) {
             openLoginPopup();
         } else {
             //TODO: Tutaj otwarcie panelu użytkownika jeśli jest zalogowany
         }
-    }
+    };
 
     return (
         <nav className="navigation">
@@ -67,5 +67,3 @@ const Navigation = () => {
         </nav>
     );
 };
-
-export default Navigation;

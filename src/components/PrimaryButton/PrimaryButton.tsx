@@ -1,4 +1,3 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { useRef } from "react";
 
 import "./PrimaryButton.sass";
@@ -9,7 +8,11 @@ interface PrimaryButtonProps {
     isDisabled?: boolean;
 }
 
-const PrimaryButton = ({ text, type, isDisabled }: PrimaryButtonProps) => {
+export const PrimaryButton = ({
+    text,
+    type,
+    isDisabled,
+}: PrimaryButtonProps) => {
     const primaryButtonRef = useRef<HTMLButtonElement | null>(null);
     const primaryButtonLayerRef = useRef<HTMLDivElement | null>(null);
 
@@ -45,5 +48,3 @@ const PrimaryButton = ({ text, type, isDisabled }: PrimaryButtonProps) => {
         </button>
     );
 };
-
-export default PrimaryButton;

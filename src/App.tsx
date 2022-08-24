@@ -1,25 +1,25 @@
 import { Routes, Route } from "react-router-dom";
-//components
-import TopSlider from "./components/TopSlider/TopSlider";
-import Main from "./components/Main/Main";
-import Navigation from "./components/Navigation/Navigation";
-import InnerContainer from "./components/InnerContainer/InnerContainer";
-import Curtain from "./components/Curtain/Curtain";
-import LoginPopup from "./components/LoginPopup/LoginPopup";
-import SubscribePopup from "./components/SubscribePopup/SubscribePopup";
-//customhooks
+
+import { TopSlider } from "./components/TopSlider/TopSlider";
+import { Main } from "./components/Main/Main";
+import { Navigation } from "./components/Navigation/Navigation";
+import { InnerContainer } from "./components/InnerContainer/InnerContainer";
+import { Curtain } from "./components/Curtain/Curtain";
+import { LoginPopup } from "./components/LoginPopup/LoginPopup";
+import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
+
 import { useAppContext } from "./context/AppContext/useAppContext";
-//pages
-import Shop from "./pages/Shop";
-import Faq from "./pages/Faq";
-//styles
-import "./sass/App.sass";
-//data
+
+import { Shop } from "./pages/Shop";
+import { Faq } from "./pages/Faq";
+
 import { appRoutes } from "./data/appRoutes/appRoutes";
 
-const App = () => {
-    const { isCurtainOpen, isLoginPopupOpen, isSubscribePopupOpen }: any =
-        useAppContext(); //ANY
+import "./sass/App.sass";
+
+export const App = () => {
+    const { isCurtainOpen, isLoginPopupOpen, isSubscribePopupOpen } =
+        useAppContext();
 
     return (
         <>
@@ -39,5 +39,3 @@ const App = () => {
         </>
     );
 };
-
-export default App;

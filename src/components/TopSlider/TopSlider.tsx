@@ -1,22 +1,24 @@
 import { useState, useEffect, useRef } from "react";
-//data
-import topSlides from "../../data/topSlider/topSlider";
-//components
-import TopSlide from "../TopSlide/TopSlide";
-import TopSliderNavigator from "../TopSliderNavigator/TopSliderNavigator";
-//customhooks
+
+import { topSlides } from "../../data/topSlider/topSlider";
+
+import { TopSlide } from "../TopSlide/TopSlide";
+import { TopSliderNavigator } from "../TopSliderNavigator/TopSliderNavigator";
+
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import "./TopSlider.sass";
 
-const TopSlider = () => {
+export const TopSlider = () => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
-    const [slidingDirection, setSlidingDirection] = useState<string>("forward");
+    const [slidingDirection, setSlidingDirection] = useState<
+        "forward" | "backward"
+    >("forward");
     const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
     const { isTopSliderClosed } = useAppContext();
 
-    function changeSlide(direction: string): void {
+    const changeSlide = (direction: string) => {
         if (direction === "nextSlide") {
             setSlidingDirection("forward");
             setCurrentSlide((prevSlide) => {
@@ -37,7 +39,7 @@ const TopSlider = () => {
                 }
             });
         }
-    }
+    };
 
     useEffect(() => {
         intervalRef.current = setInterval(() => changeSlide("nextSlide"), 4000);
@@ -72,5 +74,3 @@ const TopSlider = () => {
         </div>
     );
 };
-
-export default TopSlider;

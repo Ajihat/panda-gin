@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 
-import navLinks from "../../data/navLinks/navLinks";
+import { navLinks } from "../../data/navLinks/navLinks";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
@@ -11,15 +11,15 @@ interface NavLinksProps {
     navBarsAreHidden: boolean;
 }
 
-const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
+export const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
     const { openCurtain } = useAppContext();
     const { pathname } = useLocation();
 
-    function handleClick(url: string): void {
+    const handleClick = (url: string) => {
         if (url !== pathname) {
             openCurtain();
         }
-    }
+    };
 
     return (
         <div
@@ -53,5 +53,3 @@ const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
         </div>
     );
 };
-
-export default NavLinks;

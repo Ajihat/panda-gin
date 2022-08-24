@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-//components
-import Header from "../components/Header/Header";
-import FaqCategory from "../components/FaqCategory/FaqCategory";
-import Submenu from "../components/Submenu/Submenu";
-//data
+
+import { Header } from "../components/Header/Header";
+import { FaqCategory } from "../components/FaqCategory/FaqCategory";
+import { Submenu } from "../components/Submenu/Submenu";
+
 import { faqQuestions } from "../data/faqQuestions/faqQuestions";
 
 import "./Pages.sass";
 
-const Faq = () => {
+export const Faq = () => {
     useEffect(() => {
         document.title = "FAQ | Panda Gin";
     }, []);
@@ -65,5 +65,3 @@ const Faq = () => {
         </div>
     );
 };
-
-export default Faq;

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ReactDom from "react-dom";
 
-import Header from "../Header/Header";
+import { Header } from "../Header/Header";
 import { IoIosClose } from "react-icons/io";
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
-import Loader from "../Loader/Loader";
+import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { Loader } from "../Loader/Loader";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useLogin } from "./useLogin";
@@ -19,7 +19,7 @@ import { ILoginInputs } from "./LoginPopup.types";
 import "./LoginPopup.sass";
 import "../../sass/Forms.sass";
 
-const LoginPopup = () => {
+export const LoginPopup = () => {
     const {
         register,
         handleSubmit,
@@ -139,5 +139,3 @@ const LoginPopup = () => {
         document.getElementById("portal")!
     );
 };
-
-export default LoginPopup;

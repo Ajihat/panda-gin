@@ -7,13 +7,21 @@ interface HeaderProps {
     alignment?: "left" | "right"; //center is default
 }
 
-const Header = ({ smallTitle, bigTitle, text, alignment }: HeaderProps) => {
-    let modifier: string = "";
-    if (alignment === "left") modifier = "header--left";
-    if (alignment === "right") modifier = "header--right";
+type ModifierObj = Record<Exclude<HeaderProps["alignment"], undefined>, string>;
 
+const modifierObj: ModifierObj = {
+    left: "header--left",
+    right: "header--right",
+};
+
+export const Header = ({
+    smallTitle,
+    bigTitle,
+    text,
+    alignment,
+}: HeaderProps) => {
     return (
-        <header className={`header ${modifier}`}>
+        <header className={`header ${alignment && modifierObj[alignment]}`}>
             <h3 className="header__small-title">
                 {smallTitle}
                 <div className="header__bottom-line"></div>
@@ -23,5 +31,3 @@ const Header = ({ smallTitle, bigTitle, text, alignment }: HeaderProps) => {
         </header>
     );
 };
-
-export default Header;

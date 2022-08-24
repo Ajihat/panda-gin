@@ -1,14 +1,15 @@
-import FaqElement from "../FaqElement/FaqElement";
+import { FaqElement } from "../FaqElement/FaqElement";
+import { SingleQuestion } from "../../data/faqQuestions/faqQuestions.types";
 
 import "./FaqCategory.sass";
 
 interface FaqCategoryProps {
     title: string;
-    data: { id: number; question: string; answer: string }[];
+    data: SingleQuestion[];
     id: string;
 }
 
-const FaqCategory = ({ title, data, id }: FaqCategoryProps) => {
+export const FaqCategory = ({ title, data, id }: FaqCategoryProps) => {
     return (
         <section className="faqcategory" id={id}>
             <h3 className="faqcategory__header">{title}</h3>
@@ -24,5 +25,3 @@ const FaqCategory = ({ title, data, id }: FaqCategoryProps) => {
         </section>
     );
 };
-
-export default FaqCategory;

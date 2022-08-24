@@ -6,10 +6,26 @@ interface TopSlideProps {
     index: number;
     currentSlide: number;
     numberOfSlides: number;
-    slidingDirection: string;
+    slidingDirection: "forward" | "backward";
 }
 
-const TopSlide = ({
+type ModifierObj = Record<
+    "prev" | "next",
+    { backward: string; forward: string }
+>;
+
+const modifierObj: ModifierObj = {
+    prev: {
+        backward: "topslide--previous-backward",
+        forward: "topslide--previous-forward",
+    },
+    next: {
+        backward: "topslide--next-backward",
+        forward: "topslide--next-forward",
+    },
+};
+
+export const TopSlide = ({
     header,
     text,
     index,
@@ -17,23 +33,15 @@ const TopSlide = ({
     numberOfSlides,
     slidingDirection,
 }: TopSlideProps) => {
-    let modifier: string;
-    modifier =
-        slidingDirection === "forward"
-            ? "topslide--next-forward"
-            : "topslide--next-backward";
-    if (index === currentSlide) {
-        modifier = "topslide--active";
-    }
-    if (
+    const isCurrentSlide = index === currentSlide;
+    const isPreviousSlide =
         index === currentSlide - 1 ||
-        (currentSlide === 0 && index === numberOfSlides - 1)
-    ) {
-        modifier =
-            slidingDirection === "forward"
-                ? "topslide--previous-forward"
-                : "topslide--previous-backward";
-    }
+        (currentSlide === 0 && index === numberOfSlides - 1);
+
+    const modifierKey = isPreviousSlide ? "prev" : "next";
+    const modifier = isCurrentSlide
+        ? "topslide--active"
+        : modifierObj[modifierKey][slidingDirection];
 
     return (
         <div className={`topslide ${modifier}`}>
@@ -42,5 +50,3 @@ const TopSlide = ({
         </div>
     );
 };
-
-export default TopSlide;

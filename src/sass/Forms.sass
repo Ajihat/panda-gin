@@ -1,0 +1,70 @@
+@use './mixins'
+@use './variables'
+
+.loginpopup, .subscribepopup
+    font-family: variables.$second-font
+    &__form
+        position: relative
+        width: 100%
+    &__form-section.subscribepopup__form-section--horizontal
+        +mixins.positioning(flex,row,flex-start,center,wrap)
+        margin-top: 38px
+    &__label
+        display: block
+        font-size: 1.5rem
+        letter-spacing: 2.4px
+        text-transform: uppercase
+        margin-bottom: 10px
+    &__label-checkbox
+        font-size: 1rem
+        letter-spacing: 1.6px
+        width: calc( 100% - 20px - 12px )
+        order: 2
+        margin-left: 20px
+        cursor: pointer
+    &__input
+        display: block
+        width: 100%
+        padding: 15px
+        font-size: 1.3rem
+        font-weight: 400
+        letter-spacing: .6px
+        background-color: variables.$input-bg-color
+        border: 1px solid variables.$input-bg-color
+        outline: none
+        box-shadow: none
+        appearance: none
+        border-radius: 0px
+        transition: .3s
+    &__input::placeholder
+        font-size: 1rem
+        letter-spacing: 2px
+    &__input:focus
+        border: 1px solid variables.$main-color
+    &__input-checkbox
+        appearance: none
+        border: 1px solid variables.$main-color
+        width: 12px
+        height: 12px
+        transition: background-color .4s
+        cursor: pointer
+    &__input-checkbox:checked
+        background-color: variables.$main-color
+    &__error-info
+        font-size: 1.3rem
+        letter-spacing: 2.4px
+        width: 100%
+        text-transform: uppercase
+        margin-top: 10px
+        color: variables.$error-color
+        order: 3
+    &__form-section
+        margin-bottom: 20px
+    &__api-error
+        font-size: 1.5rem
+        letter-spacing: 1.4px
+        background-color: variables.$error-color
+        color: variables.$secondary-color
+        text-transform: uppercase
+        padding: 15px 20px
+        margin-bottom: 30px

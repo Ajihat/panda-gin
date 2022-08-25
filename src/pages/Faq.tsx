@@ -1,17 +1,17 @@
-import { FC, useEffect } from 'react'
-//components
-import Header from '../components/Header'
-import FaqCategory from '../components/FaqCategory'
-import Submenu from '../components/Submenu'
-//data
-import { faqQuestions } from '../data/faqQuestions'
+import { useEffect } from "react";
 
-const Faq: FC = () => {
+import { Header } from "../components/Header/Header";
+import { FaqCategory } from "../components/FaqCategory/FaqCategory";
+import { Submenu } from "../components/Submenu/Submenu";
 
+import { faqQuestions } from "../data/faqQuestions/faqQuestions";
+
+import "./Pages.sass";
+
+export const Faq = () => {
     useEffect(() => {
-        document.title = "FAQ | Panda Gin"
-    }, [])
-
+        document.title = "FAQ | Panda Gin";
+    }, []);
 
     return (
         <div className="faq">
@@ -63,7 +63,5 @@ const Faq: FC = () => {
                 />
             </div>
         </div>
-    )
-}
-
-export default Faq
+    );
+};

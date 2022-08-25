@@ -1,22 +1,17 @@
-import { FC, useEffect } from 'react'
-//components
-import Header from '../components/Header'
+import { useEffect } from "react";
 
-const Shop: FC = () => {
+import { Header } from "../components/Header/Header";
 
+import "./Pages.sass";
+
+export const Shop = () => {
     useEffect(() => {
-        document.title = "Shop | Panda Gin"
-    }, [])
-
+        document.title = "Shop | Panda Gin";
+    }, []);
 
     return (
         <div className="shop">
-            <Header
-                smallTitle="Shop Panda Gin"
-                bigTitle="Find your Panda"
-            />
+            <Header smallTitle="Shop Panda Gin" bigTitle="Find your Panda" />
         </div>
-    )
-}
-
-export default Shop
+    );
+};

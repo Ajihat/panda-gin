@@ -1,0 +1,22 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.navlink
+    +mixins.positioning(flex,row,center,center,nowrap)
+    height: 28px
+    font-size: 1.4rem
+    margin: 14px 0
+    font-family: variables.$second-font
+    text-transform: uppercase
+    color: variables.$main-color
+    font-weight: 600
+    letter-spacing: 1.2px
+    text-decoration: none
+    box-sizing: content-box
+    transition: color .3s
+    &.navlink--active
+        border-top: 1px solid variables.$main-color
+    &.navlink--active:hover
+        color: variables.$main-color
+    &:hover
+        color: variables.$text-hover-color

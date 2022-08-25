@@ -1,19 +1,5 @@
-@import '_variables'
-@import '_mixins'
-@import '_TopSlider'
-@import '_TopSlide'
-@import '_TopSliderNavigator'
-@import '_Main'
-@import '_Navigation'
-@import '_NavLinks'
-@import '_NavLink'
-@import '_InnerContainer'
-@import '_Pages'
-@import '_Header'
-@import '_Curtain'
-@import '_FaqCategory'
-@import '_FaqElement'
-@import '_Submenu'
+@use './mixins'
+@use './variables'
 
 *
     margin: 0
@@ -27,11 +13,20 @@ html
     max-width: 1920px
     margin: 0 auto
 
-::-webkit-scrollbar
+//===== Scrollbar CSS ===== 
+  /* Firefox */
+*
+    scrollbar-width: auto
+    scrollbar-color: variables.$main-color variables.$secondary-color
+
+//Chrome, Edge, and Safari 
+*::-webkit-scrollbar
     width: 5px
 
-::-webkit-scrollbar-track
-    background: $secondary-color
+*::-webkit-scrollbar-track
+    background: variables.$secondary-color
 
-::-webkit-scrollbar-thumb
-    background: $main-color
+*::-webkit-scrollbar-thumb
+    background-color: variables.$main-color
+    border-radius: 0
+    border: 0 solid variables.$secondary-color

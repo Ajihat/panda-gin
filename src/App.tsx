@@ -7,6 +7,7 @@ import { InnerContainer } from "./components/InnerContainer/InnerContainer";
 import { Curtain } from "./components/Curtain/Curtain";
 import { LoginPopup } from "./components/LoginPopup/LoginPopup";
 import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
+import { Newsletter } from "./components/Newsletter/Newsletter";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
@@ -32,6 +33,7 @@ export const App = () => {
                         <Route path={appRoutes.faq} element={<Faq />} />
                     </Routes>
                 </InnerContainer>
+                <Newsletter />
             </Main>
             {isLoginPopupOpen && <LoginPopup />}
             {isSubscribePopupOpen && <SubscribePopup />}

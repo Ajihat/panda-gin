@@ -1,14 +1,11 @@
 @use './mixins'
 @use './variables'
 
-.loginpopup, .subscribepopup
+.loginpopup, .subscribepopup, .newsletter
     font-family: variables.$second-font
     &__form
         position: relative
         width: 100%
-    &__form-section.subscribepopup__form-section--horizontal
-        +mixins.positioning(flex,row,flex-start,center,wrap)
-        margin-top: 38px
     &__label
         display: block
         font-size: 1.5rem
@@ -36,6 +33,10 @@
         appearance: none
         border-radius: 0px
         transition: .3s
+        &--newsletter
+            background-color: variables.$secondary-color
+            border: 1px solid variables.$main-color
+            width: 70%
     &__input::placeholder
         font-size: 1rem
         letter-spacing: 2px
@@ -60,7 +61,10 @@
         order: 3
     &__form-section
         margin-bottom: 20px
-    &__api-error
+        &--horizontal
+            +mixins.positioning(flex,row,flex-start,stretch,nowrap)
+            margin-top: 38px
+    &__api-error, &__api-sucess
         font-size: 1.5rem
         letter-spacing: 1.4px
         background-color: variables.$error-color
@@ -68,3 +72,5 @@
         text-transform: uppercase
         padding: 15px 20px
         margin-bottom: 30px
+    &__api-sucess
+        background-color: variables.$sucess-color

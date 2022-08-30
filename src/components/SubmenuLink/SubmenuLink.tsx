@@ -12,16 +12,16 @@ export const SubmenuLink = ({
     activeCategory,
 }: SubmenuLinkProps) => {
     return (
-        <li
-            className={
-                href === activeCategory
-                    ? "submenulink submenulink--active"
-                    : "submenulink"
-            }
-        >
+        <li className="submenulink">
             <a href={`#${href}`} className="submenulink__link">
                 {title}
             </a>
+            {activeCategory === href && (
+                <div className="submenulink__border-top"></div>
+            )}
+            {activeCategory === href && (
+                <div className="submenulink__border-bottom"></div>
+            )}
         </li>
     );
 };

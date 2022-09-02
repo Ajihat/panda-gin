@@ -1,0 +1,14 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.socials
+    +mixins.positioning(flex,row,space-around,center,nowrap)
+    width: 80%
+    &__link
+        display: block
+    &__icon
+        color: variables.$main-color
+        font-size: 2.4rem
+        transition: .3s
+        &:hover
+            color: variables.$text-hover-color

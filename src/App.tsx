@@ -8,6 +8,7 @@ import { Curtain } from "./components/Curtain/Curtain";
 import { LoginPopup } from "./components/LoginPopup/LoginPopup";
 import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
 import { Newsletter } from "./components/Newsletter/Newsletter";
+import { Footer } from "./components/Footer/Footer";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
@@ -34,6 +35,7 @@ export const App = () => {
                     </Routes>
                 </InnerContainer>
                 <Newsletter />
+                <Footer />
             </Main>
             {isLoginPopupOpen && <LoginPopup />}
             {isSubscribePopupOpen && <SubscribePopup />}

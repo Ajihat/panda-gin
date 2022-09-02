@@ -4,6 +4,7 @@ import account from "../../assets/account.jpg";
 import cart from "../../assets/cart.jpg";
 
 import { NavLinks } from "../NavLinks/NavLinks";
+import { Socials } from "../Socials/Socials";
 import { FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 

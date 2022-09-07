@@ -1,9 +1,13 @@
+import { useLocation } from "react-router-dom";
+
+import { useProductsContext } from "../../context/ProductsContext/useProductsContext";
+
 import "./SubmenuLink.sass";
 
 interface SubmenuLinkProps {
     title: string;
     href: string;
-    activeCategory: string;
+    activeCategory?: string;
 }
 
 export const SubmenuLink = ({
@@ -11,15 +15,32 @@ export const SubmenuLink = ({
     href,
     activeCategory,
 }: SubmenuLinkProps) => {
+    const { changeProductsCategory, setProductsPage } = useProductsContext();
+    const { pathname } = useLocation();
+
+    const handleClick = () => {
+        if (pathname === "/") {
+            changeProductsCategory(title);
+            setProductsPage(0);
+        }
+    };
+
     return (
-        <li className="submenulink">
-            <a href={`#${href}`} className="submenulink__link">
+        <li className="submenulink" onClick={handleClick}>
+            <a
+                href={`#${href}`}
+                className={
+                    activeCategory === href || activeCategory === title
+                        ? "submenulink__link submenulink__link--active"
+                        : "submenulink__link"
+                }
+            >
                 {title}
             </a>
-            {activeCategory === href && (
+            {(activeCategory === href || activeCategory === title) && (
                 <div className="submenulink__border-top"></div>
             )}
-            {activeCategory === href && (
+            {(activeCategory === href || activeCategory === title) && (
                 <div className="submenulink__border-bottom"></div>
             )}
         </li>

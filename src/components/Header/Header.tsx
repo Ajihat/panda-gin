@@ -21,7 +21,10 @@ export const Header = ({
     alignment,
 }: HeaderProps) => {
     return (
-        <header className={`header ${alignment && modifierObj[alignment]}`}>
+        <header
+            id="header"
+            className={`header ${alignment && modifierObj[alignment]}`}
+        >
             <h3 className="header__small-title">
                 {smallTitle}
                 <div className="header__bottom-line"></div>

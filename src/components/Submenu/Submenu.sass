@@ -10,6 +10,7 @@
     transform: translateX(0px)
     transition: top .3s, width .3s, transform .3s
     list-style: none
+    z-index: 5
     &__list
         position: relative
         +mixins.positioning(flex,row,space-around,center,nowrap)
@@ -21,7 +22,7 @@
         border: 1px solid variables.$border-color
         transition: .3s
         &.submenu__list--moving
-            width: calc( 100% + 190px )
+            width: calc( 100% + 12vw )
             border-right: none
             border-left: none
     &.submenu--down

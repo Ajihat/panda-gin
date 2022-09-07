@@ -10,7 +10,7 @@ import "./Submenu.sass";
 
 interface SubmenuProps {
     data: FaqSubmenuLink[];
-    activeCategory: string;
+    activeCategory?: string;
 }
 
 export const Submenu = ({ data, activeCategory }: SubmenuProps) => {
@@ -45,7 +45,10 @@ export const Submenu = ({ data, activeCategory }: SubmenuProps) => {
     }, []);
 
     return (
-        <div className={navBarsAreHidden ? "submenu" : "submenu submenu--down"}>
+        <div
+            id="submenu"
+            className={navBarsAreHidden ? "submenu" : "submenu submenu--down"}
+        >
             <ul ref={submenuList} className="submenu__list">
                 {data.map((item) => {
                     const { id, title, href } = item;

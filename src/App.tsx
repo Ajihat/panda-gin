@@ -12,7 +12,7 @@ import { Footer } from "./components/Footer/Footer";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
-import { Shop } from "./pages/Shop";
+import { Shop } from "./pages/Shop/Shop";
 import { Faq } from "./pages/Faq";
 
 import { appRoutes } from "./data/appRoutes/appRoutes";

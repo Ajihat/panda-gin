@@ -1,0 +1,13 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.shop
+    padding: 120px 6vw
+    &__listing
+        position: relative
+        +mixins.positioning(flex,row,flex-start,stretch,wrap)
+        gap: 5%
+        row-gap: 3vw
+        padding-top: 70px
+        margin: 0 6vw
+        min-height: 350px

@@ -5,16 +5,23 @@
     position: relative
     +mixins.positioning(flex,row,center,center,nowrap)
     height: 100%
+    cursor: pointer
     &__link
+        +mixins.positioning(flex,row,center,center,nowrap)
         font-family: variables.$second-font
         color: variables.$main-color
         text-decoration: none
         text-transform: uppercase
+        height: 100%
         font-size: 1.4rem
         letter-spacing: 0.6px
         transition: .3s
         &:hover
             color: variables.$text-hover-color
+        &.submenulink__link--active
+            font-style: italic
+            &:hover
+                color: variables.$main-color
     &__border-top, &__border-bottom
         position: absolute
         width: 100%

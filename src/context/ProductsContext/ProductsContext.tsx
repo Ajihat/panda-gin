@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from "react";
+import { createContext, useState, useCallback, useEffect } from "react";
 
 import { useGetProducts } from "./useGetProducts";
 
@@ -13,7 +13,12 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
     const [productsCategory, setProductsCategory] = useState<string>("all");
     const [productsPage, setProductsPage] = useState<number>(0);
 
-    const { productsLoading, products } = useGetProducts(productsCategory);
+    const { productsLoading, products, abortControler } =
+        useGetProducts(productsCategory);
+
+    useEffect(() => {
+        return () => abortControler.current?.abort();
+    }, [productsCategory]);
 
     const changeProductsCategory = useCallback((category: string) => {
         setProductsCategory(category);

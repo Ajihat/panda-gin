@@ -2,7 +2,6 @@ export interface IAppState {
     isTopSliderClosed: boolean;
     isCurtainOpen: boolean;
     navBarsAreHidden: boolean;
-    isUserLoggedIn: boolean;
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
 }
@@ -11,7 +10,6 @@ export interface IAppContext {
     isTopSliderClosed: boolean;
     isCurtainOpen: boolean;
     navBarsAreHidden: boolean;
-    isUserLoggedIn: boolean;
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
     openLoginPopup: () => void;

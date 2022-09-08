@@ -1,3 +1,5 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 import pandaLogo from "../../assets/panda-logo.jpg";
 import subLogo from "../../assets/organic-gin.png";
 import account from "../../assets/account.jpg";
@@ -9,20 +11,26 @@ import { FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAuthContext } from "../../context/AuthContext/useAuthContext";
 import { useNavbarOnScroll } from "./useNavbarOnScroll";
+
+import { appRoutes } from "../../data/appRoutes/appRoutes";
 
 import "./Navigation.sass";
 
 export const Navigation = () => {
-    const { navBarsAreHidden, isUserLoggedIn, openLoginPopup } =
-        useAppContext();
+    const { navBarsAreHidden, openLoginPopup, openCurtain } = useAppContext();
+    const { userJwtToken } = useAuthContext();
     useNavbarOnScroll();
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const handleAccountClick = () => {
-        if (!isUserLoggedIn) {
+        if (!userJwtToken) {
             openLoginPopup();
-        } else {
-            //TODO: Tutaj otwarcie panelu użytkownika jeśli jest zalogowany
+        } else if (appRoutes.personal !== pathname) {
+            openCurtain();
+            navigate(appRoutes.personal);
         }
     };
 

@@ -3,4 +3,5 @@ export interface AppRoutes {
     about: string;
     faq: string;
     contact: string;
+    personal: string;
 }

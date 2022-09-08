@@ -5,4 +5,5 @@ export const appRoutes: AppRoutes = {
     about: "/about",
     faq: "/faq",
     contact: "/contact",
+    personal: "/personal",
 };

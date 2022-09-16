@@ -4,12 +4,10 @@ import { navLinks } from "../../data/navLinks/navLinks";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
+import { NavLinksProps } from "./NavLinks.type";
+
 import "./NavLinks.sass";
 import "./NavLink.sass";
-
-interface NavLinksProps {
-    navBarsAreHidden: boolean;
-}
 
 export const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
     const { openCurtain } = useAppContext();

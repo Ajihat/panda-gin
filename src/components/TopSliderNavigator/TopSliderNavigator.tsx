@@ -4,12 +4,9 @@ import prevBtn from "../../assets/prev-btn.jpg";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
-import "./TopSliderNavigator.sass";
+import { TopSliderNavigatorProps } from "./TopSliderNavigator.types";
 
-interface TopSliderNavigatorProps {
-    changeSlide(direction: string): void;
-    intervalID: ReturnType<typeof setInterval> | undefined;
-}
+import "./TopSliderNavigator.sass";
 
 export const TopSliderNavigator = ({
     changeSlide,

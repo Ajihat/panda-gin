@@ -13,7 +13,7 @@ import { useSubscribe } from "./useSubscribe";
 import { emailRegex } from "../../common/regexs/emailRegex";
 import { nameRegex } from "../../common/regexs/nameRegex";
 
-import { SUBSCRIBE_URL } from "../../api/api_endpoints";
+import { SUBSCRIBE_URL } from "../../api/apiEndpoints";
 
 import { ISubscribeInputs } from "./SubscribePopup.types";
 
@@ -36,11 +36,12 @@ export const SubscribePopup = () => {
             setFocus("username");
         }, 400);
         return () => clearTimeout(timeoutID);
-    }, []);
+    }, [setFocus]);
 
     useEffect(() => {
-        return () => abortControler.current?.abort();
-    }, []);
+        const controler = abortControler.current;
+        return () => controler?.abort();
+    }, [abortControler]);
 
     return ReactDom.createPortal(
         <div className="subscribepopup">

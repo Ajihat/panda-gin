@@ -13,6 +13,8 @@ export const Pagination = () => {
         setProductsPage,
     } = useProductsContext();
 
+    const isLastPage = productsPage === products.length - 1;
+
     if (products.length <= 1) return null;
     return (
         <div className="pagination">
@@ -34,9 +36,7 @@ export const Pagination = () => {
                                 onClick={() => setProductsPage(index)}
                             >
                                 <a className="pagination__link" href="#header">
-                                    {`${index + 1 < 10 ? "0" : null}${
-                                        index + 1
-                                    }`}
+                                    {String(index + 1).padStart(2, "0")}
                                 </a>
                                 {productsPage === index && (
                                     <div className="pagination__line"></div>
@@ -45,7 +45,7 @@ export const Pagination = () => {
                         );
                     })}
                 </ul>
-                {productsPage !== products.length - 1 && (
+                {!isLastPage && (
                     <a href="#header" className="pagination__link">
                         <BsArrowRight
                             className="pagination__arrow"

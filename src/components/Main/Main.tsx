@@ -1,10 +1,8 @@
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
-import "./Main.sass";
+import { MainProps } from "./Main.types";
 
-interface MainProps {
-    children: React.ReactNode;
-}
+import "./Main.sass";
 
 export const Main = ({ children }: MainProps) => {
     const { isTopSliderClosed } = useAppContext();

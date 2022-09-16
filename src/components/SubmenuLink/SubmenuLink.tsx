@@ -2,13 +2,9 @@ import { useLocation } from "react-router-dom";
 
 import { useProductsContext } from "../../context/ProductsContext/useProductsContext";
 
-import "./SubmenuLink.sass";
+import { SubmenuLinkProps } from "./SubmenuLink.types";
 
-interface SubmenuLinkProps {
-    title: string;
-    href: string;
-    activeCategory?: string;
-}
+import "./SubmenuLink.sass";
 
 export const SubmenuLink = ({
     title,

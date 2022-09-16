@@ -25,7 +25,7 @@ export const Shop = () => {
         document.title = "Shop | Panda Gin";
         changeProductsCategory("all");
         setProductsPage(0);
-    }, []);
+    }, [changeProductsCategory, setProductsPage]);
 
     return (
         <div className="shop">

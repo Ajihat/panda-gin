@@ -1,8 +1,6 @@
-import "./InnerContainer.sass";
+import { InnerContainerProps } from "./InnerContainer.types";
 
-interface InnerContainerProps {
-    children: React.ReactNode;
-}
+import "./InnerContainer.sass";
 
 export const InnerContainer = ({ children }: InnerContainerProps) => {
     return <div className="innercontainer">{children}</div>;

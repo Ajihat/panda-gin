@@ -6,7 +6,6 @@ import { appRoutes } from "../../data/appRoutes/appRoutes";
 
 export const ProtectedRoute = () => {
     const { userJwtToken } = useAuthContext();
-    console.log(userJwtToken);
 
     if (!userJwtToken) {
         return <Navigate to={appRoutes.shop} />;

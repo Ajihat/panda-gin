@@ -1,12 +1,8 @@
 import { useRef } from "react";
 
-import "./PrimaryButton.sass";
+import { PrimaryButtonProps } from "./PrimaryButton.types";
 
-interface PrimaryButtonProps {
-    text: string;
-    type: "button" | "submit" | "reset";
-    isDisabled?: boolean;
-}
+import "./PrimaryButton.sass";
 
 export const PrimaryButton = ({
     text,
@@ -40,7 +36,7 @@ export const PrimaryButton = ({
             onMouseLeave={handleOnMouseLeave}
             disabled={isDisabled}
         >
-            <p className="primarybutton__text">{text}</p>
+            <span className="primarybutton__text">{text}</span>
             <div
                 ref={primaryButtonLayerRef}
                 className="primarybutton__layer primarybutton__layer--up"

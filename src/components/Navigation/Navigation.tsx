@@ -7,8 +7,6 @@ import cart from "../../assets/cart.jpg";
 
 import { NavLinks } from "../NavLinks/NavLinks";
 import { Socials } from "../Socials/Socials";
-import { FaFacebookF, FaPinterestP } from "react-icons/fa";
-import { SiInstagram } from "react-icons/si";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useAuthContext } from "../../context/AuthContext/useAuthContext";
@@ -38,9 +36,7 @@ export const Navigation = () => {
         <nav className="navigation">
             <div className="navigation__wrapper">
                 <div className="navigation__inner navigation__inner--left">
-                    <FaFacebookF className="navigation__social-icon" />
-                    <SiInstagram className="navigation__social-icon" />
-                    <FaPinterestP className="navigation__social-icon" />
+                    <Socials version="small" />
                 </div>
                 <div className="navigation__inner">
                     <img

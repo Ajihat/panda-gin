@@ -13,12 +13,21 @@ html
     max-width: 1920px
     margin: 0 auto
     scroll-behavior: smooth
-
+#html.no-scroll
+    scroll-behavior: auto
+#body.no-scroll::-webkit-scrollbar-thumb
+    background-color: variables.$secondary-color
+    scrollbar-color: variables.$secondary-color variables.$secondary-color
+#body
+    scroll-behavior: smooth
+#body.no-scroll
+    scroll-behavior: auto
 //===== Scrollbar CSS ===== 
   /* Firefox */
+
 *
     scrollbar-width: auto
-    scrollbar-color: variables.$main-color variables.$secondary-color
+    scrollbar-color: variables.$main-color variables.$main-color
 
 //Chrome, Edge, and Safari 
 *::-webkit-scrollbar
@@ -30,4 +39,4 @@ html
 *::-webkit-scrollbar-thumb
     background-color: variables.$main-color
     border-radius: 0
-    border: 0 solid variables.$secondary-color
+    border: 0 solid variables.$main-color

@@ -1,11 +1,17 @@
 import { FaFacebookF, FaPinterestP } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 
+import { SocialsProps } from "./Socials.types";
+
 import "./Socials.sass";
 
-export const Socials = () => {
+export const Socials = ({ version }: SocialsProps) => {
     return (
-        <div className="socials">
+        <div
+            className={
+                version === "small" ? "socials socials-small" : "socials"
+            }
+        >
             <a
                 href="https://www.facebook.com/PandaGinBio/"
                 rel="noreferrer"

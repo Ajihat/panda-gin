@@ -1,18 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import "./ProductTile.sass";
+import { ProductTileProps } from "./ProductTile.types";
 
-interface ProductTileProps {
-    id: number;
-    title: string;
-    description: string;
-    price: string;
-    outOfStock: boolean;
-    discount: string;
-    mainPictureUrl: string;
-    index: number;
-}
+import "./ProductTile.sass";
 
 export const ProductTile = ({
     id,
@@ -26,12 +17,12 @@ export const ProductTile = ({
 }: ProductTileProps) => {
     const productTileRef = useRef<HTMLElement | null>(null);
     useEffect(() => {
-        const delay: number = (index + 1) * 100;
+        const delay = (index + 1) * 100;
         const timeoutId = setTimeout(() => {
             productTileRef.current?.classList.remove("producttile--invisible");
         }, delay);
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [index]);
 
     return (
         <article

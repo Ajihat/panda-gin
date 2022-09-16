@@ -30,7 +30,6 @@ export const useLogin = (url: string) => {
                 if (res.status === 201) {
                     const ACCESS_TOKEN: string = res.data.access_token;
                     setUserJwtToken(ACCESS_TOKEN);
-                    sessionStorage.setItem("jwt", JSON.stringify(ACCESS_TOKEN));
                     closeLoginPopup();
                 }
             })

@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { Header } from "../Header/Header";
@@ -63,7 +62,7 @@ export const Newsletter = () => {
                     )}
                     <div className="newsletter__form-section newsletter__form-section--horizontal">
                         <label
-                            htmlFor="terms"
+                            htmlFor="terms-newsletter"
                             className="subscribepopup__label-checkbox"
                         >
                             I accept that Panda Gin will process my personal
@@ -71,7 +70,7 @@ export const Newsletter = () => {
                         </label>
                         <input
                             type="checkbox"
-                            id="terms"
+                            id="terms-newsletter"
                             className="subscribepopup__input-checkbox"
                             {...register("termsChecked", {
                                 required: "This value is required",

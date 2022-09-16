@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import { axiosInstance as axios } from "../../api/axios";
-import { GET_PRODUCTS_URL } from "../../api/api_endpoints";
+import { GET_PRODUCTS_URL } from "../../api/apiEndpoints";
 
 import { frontendPagination } from "../../common/frontendPagination/frontendPagination";
 
@@ -21,51 +21,25 @@ export const useGetProducts = (productsCategory: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
-                if (
-                    productsCategory !== "all" &&
-                    productsCategory !== "limited edition" &&
-                    productsCategory !== "promotions"
-                ) {
-                    const filteredArrayOfProducts = arrayOfProducts.filter(
-                        (singleProduct) => {
-                            return singleProduct.category === productsCategory;
-                        }
-                    );
-                    const paginatedProducts = frontendPagination(
-                        filteredArrayOfProducts,
-                        9
-                    );
-                    setProducts(paginatedProducts);
-                } else if (productsCategory === "limited edition") {
-                    const arrayOfLimitedEditionProducts =
-                        arrayOfProducts.filter((singleProduct) => {
-                            return singleProduct.limitedEdition === true;
-                        });
-                    const paginatedProducts = frontendPagination(
-                        arrayOfLimitedEditionProducts,
-                        9
-                    );
-                    setProducts(paginatedProducts);
-                } else if (productsCategory === "promotions") {
-                    const arrayOfPromotionProducts = arrayOfProducts.filter(
-                        (singleProduct) => {
-                            return singleProduct.discount !== "";
-                        }
-                    );
-                    const paginatedProducts = frontendPagination(
-                        arrayOfPromotionProducts,
-                        9
-                    );
-                    setProducts(paginatedProducts);
-                } else {
-                    const paginatedProducts = frontendPagination(
-                        arrayOfProducts,
-                        9
-                    );
-                    setProducts(paginatedProducts);
-                }
                 setProductsLoading(false);
+                const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
+                const arrayOfFilteredProducts =
+                    productsCategory === "all"
+                        ? arrayOfProducts
+                        : arrayOfProducts.filter((product) => {
+                              return (
+                                  product.category === productsCategory ||
+                                  (product.discount !== "" &&
+                                      productsCategory === "promotions") ||
+                                  (product.limitedEdition === true &&
+                                      productsCategory === "limited edition")
+                              );
+                          });
+                const paginatedAndFilteredProducts = frontendPagination(
+                    arrayOfFilteredProducts,
+                    9
+                );
+                setProducts(paginatedAndFilteredProducts);
             })
             .catch((error) => {
                 if (error.code === "ERR_CANCELED") {

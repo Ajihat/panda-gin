@@ -1,17 +1,13 @@
-import { useState, createContext, useEffect } from "react";
+import { createContext } from "react";
 
 import { IAuthContext, AuthProviderProps } from "./AuthContext.types";
+
+import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-    const [userJwtToken, setUserJwtToken] = useState<string | null>(null);
-
-    useEffect(() => {
-        if (!userJwtToken && sessionStorage.getItem("jwt")) {
-            setUserJwtToken(sessionStorage.getItem("jwt"));
-        }
-    }, []);
+    const [userJwtToken, setUserJwtToken] = useLocalStorage("jwt");
 
     return (
         <AuthContext.Provider

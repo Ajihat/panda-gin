@@ -4,11 +4,14 @@
 .socials
     +mixins.positioning(flex,row,space-around,center,nowrap)
     width: 80%
+    font-size: 2.4rem
+    &.socials-small
+        width: 25%
+        font-size: 1.8rem
     &__link
         display: block
     &__icon
         color: variables.$main-color
-        font-size: 2.4rem
         transition: .3s
         &:hover
             color: variables.$text-hover-color

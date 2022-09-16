@@ -14,7 +14,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { useAppContext } from "./context/AppContext/useAppContext";
 
 import { Shop } from "./pages/Shop/Shop";
-import { Faq } from "./pages/Faq";
+import { Faq } from "./pages/Faq/Faq";
 import { Personal } from "./pages/Personal/Personal";
 
 import { appRoutes } from "./data/appRoutes/appRoutes";

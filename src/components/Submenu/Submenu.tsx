@@ -1,17 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { SubmenuLink } from "../SubmenuLink/SubmenuLink";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
-import { FaqSubmenuLink } from "../../data/faqSubmenu/faqSubmenu.types";
+import { SubmenuProps } from "./Submenu.types";
 
 import "./Submenu.sass";
-
-interface SubmenuProps {
-    data: FaqSubmenuLink[];
-    activeCategory?: string;
-}
 
 export const Submenu = ({ data, activeCategory }: SubmenuProps) => {
     const submenuList = useRef<HTMLUListElement | null>(null);

@@ -1,13 +1,6 @@
+import { HeaderProps, ModifierObj } from "./Header.types";
+
 import "./Header.sass";
-
-interface HeaderProps {
-    smallTitle: string;
-    bigTitle: string;
-    text?: string;
-    alignment?: "left" | "right"; //center is default
-}
-
-type ModifierObj = Record<Exclude<HeaderProps["alignment"], undefined>, string>;
 
 const modifierObj: ModifierObj = {
     left: "header--left",

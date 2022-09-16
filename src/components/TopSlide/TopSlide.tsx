@@ -1,18 +1,6 @@
+import { TopSlideProps, ModifierObj } from "./TopSlide.types";
+
 import "./TopSlide.sass";
-
-interface TopSlideProps {
-    header: string;
-    text: string;
-    index: number;
-    currentSlide: number;
-    numberOfSlides: number;
-    slidingDirection: "forward" | "backward";
-}
-
-type ModifierObj = Record<
-    "prev" | "next",
-    { backward: string; forward: string }
->;
 
 const modifierObj: ModifierObj = {
     prev: {

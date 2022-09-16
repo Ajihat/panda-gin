@@ -1,4 +1,10 @@
-import { createContext, useState, useCallback, useEffect } from "react";
+import {
+    createContext,
+    useState,
+    useCallback,
+    useEffect,
+    useMemo,
+} from "react";
 
 import { useGetProducts } from "./useGetProducts";
 
@@ -17,45 +23,49 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
         useGetProducts(productsCategory);
 
     useEffect(() => {
-        return () => abortControler.current?.abort();
-    }, [productsCategory]);
+        const controler = abortControler.current;
+        return () => controler?.abort();
+    }, [productsCategory, abortControler]);
 
     const changeProductsCategory = useCallback((category: string) => {
         setProductsCategory(category);
     }, []);
 
-    const increaseProductsPage = () => {
+    const increaseProductsPage = useCallback(() => {
         setProductsPage((prevState) => {
-            if (prevState < products.length - 1) {
-                return prevState + 1;
-            } else {
-                return prevState;
-            }
+            return Math.min(products.length - 1, prevState + 1);
         });
-    };
+    }, [products.length]);
 
-    const decreaseProductsPage = () => {
+    const decreaseProductsPage = useCallback(() => {
         setProductsPage((prevState) => {
-            if (prevState > 0) {
-                return prevState - 1;
-            } else {
-                return prevState;
-            }
+            return Math.max(prevState - 1, 0);
         });
-    };
+    }, []);
+
+    const ProductsContextValue = useMemo(() => {
+        return {
+            productsCategory,
+            changeProductsCategory,
+            products,
+            productsLoading,
+            productsPage,
+            increaseProductsPage,
+            decreaseProductsPage,
+            setProductsPage,
+        };
+    }, [
+        productsCategory,
+        changeProductsCategory,
+        products,
+        productsLoading,
+        productsPage,
+        increaseProductsPage,
+        decreaseProductsPage,
+        setProductsPage,
+    ]);
     return (
-        <ProductsContext.Provider
-            value={{
-                productsCategory,
-                changeProductsCategory,
-                products,
-                productsLoading,
-                productsPage,
-                increaseProductsPage,
-                decreaseProductsPage,
-                setProductsPage,
-            }}
-        >
+        <ProductsContext.Provider value={ProductsContextValue}>
             {children}
         </ProductsContext.Provider>
     );

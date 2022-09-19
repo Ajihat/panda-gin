@@ -7,7 +7,8 @@ import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
 export const AuthContext = createContext<IAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-    const [userJwtToken, setUserJwtToken] = useLocalStorage("jwt");
+    const { value: userJwtToken, setNewValue: setUserJwtToken } =
+        useLocalStorage<string>("jwt");
 
     return (
         <AuthContext.Provider

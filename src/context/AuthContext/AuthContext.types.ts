@@ -1,6 +1,6 @@
 export interface IAuthContext {
-    userJwtToken: null | string;
-    setUserJwtToken: React.Dispatch<React.SetStateAction<string | null>>;
+    userJwtToken: string | null;
+    setUserJwtToken: (newValue: string | null) => void;
 }
 
 export interface AuthProviderProps {

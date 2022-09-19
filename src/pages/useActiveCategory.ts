@@ -12,7 +12,7 @@ export const useActiveCategory = (querySelector: string) => {
             const distanceOfCategorySectionToTop =
                 categorySection.getBoundingClientRect().top;
 
-            if (distanceOfCategorySectionToTop <= 0.6 * windowHeight) {
+            if (distanceOfCategorySectionToTop <= 0.2 * windowHeight) {
                 const faqCategorySectionId =
                     categorySection.getAttribute("id")!;
                 setActiveCategory(faqCategorySectionId);

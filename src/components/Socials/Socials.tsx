@@ -8,9 +8,7 @@ import "./Socials.sass";
 export const Socials = ({ version }: SocialsProps) => {
     return (
         <div
-            className={
-                version === "small" ? "socials socials-small" : "socials"
-            }
+            className={`socials ${version === "small" ? "socials--small" : ""}`}
         >
             <a
                 href="https://www.facebook.com/PandaGinBio/"

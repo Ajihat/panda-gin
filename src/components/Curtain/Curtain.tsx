@@ -16,10 +16,10 @@ export const Curtain = () => {
     };
 
     useEffect(() => {
-        window.scroll(0, 0);
+        scrollToPageTop();
         timeoutRef.current = setTimeout(() => {
             closeCurtain();
-            window.scroll(0, 0);
+            scrollToPageTop();
         }, 1500);
 
         return () => {
@@ -28,14 +28,12 @@ export const Curtain = () => {
     }, [closeCurtain]);
 
     useEffect(() => {
-        const htmlTag = document.getElementById("html")!;
-        const bodyTag = document.getElementById("body")!;
-        bodyTag.classList.add("no-scroll");
-        htmlTag.classList.add("no-scroll");
+        document.body.classList.add("no-scroll");
+        document.documentElement.classList.add("no-smooth-scrolling");
 
         return () => {
-            bodyTag.classList.remove("no-scroll");
-            htmlTag.classList.remove("no-scroll");
+            document.body.classList.remove("no-scroll");
+            document.documentElement.classList.remove("no-smooth-scrolling");
         };
     }, []);
 

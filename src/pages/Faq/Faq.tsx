@@ -12,11 +12,11 @@ import { faqSubmenu } from "../../data/faqSubmenu/faqSubmenu";
 import "./Faq.sass";
 
 export const Faq = () => {
+    const { activeCategory } = useActiveCategory(".faqcategory");
+
     useEffect(() => {
         document.title = "FAQ | Panda Gin";
     }, []);
-
-    const { activeCategory } = useActiveCategory(".faqcategory");
 
     return (
         <div className="faq">

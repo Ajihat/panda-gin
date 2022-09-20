@@ -10,14 +10,8 @@ import "./NavLinks.sass";
 import "./NavLink.sass";
 
 export const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
-    const { openCurtain } = useAppContext();
+    const { handleLinkClick } = useAppContext();
     const { pathname } = useLocation();
-
-    const handleClick = (url: string) => {
-        if (url !== pathname) {
-            openCurtain();
-        }
-    };
 
     return (
         <div
@@ -41,7 +35,7 @@ export const NavLinks = ({ navBarsAreHidden }: NavLinksProps) => {
                             className={({ isActive }) =>
                                 isActive ? "navlink navlink--active" : "navlink"
                             }
-                            onClick={() => handleClick(url)}
+                            onClick={() => handleLinkClick(url, pathname)}
                         >
                             {name}
                         </NavLink>

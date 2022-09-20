@@ -21,6 +21,7 @@ export interface IAppContext {
     showNavbars: () => void;
     hideNavbars: () => void;
     closeTopSlider: () => void;
+    handleLinkClick: (url: string, pathName: string) => void;
 }
 
 export interface AppProviderProps {

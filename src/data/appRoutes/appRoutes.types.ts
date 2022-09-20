@@ -4,4 +4,5 @@ export interface AppRoutes {
     faq: string;
     contact: string;
     personal: string;
+    productPage: string;
 }

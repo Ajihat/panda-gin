@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { appRoutes } from "../../data/appRoutes/appRoutes";
 
@@ -7,9 +9,15 @@ import pLetter from "../../assets/p-letter.png";
 import "./FancyLink.sass";
 
 export const FancyLink = () => {
+    const { pathname } = useLocation();
+    const { handleLinkClick } = useAppContext();
     return (
         <div className="fancylink">
-            <Link to={appRoutes.shop} className="fancylink__link">
+            <Link
+                to={appRoutes.shop}
+                className="fancylink__link"
+                onClick={() => handleLinkClick(appRoutes.shop, pathname)}
+            >
                 <div className="fancylink__left">
                     <div className="fancylink__circle"></div>
                     <div className="fancylink__circle fancylink__circle--white">

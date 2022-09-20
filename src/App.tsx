@@ -10,6 +10,7 @@ import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
 import { Newsletter } from "./components/Newsletter/Newsletter";
 import { Footer } from "./components/Footer/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
+import { ProductPage } from "./pages/ProductPage/ProductPage";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
@@ -34,6 +35,10 @@ export const App = () => {
                     <Routes>
                         <Route path={appRoutes.shop} element={<Shop />} />
                         <Route path={appRoutes.faq} element={<Faq />} />
+                        <Route
+                            path={appRoutes.productPage}
+                            element={<ProductPage />}
+                        />
                         <Route element={<ProtectedRoute />}>
                             <Route
                                 path={appRoutes.personal}

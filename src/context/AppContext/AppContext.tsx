@@ -62,6 +62,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         dispatch({ type: CLOSE_TOPSLIDER });
     }, []);
 
+    const handleLinkClick = useCallback(
+        (url: string, pathName: string) => {
+            if (url !== pathName) {
+                openCurtain();
+            }
+        },
+        [openCurtain]
+    );
+
     const AppContextValue = useMemo(() => {
         return {
             ...appState,
@@ -74,6 +83,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             showNavbars,
             hideNavbars,
             closeTopSlider,
+            handleLinkClick,
         };
     }, [
         appState,
@@ -86,6 +96,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         showNavbars,
         hideNavbars,
         closeTopSlider,
+        handleLinkClick,
     ]);
 
     return (

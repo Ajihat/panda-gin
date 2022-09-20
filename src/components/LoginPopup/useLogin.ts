@@ -39,7 +39,7 @@ export const useLogin = (url: string) => {
                 if (!error?.response) {
                     setApiErrorText("No server response");
                 } else if (error.response?.status) {
-                    setApiErrorText("Authentication failed");
+                    setApiErrorText("Wrong email or password");
                 } else {
                     setApiErrorText("Sorry, something went wrong");
                 }

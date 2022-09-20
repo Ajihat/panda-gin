@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { ProductTileProps } from "./ProductTile.types";
 
@@ -16,6 +18,8 @@ export const ProductTile = ({
     index,
 }: ProductTileProps) => {
     const productTileRef = useRef<HTMLElement | null>(null);
+    const { handleLinkClick } = useAppContext();
+    const { pathname } = useLocation();
     useEffect(() => {
         const delay = (index + 1) * 100;
         const timeoutId = setTimeout(() => {
@@ -29,7 +33,11 @@ export const ProductTile = ({
             ref={productTileRef}
             className="producttile producttile--invisible"
         >
-            <Link to={`/products/${id}`} className="producttile__link">
+            <Link
+                to={`/product-${id}`}
+                className="producttile__link"
+                onClick={() => handleLinkClick(`/product-${id}`, pathname)}
+            >
                 <img
                     src={mainPictureUrl}
                     alt="panda-gin-product"

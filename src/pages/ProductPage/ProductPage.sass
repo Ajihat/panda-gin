@@ -1,0 +1,14 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.productpage
+    &__inner
+        padding: 4.5vw 6vw
+    &__link-holder
+        +mixins.positioning(flex,row,flex-sart,center,nowrap)
+    &__product-holder
+        position: relative
+        padding: 3vw
+        border: 1px solid variables.$main-color
+        margin-top: 3vw
+        min-height: 15vw

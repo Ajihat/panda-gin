@@ -3,12 +3,9 @@ import { useState } from "react";
 import { GoPlusSmall } from "react-icons/go";
 import { BsDash } from "react-icons/bs";
 
-import "./FaqElement.sass";
+import { FaqElementProps } from "./FaqElement.types";
 
-interface FaqElementProps {
-    question: string;
-    answer: string;
-}
+import "./FaqElement.sass";
 
 export const FaqElement = ({ question, answer }: FaqElementProps) => {
     const [isAnswerHidden, setIsAnswerHidden] = useState<boolean>(true);

@@ -1,6 +1,6 @@
+import ReactDom from "react-dom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import ReactDom from "react-dom";
 
 import { Header } from "../Header/Header";
 import { IoIosClose } from "react-icons/io";
@@ -12,7 +12,7 @@ import { useLogin } from "./useLogin";
 
 import { emailRegex } from "../../common/regexs/emailRegex";
 
-import { LOGIN_URL } from "../../api/api_endpoints";
+import { LOGIN_URL } from "../../api/apiEndpoints";
 
 import { ILoginInputs } from "./LoginPopup.types";
 
@@ -38,11 +38,12 @@ export const LoginPopup = () => {
         return () => {
             clearTimeout(timeoutID);
         };
-    }, [isSubscribePopupOpen]);
+    }, [isSubscribePopupOpen, setFocus]);
 
     useEffect(() => {
-        return () => abortControler.current?.abort();
-    }, []);
+        const controler = abortControler.current;
+        return () => controler?.abort();
+    }, [abortControler]);
 
     return ReactDom.createPortal(
         <div className="loginpopup">

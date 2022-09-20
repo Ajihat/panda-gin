@@ -19,7 +19,6 @@ const initialAppState: IAppState = {
     isTopSliderClosed: false,
     isCurtainOpen: false,
     navBarsAreHidden: false,
-    isUserLoggedIn: false,
     isLoginPopupOpen: false,
     isSubscribePopupOpen: false,
 };

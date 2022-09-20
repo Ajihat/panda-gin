@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAuthContext } from "../../context/AuthContext/useAuthContext";
 
 import { axiosInstance as axios } from "../../api/axios";
 
@@ -11,6 +12,7 @@ export const useLogin = (url: string) => {
     const [apiErrorText, setApiErrorText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { closeLoginPopup } = useAppContext();
+    const { setUserJwtToken } = useAuthContext();
     const abortControler = useRef<AbortController>();
 
     const onMutate = (payload: ILoginInputs) => {
@@ -27,7 +29,7 @@ export const useLogin = (url: string) => {
                 setIsLoading(false);
                 if (res.status === 201) {
                     const ACCESS_TOKEN: string = res.data.access_token;
-                    console.log(ACCESS_TOKEN);
+                    setUserJwtToken(ACCESS_TOKEN);
                     closeLoginPopup();
                 }
             })

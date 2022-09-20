@@ -1,27 +1,34 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 import pandaLogo from "../../assets/panda-logo.jpg";
 import subLogo from "../../assets/organic-gin.png";
 import account from "../../assets/account.jpg";
 import cart from "../../assets/cart.jpg";
 
 import { NavLinks } from "../NavLinks/NavLinks";
-import { FaFacebookF, FaPinterestP } from "react-icons/fa";
-import { SiInstagram } from "react-icons/si";
+import { Socials } from "../Socials/Socials";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAuthContext } from "../../context/AuthContext/useAuthContext";
 import { useNavbarOnScroll } from "./useNavbarOnScroll";
+
+import { appRoutes } from "../../data/appRoutes/appRoutes";
 
 import "./Navigation.sass";
 
 export const Navigation = () => {
-    const { navBarsAreHidden, isUserLoggedIn, openLoginPopup } =
-        useAppContext();
+    const { navBarsAreHidden, openLoginPopup, openCurtain } = useAppContext();
+    const { userJwtToken } = useAuthContext();
     useNavbarOnScroll();
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const handleAccountClick = () => {
-        if (!isUserLoggedIn) {
+        if (!userJwtToken) {
             openLoginPopup();
-        } else {
-            //TODO: Tutaj otwarcie panelu użytkownika jeśli jest zalogowany
+        } else if (appRoutes.personal !== pathname) {
+            openCurtain();
+            navigate(appRoutes.personal);
         }
     };
 
@@ -29,9 +36,7 @@ export const Navigation = () => {
         <nav className="navigation">
             <div className="navigation__wrapper">
                 <div className="navigation__inner navigation__inner--left">
-                    <FaFacebookF className="navigation__social-icon" />
-                    <SiInstagram className="navigation__social-icon" />
-                    <FaPinterestP className="navigation__social-icon" />
+                    <Socials version="small" />
                 </div>
                 <div className="navigation__inner">
                     <img

@@ -1,20 +1,19 @@
 import { FaqElement } from "../FaqElement/FaqElement";
-import { SingleQuestion } from "../../data/faqQuestions/faqQuestions.types";
+
+import { FaqCategoryProps } from "./FaqCategory.types";
 
 import "./FaqCategory.sass";
 
-interface FaqCategoryProps {
-    title: string;
-    data: SingleQuestion[];
-    id: string;
-}
-
-export const FaqCategory = ({ title, data, id }: FaqCategoryProps) => {
+export const FaqCategory = ({
+    category,
+    categoryQuestions,
+    id,
+}: FaqCategoryProps) => {
     return (
         <section className="faqcategory" id={id}>
-            <h3 className="faqcategory__header">{title}</h3>
+            <h3 className="faqcategory__header">{category}</h3>
             <div className="faqcategory__inner">
-                {data.map((item) => (
+                {categoryQuestions.map((item) => (
                     <FaqElement
                         key={item.id}
                         question={item.question}

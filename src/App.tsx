@@ -7,11 +7,15 @@ import { InnerContainer } from "./components/InnerContainer/InnerContainer";
 import { Curtain } from "./components/Curtain/Curtain";
 import { LoginPopup } from "./components/LoginPopup/LoginPopup";
 import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
+import { Newsletter } from "./components/Newsletter/Newsletter";
+import { Footer } from "./components/Footer/Footer";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
-import { Shop } from "./pages/Shop";
-import { Faq } from "./pages/Faq";
+import { Shop } from "./pages/Shop/Shop";
+import { Faq } from "./pages/Faq/Faq";
+import { Personal } from "./pages/Personal/Personal";
 
 import { appRoutes } from "./data/appRoutes/appRoutes";
 
@@ -30,8 +34,16 @@ export const App = () => {
                     <Routes>
                         <Route path={appRoutes.shop} element={<Shop />} />
                         <Route path={appRoutes.faq} element={<Faq />} />
+                        <Route element={<ProtectedRoute />}>
+                            <Route
+                                path={appRoutes.personal}
+                                element={<Personal />}
+                            />
+                        </Route>
                     </Routes>
                 </InnerContainer>
+                <Newsletter />
+                <Footer />
             </Main>
             {isLoginPopupOpen && <LoginPopup />}
             {isSubscribePopupOpen && <SubscribePopup />}

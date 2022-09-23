@@ -3,10 +3,12 @@
 
 .productpage
     &__inner
+        position: relative
         padding: 4.5vw 6vw
     &__link-holder
-        +mixins.positioning(flex,row,flex-sart,center,nowrap)
+        +mixins.positioning(flex,row,flex-start,center,nowrap)
     &__product-holder
+        +mixins.positioning(flex,row,space-between,flex-start,nowrap)
         position: relative
         padding: 3vw
         border: 1px solid variables.$main-color

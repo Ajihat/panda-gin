@@ -16,6 +16,7 @@ export const ProductTile = ({
     discount,
     mainPictureUrl,
     index,
+    openInNewTab,
 }: ProductTileProps) => {
     const productTileRef = useRef<HTMLElement | null>(null);
     const { handleLinkClick } = useAppContext();
@@ -34,9 +35,10 @@ export const ProductTile = ({
             className="producttile producttile--invisible"
         >
             <Link
-                to={`/product-${id}`}
+                to={`/product/${id}`}
                 className="producttile__link"
                 onClick={() => handleLinkClick(`/product-${id}`, pathname)}
+                target={openInNewTab ? "_blank" : "_self"}
             >
                 <img
                     src={mainPictureUrl}

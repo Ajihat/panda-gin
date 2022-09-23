@@ -1,0 +1,10 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.randomproduct
+    padding: 0 6vw
+    &__inner
+        position: relative
+        padding-top: 2vw
+        +mixins.positioning(flex,row,space-between,stretch,nowrap)
+        min-height: 10vw

@@ -4,7 +4,7 @@ import { GalleryProps } from "./Gallery.types";
 
 import "./Gallery.sass";
 
-export const Gallery = ({ images }: GalleryProps) => {
+export const Gallery = ({ images, outOfStock, discount }: GalleryProps) => {
     const [currentlyDisplayedImage, setCurrentlyDisplayedImage] =
         useState<number>(0);
     const bigGalleryRef = useRef<HTMLDivElement | null>(null);
@@ -55,6 +55,12 @@ export const Gallery = ({ images }: GalleryProps) => {
                     );
                 })}
             </div>
+            {outOfStock && (
+                <p className="gallery__out-of-stock">Out of stock</p>
+            )}
+            {discount && (
+                <p className="gallery__out-of-stock">{`${discount}% off`}</p>
+            )}
         </section>
     );
 };

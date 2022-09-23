@@ -36,7 +36,7 @@ export const useLogin = (url: string) => {
             .catch((error) => {
                 setIsLoading(false);
                 setApiError(true);
-                if (!error?.response) {
+                if (error.code === "ERR_NETWORK") {
                     setApiErrorText("No server response");
                 } else if (error.response?.status) {
                     setApiErrorText("Wrong email or password");

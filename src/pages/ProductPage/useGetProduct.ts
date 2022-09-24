@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { axiosInstance as axios } from "../../api/axios";
 import { GET_PRODUCT_URL } from "../../api/apiEndpoints";
@@ -9,13 +9,16 @@ export const useGetProduct = (productId: string) => {
     const [product, setProduct] = useState<null | Product>(null);
     const [productLoading, setProductLoading] = useState<boolean>(false);
     const [apiError, setApiError] = useState<string>("");
+    const abortControler = useRef<AbortController>();
 
     useEffect(() => {
         setProductLoading(true);
         setApiError("");
+        abortControler.current = new AbortController();
         axios({
             method: "GET",
             url: GET_PRODUCT_URL + productId,
+            signal: abortControler.current.signal,
         })
             .then((res) => {
                 setProductLoading(false);
@@ -34,5 +37,5 @@ export const useGetProduct = (productId: string) => {
             });
     }, [productId]);
 
-    return { product, productLoading, apiError };
+    return { product, productLoading, apiError, abortControler };
 };

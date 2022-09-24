@@ -28,7 +28,6 @@ export const useGetRandomProducts = (currentProductId: string) => {
                     const randomIndex = Math.floor(
                         Math.random() * arrayOfProducts.length
                     );
-                    console.log(randomIndex);
 
                     const randomProduct = arrayOfProducts[randomIndex];
                     if (

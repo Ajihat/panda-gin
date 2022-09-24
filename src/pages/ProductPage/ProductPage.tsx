@@ -8,6 +8,7 @@ import { Dashboard } from "../../components/Dashboard/Dashboard";
 import { Loader } from "../../components/Loader/Loader";
 import { RandomProduct } from "../../components/RandomProduct/RandomProduct";
 import { ApiError } from "../../components/ApiError/ApiError";
+import { RandomPicture } from "../../components/RandomPicture/RandomPicture";
 
 import { useGetProduct } from "./useGetProduct";
 
@@ -18,11 +19,20 @@ import "./ProductPage.sass";
 export const ProductPage = () => {
     const { id } = useParams<string>();
 
-    const { product, productLoading, apiError } = useGetProduct(id as string);
+    const { product, productLoading, apiError, abortControler } = useGetProduct(
+        id as string
+    );
 
     useEffect(() => {
-        document.title = `${product?.title} | Panda Gin`;
+        if (product !== null) {
+            document.title = `${product.title} | Panda Gin`;
+        }
     }, [product]);
+
+    useEffect(() => {
+        const controler = abortControler.current;
+        return () => controler?.abort();
+    }, [abortControler]);
 
     return (
         <div className="productpage">
@@ -50,6 +60,7 @@ export const ProductPage = () => {
             </div>
             <RandomProduct currentProductId={id as string} />
             <FancyLink />
+            <RandomPicture />
         </div>
     );
 };

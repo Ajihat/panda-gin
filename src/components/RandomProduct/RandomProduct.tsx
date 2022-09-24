@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { Header } from "../Header/Header";
 import { Loader } from "../Loader/Loader";
 import { ProductTile } from "../ProductTile/ProductTile";
@@ -12,6 +14,11 @@ import "./RandomProduct.sass";
 export const RandomProduct = ({ currentProductId }: RandomProductProps) => {
     const { randomProducts, isLoading, apiError, abortControler } =
         useGetRandomProducts(currentProductId);
+
+    useEffect(() => {
+        const controler = abortControler.current;
+        return () => controler?.abort();
+    }, [abortControler]);
     return (
         <div className="randomproduct">
             <Header

@@ -9,6 +9,7 @@ import { Loader } from "../Loader/Loader";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useLogin } from "./useLogin";
+import { useNoScrollingWhilePopup } from "./useNoScrollingWhilePopup";
 
 import { emailRegex } from "../../common/regexs/emailRegex";
 
@@ -44,6 +45,8 @@ export const LoginPopup = () => {
         const controler = abortControler.current;
         return () => controler?.abort();
     }, [abortControler]);
+
+    useNoScrollingWhilePopup();
 
     return ReactDom.createPortal(
         <div className="loginpopup">

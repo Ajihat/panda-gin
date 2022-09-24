@@ -30,7 +30,7 @@ export const useGetProduct = (productId: string) => {
                 if (e.code === "ERR_NETWORK") {
                     setApiError("Connection error");
                 } else if (e.code === "ERR_BAD_RESPONSE") {
-                    setApiError("Product do not exists");
+                    setApiError("Product does not exist");
                 } else {
                     setApiError("We are sorry. Something went wrong");
                 }

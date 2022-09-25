@@ -11,6 +11,9 @@ import {
     HIDE_NAVBARS,
     CLOSE_TOPSLIDER,
 } from "./appStateActions";
+
+import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
+
 import { IAppState, IAppContext, AppProviderProps } from "./AppContext.types";
 
 export const AppContext = createContext<IAppContext | null>(null);
@@ -71,6 +74,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         [openCurtain]
     );
 
+    const { value: isLegalDrinkingAge, setNewValue: setIsLegalDrinkingAge } =
+        useLocalStorage<true>("isLegalDrinkingAge");
+
     const AppContextValue = useMemo(() => {
         return {
             ...appState,
@@ -84,6 +90,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             hideNavbars,
             closeTopSlider,
             handleLinkClick,
+            isLegalDrinkingAge,
+            setIsLegalDrinkingAge,
         };
     }, [
         appState,
@@ -97,6 +105,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         hideNavbars,
         closeTopSlider,
         handleLinkClick,
+        isLegalDrinkingAge,
+        setIsLegalDrinkingAge,
     ]);
 
     return (

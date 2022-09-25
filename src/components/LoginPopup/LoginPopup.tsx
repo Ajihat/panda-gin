@@ -9,7 +9,7 @@ import { Loader } from "../Loader/Loader";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useLogin } from "./useLogin";
-import { useNoScrollingWhilePopup } from "./useNoScrollingWhilePopup";
+import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
 
 import { emailRegex } from "../../common/regexs/emailRegex";
 

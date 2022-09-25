@@ -22,6 +22,8 @@ export interface IAppContext {
     hideNavbars: () => void;
     closeTopSlider: () => void;
     handleLinkClick: (url: string, pathName: string) => void;
+    isLegalDrinkingAge: true | null;
+    setIsLegalDrinkingAge: (newValue: true | null) => void;
 }
 
 export interface AppProviderProps {

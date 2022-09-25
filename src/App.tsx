@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { TopSlider } from "./components/TopSlider/TopSlider";
 import { Main } from "./components/Main/Main";
@@ -11,6 +12,7 @@ import { Newsletter } from "./components/Newsletter/Newsletter";
 import { Footer } from "./components/Footer/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { ProductPage } from "./pages/ProductPage/ProductPage";
+import { LegalPopup } from "./components/LegalPopup/LegalPopup";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
@@ -23,8 +25,12 @@ import { appRoutes } from "./data/appRoutes/appRoutes";
 import "./sass/App.sass";
 
 export const App = () => {
-    const { isCurtainOpen, isLoginPopupOpen, isSubscribePopupOpen } =
-        useAppContext();
+    const {
+        isCurtainOpen,
+        isLoginPopupOpen,
+        isSubscribePopupOpen,
+        isLegalDrinkingAge,
+    } = useAppContext();
 
     return (
         <>
@@ -53,6 +59,9 @@ export const App = () => {
             {isLoginPopupOpen && <LoginPopup />}
             {isSubscribePopupOpen && <SubscribePopup />}
             {isCurtainOpen && <Curtain />}
+            <AnimatePresence exitBeforeEnter>
+                {!isLegalDrinkingAge && <LegalPopup />}
+            </AnimatePresence>
         </>
     );
 };

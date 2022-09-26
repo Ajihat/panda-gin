@@ -38,7 +38,7 @@ export const ProductTile = ({
                 to={`/product/${id}`}
                 className="producttile__link"
                 onClick={() => handleLinkClick(`/product-${id}`, pathname)}
-                target={openInNewTab ? "_blank" : "_self"}
+                target={openInNewTab ? "_blank" : ""}
             >
                 <img
                     src={mainPictureUrl}

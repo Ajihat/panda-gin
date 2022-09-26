@@ -93,11 +93,13 @@ export const Dashboard = ({ product }: DashboardProps) => {
                     +
                 </div>
             </div>
+
             {formatPromotion && (
                 <p className="dashboard__promotion">
                     Additional 10% promotion by purchasing a case
                 </p>
             )}
+
             <div className="dashboard__checkout">
                 <div className="dashboard__prices">
                     <div

@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import { TopSlider } from "./components/TopSlider/TopSlider";
 import { Main } from "./components/Main/Main";

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 import { randomPicture } from "../../data/randomPicture/randomPicture";
 
@@ -16,5 +17,14 @@ export const RandomPicture = () => {
         }
     }, []);
 
-    return <div ref={divRef} className="randompicture"></div>;
+    return (
+        <motion.div
+            ref={divRef}
+            className="randompicture"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+        ></motion.div>
+    );
 };

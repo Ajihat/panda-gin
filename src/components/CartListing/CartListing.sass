@@ -1,0 +1,83 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.cartlisting
+    list-style: none
+    &__item
+        position: relative
+        +mixins.positioning(flex,row,space-between,stretch,nowrap)
+        padding-bottom: 15px
+        margin-bottom: 15px
+        bottom: -120px
+        opacity: 0
+        transition-duration: .8s
+        transition-timing-function: cubic-bezier(.17,.67,.33,.97)
+        border-bottom: 1px solid variables.$border-color
+    &__inner
+        +mixins.positioning(flex,row,flex-start,stretch,nowrap)
+        width: 50%
+    &__inner-right
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        width: 40%
+    &__item-img
+        display: block
+        width: 120px
+        padding: 10px
+    &__item-title
+        position: relative
+        font-family: variables.$main-font
+        font-size: 2.4rem
+        color: variables.$main-color
+        align-self: flex-start
+        font-weight: 500
+        letter-spacing: .6px
+        padding-left: 1.5vw
+    &__link
+        +mixins.positioning(flex,column,space-between,flex-start,nowrap)
+        text-decoration: none
+    &__deletion
+        +mixins.positioning(flex,row,flex-end,center,nowrap)
+        position: absolute
+        top: 0
+        right: -60px
+        width: 60px
+        height: 100%
+    &__delete-btn
+        position: relative
+        bottom: 8px
+        display: block
+        width: 15px
+        cursor: pointer
+    &__format
+        font-family: variables.$second-font
+        color: variables.$text-gray
+        font-size: 1.2rem
+        text-transform: uppercase
+        letter-spacing: .6px
+        margin-top: 5px
+        font-weight: 300
+    &__quantity
+        position: relative
+        +mixins.positioning(flex,row,flex-start,flex-start,nowrap)
+        border: 1px solid variables.$main-color
+        width: 120px
+        &.cartlisting__quantity--inactive
+            border: 1px solid variables.$border-color
+    &__quantity-button, &__quantity-output
+        +mixins.positioning(flex,row,center,center,nowrap)
+        width: 40px
+        height: 50px
+        padding: 15px 8px
+        font-size: 1.2rem
+        font-weight: 400
+        cursor: pointer
+    &__quantity-output
+        cursor: auto
+        font-size: 1.1rem
+    &__quantity-button::selection
+        background-color: variables.$secondary-color
+    &__item-price
+        font-family: variables.$second-font
+        font-size: 1.7rem
+        color: variables.$main-color
+        letter-spacing: .2px

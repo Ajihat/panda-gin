@@ -13,6 +13,7 @@ import { Footer } from "./components/Footer/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { ProductPage } from "./pages/ProductPage/ProductPage";
 import { LegalPopup } from "./components/LegalPopup/LegalPopup";
+import { CartPopup } from "./components/CartPopup/CartPopup";
 
 import { useAppContext } from "./context/AppContext/useAppContext";
 
@@ -29,6 +30,7 @@ export const App = () => {
         isCurtainOpen,
         isLoginPopupOpen,
         isSubscribePopupOpen,
+        isCartPopupOpen,
         isLegalDrinkingAge,
     } = useAppContext();
 
@@ -61,6 +63,7 @@ export const App = () => {
             {isCurtainOpen && <Curtain />}
             <AnimatePresence exitBeforeEnter>
                 {!isLegalDrinkingAge && <LegalPopup />}
+                {isCartPopupOpen && <CartPopup />}
             </AnimatePresence>
         </>
     );

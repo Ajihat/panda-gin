@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { Header } from "../Header/Header";
-import { IoIosClose } from "react-icons/io";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 import { Loader } from "../Loader/Loader";
+
+import closeBtn from "../../assets/close-btn.svg";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useLogin } from "./useLogin";
@@ -132,12 +133,12 @@ export const LoginPopup = () => {
                     {isLoading && <Loader />}
                 </form>
 
-                <div
-                    className="loginpopup__close-btn"
+                <img
                     onClick={closeLoginPopup}
-                >
-                    <IoIosClose className="loginpopup__close-icon" />
-                </div>
+                    src={closeBtn}
+                    alt="close-btn"
+                    className="loginpopup__close-btn"
+                />
             </div>
         </div>,
         document.getElementById("portal")!

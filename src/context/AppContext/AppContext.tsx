@@ -10,6 +10,9 @@ import {
     SHOW_NAVBARS,
     HIDE_NAVBARS,
     CLOSE_TOPSLIDER,
+    OPEN_TOPSLIDER,
+    HIDE_CART_POPUP,
+    OPEN_CART_POPUP,
 } from "./appStateActions";
 
 import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
@@ -24,6 +27,7 @@ const initialAppState: IAppState = {
     navBarsAreHidden: false,
     isLoginPopupOpen: false,
     isSubscribePopupOpen: false,
+    isCartPopupOpen: false,
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
@@ -65,6 +69,18 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         dispatch({ type: CLOSE_TOPSLIDER });
     }, []);
 
+    const openTopSlider = useCallback(() => {
+        dispatch({ type: OPEN_TOPSLIDER });
+    }, []);
+
+    const openCartPopup = useCallback(() => {
+        dispatch({ type: OPEN_CART_POPUP });
+    }, []);
+
+    const closeCartPopup = useCallback(() => {
+        dispatch({ type: HIDE_CART_POPUP });
+    }, []);
+
     const handleLinkClick = useCallback(
         (url: string, pathName: string) => {
             if (url !== pathName) {
@@ -89,9 +105,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             showNavbars,
             hideNavbars,
             closeTopSlider,
+            openTopSlider,
             handleLinkClick,
             isLegalDrinkingAge,
             setIsLegalDrinkingAge,
+            openCartPopup,
+            closeCartPopup,
         };
     }, [
         appState,
@@ -104,9 +123,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         showNavbars,
         hideNavbars,
         closeTopSlider,
+        openTopSlider,
         handleLinkClick,
         isLegalDrinkingAge,
         setIsLegalDrinkingAge,
+        openCartPopup,
+        closeCartPopup,
     ]);
 
     return (

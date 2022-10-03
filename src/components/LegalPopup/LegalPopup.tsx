@@ -19,7 +19,7 @@ export const LegalPopup = () => {
     useNoScrollingWhilePopup();
     return ReactDom.createPortal(
         <motion.div
-            key="popup"
+            key="legal-popup"
             className="legalpopup"
             exit={{
                 opacity: 0,

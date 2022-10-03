@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import pandaLogo from "../../assets/panda-logo.jpg";
@@ -10,6 +11,7 @@ import { Socials } from "../Socials/Socials";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useAuthContext } from "../../context/AuthContext/useAuthContext";
+import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
 import { useNavbarOnScroll } from "./useNavbarOnScroll";
 
 import { appRoutes } from "../../data/appRoutes/appRoutes";
@@ -17,18 +19,35 @@ import { appRoutes } from "../../data/appRoutes/appRoutes";
 import "./Navigation.sass";
 
 export const Navigation = () => {
-    const { navBarsAreHidden, openLoginPopup, openCurtain } = useAppContext();
+    const {
+        navBarsAreHidden,
+        openLoginPopup,
+        openCurtain,
+        isCartPopupOpen,
+        openCartPopup,
+        closeCartPopup,
+    } = useAppContext();
+    const { numberOfProductsInCart } = useShoppingCartContext();
     const { userJwtToken } = useAuthContext();
-    useNavbarOnScroll();
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    useNavbarOnScroll();
 
     const handleAccountClick = () => {
         if (!userJwtToken) {
             openLoginPopup();
         } else if (appRoutes.personal !== pathname) {
+            closeCartPopup();
             openCurtain();
             navigate(appRoutes.personal);
+        }
+    };
+
+    const handleCartClick = () => {
+        if (isCartPopupOpen) {
+            closeCartPopup();
+        } else {
+            openCartPopup();
         }
     };
 
@@ -52,11 +71,19 @@ export const Navigation = () => {
                         className="navigation__utils-icon"
                         onClick={handleAccountClick}
                     />
-                    <img
-                        src={cart}
-                        alt="cart-icon"
-                        className="navigation__utils-icon"
-                    />
+                    <div
+                        onClick={handleCartClick}
+                        className="navigation__cart-holder"
+                    >
+                        <img
+                            src={cart}
+                            alt="cart-icon"
+                            className="navigation__utils-icon"
+                        />
+                        <div className="navigation__cart-items-counter">
+                            {numberOfProductsInCart}
+                        </div>
+                    </div>
                 </div>
                 <img
                     src={subLogo}

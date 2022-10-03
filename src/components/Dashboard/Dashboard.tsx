@@ -2,20 +2,39 @@ import { useState } from "react";
 
 import { Header } from "../Header/Header";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+
+import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
+import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { DashboardProps } from "./Dashboard.types";
 
 import "./Dashboard.sass";
 
 export const Dashboard = ({ product }: DashboardProps) => {
-    const [productFormat, setProductFormat] = useState<number | null>(1);
+    const { openCartPopup } = useAppContext();
+    const {
+        id,
+        title,
+        description,
+        text,
+        formats,
+        price,
+        discount,
+        outOfStock,
+        imageThumbnail,
+    } = product;
+    const [productFormat, setProductFormat] = useState<string | null>(() => {
+        if (formats.length > 0) {
+            return formats[0].text;
+        } else return null;
+    });
     const [formatPromotion, setFormatPromotion] = useState<boolean>(false);
     const [quantity, setQuantity] = useState<number>(1);
-    const { title, description, text, formats, price, discount, outOfStock } =
-        product;
+    const { addProductToCart } = useShoppingCartContext();
 
-    const handleClick = (id: number, promotion?: boolean) => {
-        setProductFormat(id);
+    const handleClick = (format: string, promotion?: boolean) => {
+        setProductFormat(format);
         if (promotion) {
             setFormatPromotion(true);
         } else {
@@ -48,6 +67,27 @@ export const Dashboard = ({ product }: DashboardProps) => {
         return calculatedPrice.toFixed(2);
     };
 
+    const handleButtonClick = () => {
+        if (!outOfStock) {
+            addProductToCart({
+                id,
+                title,
+                quantity,
+                format: productFormat,
+                unitPrice: Number(
+                    actualPriceCalculation(
+                        Number(price),
+                        Number(discount),
+                        formatPromotion
+                    )
+                ),
+                mainImage: imageThumbnail,
+            });
+            setQuantity(1);
+            openCartPopup();
+        }
+    };
+
     return (
         <section className="dashboard">
             <Header bigTitle={title} text={description} alignment="left" />
@@ -62,13 +102,13 @@ export const Dashboard = ({ product }: DashboardProps) => {
                         {formats.map((format) => (
                             <button
                                 className={`dashboard__formats-btn ${
-                                    productFormat === format.id
+                                    productFormat === format.text
                                         ? "dashboard__formats-btn--active"
                                         : ""
                                 }`}
                                 key={format.id}
                                 onClick={() =>
-                                    handleClick(format.id, format.promotion)
+                                    handleClick(format.text, format.promotion)
                                 }
                             >
                                 {format.text}
@@ -123,15 +163,16 @@ export const Dashboard = ({ product }: DashboardProps) => {
                         </div>
                     )}
                 </div>
-                <div className="dashboard__btn-holder">
+                <div
+                    className="dashboard__btn-holder"
+                    onClick={handleButtonClick}
+                >
                     <PrimaryButton
                         text="Add to cart"
                         type="button"
                         isDisabled={outOfStock}
                     />
-                    {outOfStock && (
-                        <div className="dashboard__gray-layer"></div>
-                    )}
+                    {outOfStock && <OpacityLayer zIndex="2" />}
                 </div>
             </div>
         </section>

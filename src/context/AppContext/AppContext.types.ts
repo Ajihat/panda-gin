@@ -4,6 +4,7 @@ export interface IAppState {
     navBarsAreHidden: boolean;
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
+    isCartPopupOpen: boolean;
 }
 
 export interface IAppContext {
@@ -12,6 +13,7 @@ export interface IAppContext {
     navBarsAreHidden: boolean;
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
+    isCartPopupOpen: boolean;
     openLoginPopup: () => void;
     closeLoginPopup: () => void;
     openSubscribePopup: () => void;
@@ -21,9 +23,12 @@ export interface IAppContext {
     showNavbars: () => void;
     hideNavbars: () => void;
     closeTopSlider: () => void;
+    openTopSlider: () => void;
     handleLinkClick: (url: string, pathName: string) => void;
     isLegalDrinkingAge: true | null;
     setIsLegalDrinkingAge: (newValue: true | null) => void;
+    openCartPopup: () => void;
+    closeCartPopup: () => void;
 }
 
 export interface AppProviderProps {

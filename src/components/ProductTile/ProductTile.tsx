@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { ProductTileProps } from "./ProductTile.types";
@@ -73,7 +75,7 @@ export const ProductTile = ({
                             </p>
                         )}
                     </div>
-                    {outOfStock && <div className="producttile__layer"></div>}
+                    {outOfStock && <OpacityLayer zIndex="2" />}
                 </div>
                 {outOfStock && (
                     <p className="producttile__out-of-stock">Out of stock</p>

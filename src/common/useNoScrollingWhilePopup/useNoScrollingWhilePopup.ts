@@ -2,6 +2,9 @@ import { useEffect } from "react";
 
 export const useNoScrollingWhilePopup = () => {
     useEffect(() => {
+        if (document.documentElement.classList.contains("no-smooth-scrolling"))
+            // If such class exists (added by another popup) do nothing
+            return;
         const topScroll =
             window.pageYOffset || document.documentElement.scrollTop;
         const leftScroll =

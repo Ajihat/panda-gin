@@ -6,7 +6,7 @@
     top: 0
     left: 0
     background-color: variables.$secondary-color
-    z-index: 6
+    z-index: 5
     &__wrapper
         position: relative
         +mixins.positioning(flex,row,space-between,center,nowrap)
@@ -25,6 +25,8 @@
             justify-content: flex-end
             gap: 15px
     &__utils-icon
+        display: block
+
         font-size: 16px
         cursor: pointer
         transition: color .35s
@@ -41,3 +43,19 @@
         &.navigation__sublogo--hidden
             opacity: 0
             bottom: 20px
+    &__cart-holder
+        position: relative
+        width: 25px
+        height: 22px
+        cursor: pointer
+    &__cart-items-counter
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: -2px
+        right: -5px
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        border: 1px solid variables.$main-color

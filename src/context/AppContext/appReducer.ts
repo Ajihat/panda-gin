@@ -1,5 +1,6 @@
 import {
     CLOSE_TOPSLIDER,
+    OPEN_TOPSLIDER,
     OPEN_CURTAIN,
     CLOSE_CURTAIN,
     SHOW_NAVBARS,
@@ -8,6 +9,8 @@ import {
     HIDE_LOGIN_POPUP,
     OPEN_SUBSCRIBE_POPUP,
     HIDE_SUBSCRIBE_POPUP,
+    OPEN_CART_POPUP,
+    HIDE_CART_POPUP,
 } from "./appStateActions";
 import { IAppState } from "./AppContext.types";
 
@@ -19,6 +22,12 @@ export const appReducer = (
         return {
             ...state,
             isTopSliderClosed: true,
+        };
+    }
+    if (action.type === OPEN_TOPSLIDER) {
+        return {
+            ...state,
+            isTopSliderClosed: false,
         };
     }
     if (action.type === OPEN_CURTAIN) {
@@ -67,6 +76,18 @@ export const appReducer = (
         return {
             ...state,
             isSubscribePopupOpen: false,
+        };
+    }
+    if (action.type === HIDE_CART_POPUP) {
+        return {
+            ...state,
+            isCartPopupOpen: false,
+        };
+    }
+    if (action.type === OPEN_CART_POPUP) {
+        return {
+            ...state,
+            isCartPopupOpen: true,
         };
     }
     return state; // if there is no match

@@ -24,6 +24,7 @@ export interface Product {
     discount: string;
     limitedEdition: boolean;
     images: string[];
+    imageThumbnail: string;
     text: string;
     formats: { id: number; text: string; promotion?: boolean }[];
 }

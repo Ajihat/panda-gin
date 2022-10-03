@@ -1,4 +1,5 @@
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
+import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
 
 import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
 import { useAppContext } from "../../context/AppContext/useAppContext";
@@ -47,7 +48,10 @@ export const CartSummary = () => {
             >
                 <div className="cartsummary__row-left">Total (tax incl.)</div>
                 <div className="cartsummary__row-right">
-                    {(shoppingCartValue + shippingCost).toFixed(2)}&euro;
+                    {numberOfProductsInCart === 0
+                        ? (0).toFixed(2)
+                        : (shoppingCartValue + shippingCost).toFixed(2)}
+                    &euro;
                 </div>
             </div>
             <div
@@ -66,6 +70,7 @@ export const CartSummary = () => {
                 }`}
             >
                 <PrimaryButton text="Proceed to checkout" type="button" />
+                {numberOfProductsInCart === 0 && <OpacityLayer zIndex="2" />}
             </div>
         </div>
     );

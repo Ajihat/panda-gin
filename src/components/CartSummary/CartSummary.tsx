@@ -7,22 +7,13 @@ import { useAppContext } from "../../context/AppContext/useAppContext";
 import "./CartSummary.sass";
 
 export const CartSummary = () => {
-    const {
-        numberOfProductsInCart,
-        shoppingCartValue,
-        shippingCost,
-        productsInCart,
-    } = useShoppingCartContext();
+    const { numberOfProductsInCart, shoppingCartValue, shippingCost } =
+        useShoppingCartContext();
     const { closeCartPopup } = useAppContext();
 
     return (
         <div className="cartsummary">
-            <div
-                className="cartsummary__inner"
-                data-order={`${
-                    productsInCart.length === 0 ? 5 : 4 + productsInCart.length
-                }`}
-            >
+            <div className="cartsummary__inner" data-animation="animation-item">
                 <div className="cartsummary__row">
                     <div className="cartsummary__row-left">
                         {numberOfProductsInCart} items
@@ -42,9 +33,7 @@ export const CartSummary = () => {
             </div>
             <div
                 className="cartsummary__row moved"
-                data-order={`${
-                    productsInCart.length === 0 ? 6 : 5 + productsInCart.length
-                }`}
+                data-animation="animation-item"
             >
                 <div className="cartsummary__row-left">Total (tax incl.)</div>
                 <div className="cartsummary__row-right">
@@ -57,17 +46,13 @@ export const CartSummary = () => {
             <div
                 onClick={closeCartPopup}
                 className="cartsummary__btn-holder"
-                data-order={`${
-                    productsInCart.length === 0 ? 7 : 6 + productsInCart.length
-                }`}
+                data-animation="animation-item"
             >
                 <PrimaryButton text="Continue Shopping" type="button" />
             </div>
             <div
                 className="cartsummary__btn-holder"
-                data-order={`${
-                    productsInCart.length === 0 ? 8 : 7 + productsInCart.length
-                }`}
+                data-animation="animation-item"
             >
                 <PrimaryButton text="Proceed to checkout" type="button" />
                 {numberOfProductsInCart === 0 && <OpacityLayer zIndex="2" />}

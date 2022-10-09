@@ -23,7 +23,6 @@ export const useGetProducts = (productsCategory: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setProductsLoading(false);
                 const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
                 if (productsCategory === "all") {
                     const paginatedProducts = frontendPagination(
@@ -63,17 +62,17 @@ export const useGetProducts = (productsCategory: string) => {
                 setProducts(paginatedAndFilteredProducts);
             })
             .catch((error) => {
-                console.log(error);
-
-                setProductsLoading(false);
                 if (error.code === "ERR_CANCELED") {
                     return;
                 }
                 if (error.code === "ERR_NETWORK") {
                     setApiError("Connection error");
-                } else {
-                    setApiError("We are sorry. Something went wrong");
+                    return;
                 }
+                setApiError("We are sorry. Something went wrong");
+            })
+            .finally(() => {
+                setProductsLoading(false);
             });
     }, [productsCategory]);
 

@@ -15,6 +15,8 @@ import {
     OPEN_CART_POPUP,
 } from "./appStateActions";
 
+import { NO_SCROLL } from "../../data/specialClasses/specialClasses";
+
 import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
 
 import { IAppState, IAppContext, AppProviderProps } from "./AppContext.types";
@@ -28,6 +30,7 @@ const initialAppState: IAppState = {
     isLoginPopupOpen: false,
     isSubscribePopupOpen: false,
     isCartPopupOpen: false,
+    scrollingDirectionIsBeingChecked: true,
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
@@ -75,11 +78,25 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
     const openCartPopup = useCallback(() => {
         dispatch({ type: OPEN_CART_POPUP });
-    }, []);
+        const topSliderHeight = 65;
+        if (
+            !appState.isTopSliderClosed &&
+            window.pageYOffset < topSliderHeight
+        ) {
+            closeTopSlider();
+        }
+        document.body.classList.add(NO_SCROLL);
+        hideNavbars();
+    }, [appState.isTopSliderClosed, closeTopSlider, hideNavbars]);
 
     const closeCartPopup = useCallback(() => {
         dispatch({ type: HIDE_CART_POPUP });
-    }, []);
+        showNavbars();
+        document.body.classList.remove(NO_SCROLL);
+        if (appState.isTopSliderClosed && window.pageYOffset < 65) {
+            openTopSlider();
+        }
+    }, [appState.isTopSliderClosed, openTopSlider, showNavbars]);
 
     const handleLinkClick = useCallback(
         (url: string, pathName: string) => {

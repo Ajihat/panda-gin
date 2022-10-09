@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { CartListing } from "../CartListing/CartListing";
 import { Gifts } from "../Gifts/Gifts";
 import { CartSummary } from "../CartSummary/CartSummary";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 
 import closeBtn from "../../assets/close-btn.svg";
 
@@ -16,36 +15,20 @@ import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/
 import "./CartPopup.sass";
 
 export const CartPopup = () => {
-    const { hideNavbars, showNavbars, isTopSliderClosed, closeCartPopup } =
-        useAppContext();
+    const { closeCartPopup } = useAppContext();
     const { numberOfProductsInCart, productsInCart } = useShoppingCartContext();
 
     useNoScrollingWhilePopup();
 
     useEffect(() => {
-        const mainTag = document.querySelector<HTMLElement>(".main");
-        if (mainTag && !isTopSliderClosed && window.pageYOffset < 65) {
-            mainTag.classList.add("main--notopslider");
-        }
-        document.body.classList.add("no-scroll");
-        hideNavbars();
-        return () => {
-            showNavbars();
-            document.body.classList.remove("no-scroll");
-            if (mainTag && !isTopSliderClosed && window.pageYOffset < 65) {
-                mainTag.classList.remove("main--notopslider");
-            }
-        };
-    }, [hideNavbars, showNavbars, isTopSliderClosed]);
-
-    useEffect(() => {
-        const items = Array.from(
-            document.querySelectorAll("[data-order]")
+        const animationItems = Array.from(
+            document.querySelectorAll("[data-animation]")
         ) as Array<HTMLElement>;
-        items.forEach((item) => {
-            item.style.transitionDelay = `${Number(item.dataset.order) / 10}s`;
-            item.style.bottom = "0px";
-            item.style.opacity = "1";
+
+        animationItems.forEach((animationItem, index) => {
+            animationItem.style.transitionDelay = `${index / 10}s`;
+            animationItem.style.bottom = "0px";
+            animationItem.style.opacity = "1";
         });
     }, [productsInCart]);
 
@@ -65,11 +48,17 @@ export const CartPopup = () => {
                 <div className="cartpopup__black-line"></div>
                 <div className="cartpopup__wrapper">
                     <div className="cartpopup__header">
-                        <h3 className="cartpopup__small" data-order="1">
+                        <h3
+                            className="cartpopup__small"
+                            data-animation="animation-item"
+                        >
                             {numberOfProductsInCart} articles
                             <div className="cartpopup__small-line"></div>
                         </h3>
-                        <h1 className="cartpopup__big" data-order="2">
+                        <h1
+                            className="cartpopup__big"
+                            data-animation="animation-item"
+                        >
                             Shopping Cart
                         </h1>
                     </div>
@@ -78,7 +67,10 @@ export const CartPopup = () => {
                             {numberOfProductsInCart > 0 ? (
                                 <CartListing productsInCart={productsInCart} />
                             ) : (
-                                <p className="cartpopup__text" data-order="3">
+                                <p
+                                    className="cartpopup__text"
+                                    data-animation="animation-item"
+                                >
                                     There are no more items in your cart
                                 </p>
                             )}

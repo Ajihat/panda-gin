@@ -26,7 +26,6 @@ export const useLogin = (url: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setIsLoading(false);
                 if (res.status === 201) {
                     const ACCESS_TOKEN: string = res.data.access_token;
                     setUserJwtToken(ACCESS_TOKEN);
@@ -34,7 +33,6 @@ export const useLogin = (url: string) => {
                 }
             })
             .catch((error) => {
-                setIsLoading(false);
                 setApiError(true);
                 if (error.code === "ERR_NETWORK") {
                     setApiErrorText("No server response");
@@ -43,6 +41,9 @@ export const useLogin = (url: string) => {
                 } else {
                     setApiErrorText("Sorry, something went wrong");
                 }
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 

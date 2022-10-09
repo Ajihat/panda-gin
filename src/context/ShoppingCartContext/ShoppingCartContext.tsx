@@ -3,10 +3,10 @@ import { shoppingCartReducer } from "./shoppingCartReducer";
 import {
     ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT_FROM_CART,
+    ADD_GIFT_TO_CART,
+    DELETE_GIFT_FROM_CART,
     INCREASE_PRODUCT_QUANTITY,
     DECREASE_PRODUCT_QUANTITY,
-    SET_GIFT_IS_CHOOSEN,
-    SET_GIFT_IS_NOT_CHOOSEN,
 } from "./shoppingCartStateActions";
 
 import {
@@ -51,6 +51,19 @@ export const ShoppingCartProvider = ({
         []
     );
 
+    const addGiftToCart = useCallback((product: ShoppingCartProduct) => {
+        dispatch({
+            type: ADD_GIFT_TO_CART,
+            payload: product,
+        });
+    }, []);
+
+    const deleteGiftFromCart = useCallback(() => {
+        dispatch({
+            type: DELETE_GIFT_FROM_CART,
+        });
+    }, []);
+
     const increaseProductQuantity = useCallback(
         (product: ShoppingCartProduct) => {
             dispatch({
@@ -70,20 +83,6 @@ export const ShoppingCartProvider = ({
         },
         []
     );
-
-    const setGiftIsChoosen = useCallback((id: number) => {
-        dispatch({
-            type: SET_GIFT_IS_CHOOSEN,
-            payload: id,
-        });
-    }, []);
-
-    const setGiftIsNotChoosen = useCallback(() => {
-        dispatch({
-            type: SET_GIFT_IS_NOT_CHOOSEN,
-            payload: null,
-        });
-    }, []);
 
     const numberOfProductsInCart = useMemo(() => {
         const { productsInCart } = shoppingCartState;
@@ -116,10 +115,10 @@ export const ShoppingCartProvider = ({
                 ...shoppingCartState,
                 addProductToCart,
                 deleteProductFromCart,
+                addGiftToCart,
+                deleteGiftFromCart,
                 increaseProductQuantity,
                 decreaseProductQuantity,
-                setGiftIsChoosen,
-                setGiftIsNotChoosen,
                 numberOfProductsInCart,
                 shoppingCartValue,
                 shippingCost,

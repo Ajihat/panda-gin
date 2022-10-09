@@ -2,12 +2,12 @@ import { useRef, useEffect, useCallback } from "react";
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
 export const useNavbarOnScroll = () => {
-    const { hideNavbars, showNavbars, isLoginPopupOpen, isCartPopupOpen } =
+    const { hideNavbars, showNavbars, scrollingDirectionIsBeingChecked } =
         useAppContext();
     const lastScrollPositionRef = useRef<number>(0);
 
     const checkScrollingDirection = useCallback(() => {
-        if (isLoginPopupOpen || isCartPopupOpen) return null;
+        if (!scrollingDirectionIsBeingChecked) return;
         const scroll: number = window.pageYOffset;
         if (scroll > lastScrollPositionRef.current && scroll >= 120) {
             hideNavbars();
@@ -15,7 +15,7 @@ export const useNavbarOnScroll = () => {
             showNavbars();
         }
         lastScrollPositionRef.current = scroll <= 0 ? 0 : scroll;
-    }, [hideNavbars, showNavbars, isLoginPopupOpen, isCartPopupOpen]);
+    }, [hideNavbars, showNavbars, scrollingDirectionIsBeingChecked]);
 
     useEffect(() => {
         window.addEventListener("scroll", checkScrollingDirection);

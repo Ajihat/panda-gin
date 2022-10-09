@@ -25,15 +25,12 @@ export const useSubscribe = (url: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setIsLoading(false);
-
                 if (res.status === 201) {
                     console.log(res);
                     closeSubscribePopup();
                 }
             })
             .catch((error) => {
-                setIsLoading(false);
                 setApiError(true);
                 if (error.code === "ERR_NETWORK") {
                     setApiErrorText("No server response");
@@ -42,6 +39,9 @@ export const useSubscribe = (url: string) => {
                 } else {
                     setApiErrorText("Sorry, something went wrong");
                 }
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 

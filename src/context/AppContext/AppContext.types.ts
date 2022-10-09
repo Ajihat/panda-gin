@@ -5,6 +5,7 @@ export interface IAppState {
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
     isCartPopupOpen: boolean;
+    scrollingDirectionIsBeingChecked: boolean;
 }
 
 export interface IAppContext {
@@ -14,6 +15,7 @@ export interface IAppContext {
     isLoginPopupOpen: boolean;
     isSubscribePopupOpen: boolean;
     isCartPopupOpen: boolean;
+    scrollingDirectionIsBeingChecked: boolean;
     openLoginPopup: () => void;
     closeLoginPopup: () => void;
     openSubscribePopup: () => void;

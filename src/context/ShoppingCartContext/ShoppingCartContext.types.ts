@@ -22,10 +22,10 @@ export interface IShoppingCartContext {
     choosenGiftId: null | number;
     addProductToCart: (product: ShoppingCartProduct) => void;
     deleteProductFromCart: (id: number, format: string | null) => void;
+    addGiftToCart: (product: ShoppingCartProduct) => void;
+    deleteGiftFromCart: () => void;
     increaseProductQuantity: (product: ShoppingCartProduct) => void;
     decreaseProductQuantity: (product: ShoppingCartProduct) => void;
-    setGiftIsChoosen: (id: number) => void;
-    setGiftIsNotChoosen: () => void;
     numberOfProductsInCart: number;
     shoppingCartValue: number;
     shippingCost: number;
@@ -41,20 +41,19 @@ type ReducerAction =
           payload: { id: number; format: string | null };
       }
     | {
+          type: "ADD_GIFT_TO_CART";
+          payload: ShoppingCartProduct;
+      }
+    | {
+          type: "DELETE_GIFT_FROM_CART";
+      }
+    | {
           type: "INCREASE_PRODUCT_QUANTITY";
           payload: ShoppingCartProduct;
       }
     | {
           type: "DECREASE_PRODUCT_QUANTITY";
           payload: ShoppingCartProduct;
-      }
-    | {
-          type: "SET_GIFT_IS_CHOOSEN";
-          payload: number;
-      }
-    | {
-          type: "SET_GIFT_IS_NOT_CHOOSEN";
-          payload: null;
       };
 
 export type ShoppingCartReducer = (

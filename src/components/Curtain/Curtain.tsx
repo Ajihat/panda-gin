@@ -5,6 +5,11 @@ import pandaHead from "../../assets/panda-head.png";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
+import {
+    NO_SCROLL,
+    NO_SMOOTH_SCROLLING,
+} from "../../data/specialClasses/specialClasses";
+
 import "./Curtain.sass";
 
 export const Curtain = () => {
@@ -28,12 +33,12 @@ export const Curtain = () => {
     }, [closeCurtain]);
 
     useEffect(() => {
-        document.body.classList.add("no-scroll");
-        document.documentElement.classList.add("no-smooth-scrolling");
+        document.body.classList.add(NO_SCROLL);
+        document.documentElement.classList.add(NO_SMOOTH_SCROLLING);
 
         return () => {
-            document.body.classList.remove("no-scroll");
-            document.documentElement.classList.remove("no-smooth-scrolling");
+            document.body.classList.remove(NO_SCROLL);
+            document.documentElement.classList.remove(NO_SMOOTH_SCROLLING);
         };
     }, []);
 

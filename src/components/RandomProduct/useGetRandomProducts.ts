@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { axiosInstance as axios } from "../../api/axios";
 import { GET_PRODUCTS_URL } from "../../api/apiEndpoints";
 
+import { drawRandomProducts } from "./drawRandomProducts";
+
 import { Product } from "../../context/ProductsContext/ProductsContext.types";
 
 export const useGetRandomProducts = (currentProductId: string) => {
@@ -21,36 +23,23 @@ export const useGetRandomProducts = (currentProductId: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setIsLoading(false);
                 const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
-                const arrayOfRandomProducts: Product[] = [];
-                while (arrayOfRandomProducts.length < 3) {
-                    const randomIndex = Math.floor(
-                        Math.random() * arrayOfProducts.length
-                    );
 
-                    const randomProduct = arrayOfProducts[randomIndex];
-                    if (
-                        randomProduct.id !== Number(currentProductId) &&
-                        !randomProduct.outOfStock &&
-                        arrayOfRandomProducts.findIndex(
-                            (item) => item.id === randomProduct.id
-                        ) === -1
-                    ) {
-                        arrayOfRandomProducts.push(randomProduct);
-                    }
-                }
-                setRandomProducts(arrayOfRandomProducts);
+                setRandomProducts(
+                    drawRandomProducts(arrayOfProducts, 3, currentProductId)
+                );
             })
             .catch((e) => {
-                setIsLoading(false);
                 if (e.code === "ERR_NETWORK") {
                     setApiError("connection error");
                 } else {
                     setApiError("We are sorry. Something went wrong");
                 }
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
-    }, []);
+    }, [currentProductId]);
 
     return { randomProducts, isLoading, apiError, abortControler };
 };

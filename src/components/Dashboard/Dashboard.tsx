@@ -13,40 +13,43 @@ import "./Dashboard.sass";
 
 export const Dashboard = ({ product }: DashboardProps) => {
     const { openCartPopup } = useAppContext();
-    const {
-        id,
-        title,
-        description,
-        text,
-        formats,
-        price,
-        discount,
-        outOfStock,
-        imageThumbnail,
-    } = product;
-    const [productFormat, setProductFormat] = useState<string | null>(() => {
-        if (formats.length > 0) {
-            return formats[0].text;
-        } else return null;
-    });
-    const [formatPromotion, setFormatPromotion] = useState<boolean>(false);
-    const [quantity, setQuantity] = useState<number>(1);
     const { addProductToCart } = useShoppingCartContext();
+    const BOTTLES_PER_CASE = 6;
+    const INITIAL_PRODUCT_DASHBOARD_DATA = {
+        format: {
+            type: product.formats[0]?.text ?? null,
+            promotion: false,
+        },
+        quantity: 1,
+    };
+    const [productDashboardData, setProductDashboardData] = useState(
+        INITIAL_PRODUCT_DASHBOARD_DATA
+    );
 
-    const handleClick = (format: string, promotion?: boolean) => {
-        setProductFormat(format);
-        if (promotion) {
-            setFormatPromotion(true);
-        } else {
-            setFormatPromotion(false);
-        }
+    const handleClick = (type: string, promotion = false) => {
+        setProductDashboardData({
+            ...productDashboardData,
+            format: {
+                type,
+                promotion,
+            },
+        });
     };
 
-    const increaseQuantity = () => setQuantity((prevState) => prevState + 1);
+    const increaseQuantity = () =>
+        setProductDashboardData((prevState) => {
+            return {
+                ...productDashboardData,
+                quantity: prevState.quantity + 1,
+            };
+        });
 
     const decreaseQuantity = () => {
-        setQuantity((prevState) => {
-            return Math.max(prevState - 1, 1);
+        setProductDashboardData((prevState) => {
+            return {
+                ...productDashboardData,
+                quantity: Math.max(prevState.quantity - 1, 1),
+            };
         });
     };
 
@@ -56,7 +59,7 @@ export const Dashboard = ({ product }: DashboardProps) => {
         formatPromotion: boolean
     ) => {
         let calculatedPrice: number = formatPromotion
-            ? 6 * regularPrice
+            ? BOTTLES_PER_CASE * regularPrice
             : regularPrice;
         if (discount !== 0) {
             calculatedPrice = calculatedPrice * ((100 - discount) / 100);
@@ -64,45 +67,49 @@ export const Dashboard = ({ product }: DashboardProps) => {
         if (formatPromotion) {
             calculatedPrice = calculatedPrice * 0.9; // 10% discont for case format
         }
-        return calculatedPrice.toFixed(2);
+
+        return Number(calculatedPrice);
     };
 
     const handleButtonClick = () => {
-        if (!outOfStock) {
+        if (!product.outOfStock) {
             addProductToCart({
-                id,
-                title,
-                quantity,
-                format: productFormat,
-                unitPrice: Number(
-                    actualPriceCalculation(
-                        Number(price),
-                        Number(discount),
-                        formatPromotion
-                    )
+                id: product.id,
+                title: product.title,
+                quantity: productDashboardData.quantity,
+                format: productDashboardData.format.type,
+                unitPrice: actualPriceCalculation(
+                    Number(product.price),
+                    Number(product.discount),
+                    productDashboardData.format.promotion
                 ),
-                mainImage: imageThumbnail,
+                mainImage: product.imageThumbnail,
             });
-            setQuantity(1);
+            setProductDashboardData(INITIAL_PRODUCT_DASHBOARD_DATA);
             openCartPopup();
         }
     };
 
     return (
         <section className="dashboard">
-            <Header bigTitle={title} text={description} alignment="left" />
-            <p className="dashboard__text">{text}</p>
+            <Header
+                bigTitle={product.title}
+                text={product.description}
+                alignment="left"
+            />
+            <p className="dashboard__text">{product.text}</p>
             <a href="" className="dashboard__link">
                 Know more
             </a>
-            {formats.length > 0 && (
+            {product.formats.length > 0 && (
                 <>
                     <label className="dashboard__label">Format</label>
                     <div className="dashboard__formats">
-                        {formats.map((format) => (
+                        {product.formats.map((format) => (
                             <button
                                 className={`dashboard__formats-btn ${
-                                    productFormat === format.text
+                                    productDashboardData.format.type ===
+                                    format.text
                                         ? "dashboard__formats-btn--active"
                                         : ""
                                 }`}
@@ -125,7 +132,9 @@ export const Dashboard = ({ product }: DashboardProps) => {
                 >
                     -
                 </div>
-                <div className="dashboard__quantity-output">{quantity}</div>
+                <div className="dashboard__quantity-output">
+                    {productDashboardData.quantity}
+                </div>
                 <div
                     onClick={increaseQuantity}
                     className="dashboard__quantity-button"
@@ -134,7 +143,7 @@ export const Dashboard = ({ product }: DashboardProps) => {
                 </div>
             </div>
 
-            {formatPromotion && (
+            {productDashboardData.format.promotion && (
                 <p className="dashboard__promotion">
                     Additional 10% promotion by purchasing a case
                 </p>
@@ -144,21 +153,25 @@ export const Dashboard = ({ product }: DashboardProps) => {
                 <div className="dashboard__prices">
                     <div
                         className={`dashboard__price ${
-                            formatPromotion || discount
+                            productDashboardData.format.promotion ||
+                            product.discount
                                 ? "dashboard__price--gray"
                                 : ""
                         }`}
                     >
-                        {formatPromotion ? 6 * Number(price) : price}
+                        {productDashboardData.format.promotion
+                            ? BOTTLES_PER_CASE * Number(product.price)
+                            : product.price}
                         &euro;
                     </div>
-                    {(formatPromotion || discount) && (
+                    {(productDashboardData.format.promotion ||
+                        product.discount) && (
                         <div className="dashboard__price">
                             {actualPriceCalculation(
-                                Number(price),
-                                Number(discount),
-                                formatPromotion
-                            )}
+                                Number(product.price),
+                                Number(product.discount),
+                                productDashboardData.format.promotion
+                            ).toFixed(2)}
                             &euro;
                         </div>
                     )}
@@ -170,9 +183,9 @@ export const Dashboard = ({ product }: DashboardProps) => {
                     <PrimaryButton
                         text="Add to cart"
                         type="button"
-                        isDisabled={outOfStock}
+                        isDisabled={product.outOfStock}
                     />
-                    {outOfStock && <OpacityLayer zIndex="2" />}
+                    {product.outOfStock && <OpacityLayer zIndex="2" />}
                 </div>
             </div>
         </section>

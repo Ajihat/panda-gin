@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 
+import { NO_SMOOTH_SCROLLING } from "../../data/specialClasses/specialClasses";
+
 export const useNoScrollingWhilePopup = () => {
     useEffect(() => {
-        if (document.documentElement.classList.contains("no-smooth-scrolling"))
-            // If such class exists (added by another popup) do nothing
+        if (document.documentElement.classList.contains(NO_SMOOTH_SCROLLING))
             return;
         const topScroll =
             window.pageYOffset || document.documentElement.scrollTop;
@@ -13,11 +14,11 @@ export const useNoScrollingWhilePopup = () => {
         const scroll = () => {
             window.scrollTo(leftScroll, topScroll);
         };
-        document.documentElement.classList.add("no-smooth-scrolling");
+        document.documentElement.classList.add(NO_SMOOTH_SCROLLING);
         window.addEventListener("scroll", scroll);
 
         return () => {
-            document.documentElement.classList.remove("no-smooth-scrolling");
+            document.documentElement.classList.remove(NO_SMOOTH_SCROLLING);
             window.removeEventListener("scroll", scroll);
         };
     }, []);

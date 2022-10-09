@@ -58,12 +58,14 @@ export const appReducer = (
         return {
             ...state,
             isLoginPopupOpen: true,
+            scrollingDirectionIsBeingChecked: false,
         };
     }
     if (action.type === HIDE_LOGIN_POPUP) {
         return {
             ...state,
             isLoginPopupOpen: false,
+            scrollingDirectionIsBeingChecked: true,
         };
     }
     if (action.type === OPEN_SUBSCRIBE_POPUP) {
@@ -82,12 +84,14 @@ export const appReducer = (
         return {
             ...state,
             isCartPopupOpen: false,
+            scrollingDirectionIsBeingChecked: true,
         };
     }
     if (action.type === OPEN_CART_POPUP) {
         return {
             ...state,
             isCartPopupOpen: true,
+            scrollingDirectionIsBeingChecked: false,
         };
     }
     return state; // if there is no match

@@ -21,12 +21,9 @@ export const useGetProduct = (productId: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setProductLoading(false);
                 setProduct(res.data);
             })
             .catch((e) => {
-                console.log(e);
-                setProductLoading(false);
                 if (e.code === "ERR_NETWORK") {
                     setApiError("Connection error");
                 } else if (e.code === "ERR_BAD_RESPONSE") {
@@ -34,6 +31,9 @@ export const useGetProduct = (productId: string) => {
                 } else {
                     setApiError("We are sorry. Something went wrong");
                 }
+            })
+            .finally(() => {
+                setProductLoading(false);
             });
     }, [productId]);
 

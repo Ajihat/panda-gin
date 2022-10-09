@@ -7,13 +7,15 @@ import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/
 
 import logoFull from "../../assets/logo-full.png";
 
+import { NO_SCROLL } from "../../data/specialClasses/specialClasses";
+
 import "./LegalPopup.sass";
 
 export const LegalPopup = () => {
     const { setIsLegalDrinkingAge } = useAppContext();
     useEffect(() => {
-        document.body.classList.add("no-scroll");
-        return () => document.body.classList.remove("no-scroll");
+        document.body.classList.add(NO_SCROLL);
+        return () => document.body.classList.remove(NO_SCROLL);
     }, []);
 
     useNoScrollingWhilePopup();

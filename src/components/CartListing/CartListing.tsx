@@ -8,7 +8,6 @@ import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
 
 import { CartListingProps } from "./CartListing.types";
-import { ShoppingCartProduct } from "../../context/ShoppingCartContext/ShoppingCartContext.types";
 
 import "./CartListing.sass";
 
@@ -16,9 +15,9 @@ export const CartListing = ({ productsInCart }: CartListingProps) => {
     const { openCurtain, closeCartPopup } = useAppContext();
     const {
         deleteProductFromCart,
+        deleteGiftFromCart,
         increaseProductQuantity,
         decreaseProductQuantity,
-        setGiftIsNotChoosen,
     } = useShoppingCartContext();
 
     const handleLinkClick = () => {
@@ -29,21 +28,25 @@ export const CartListing = ({ productsInCart }: CartListingProps) => {
     const handleDeletion = (id: number, format: string | null) => {
         deleteProductFromCart(id, format);
         if (format === "gift") {
-            setGiftIsNotChoosen();
+            deleteGiftFromCart();
         }
     };
 
     return (
         <ul className="cartlisting">
-            {productsInCart.map((productInCart, index) => {
+            {productsInCart.map((productInCart) => {
                 const { mainImage, id, title, format, quantity, unitPrice } =
                     productInCart;
+                const totalPrice =
+                    unitPrice === 0
+                        ? "FREE"
+                        : `€${(quantity * unitPrice).toFixed(2)}`;
 
                 return (
                     <li
                         key={format ? format + id : id}
                         className="cartlisting__item"
-                        data-order={`${3 + index}`}
+                        data-animation="animation-item"
                     >
                         <div className="cartlisting__inner">
                             <Link
@@ -103,18 +106,20 @@ export const CartListing = ({ productsInCart }: CartListingProps) => {
                                 )}
                             </div>
                             <p className="cartlisting__item-price">
-                                {unitPrice === 0
-                                    ? "FREE"
-                                    : `€${(quantity * unitPrice).toFixed(2)}`}
+                                {totalPrice}
                             </p>
                         </div>
                         <div className="cartlisting__deletion">
-                            <img
+                            <button
                                 onClick={() => handleDeletion(id, format)}
-                                src={closeBtn}
-                                alt="delete-btn"
                                 className="cartlisting__delete-btn"
-                            />
+                            >
+                                <img
+                                    src={closeBtn}
+                                    alt="delete-sign"
+                                    className="cartlisting__delete-img"
+                                />
+                            </button>
                         </div>
                     </li>
                 );

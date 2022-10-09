@@ -16,75 +16,35 @@ export const Gifts = () => {
     const {
         shoppingCartValue,
         choosenGiftId,
-        productsInCart,
-        addProductToCart,
-        deleteProductFromCart,
-        setGiftIsChoosen,
-        setGiftIsNotChoosen,
+        addGiftToCart,
+        deleteGiftFromCart,
     } = useShoppingCartContext();
 
     const handleClick = (giftProduct: ShoppingCartProduct) => {
         if (shoppingCartValue >= 140 && !choosenGiftId) {
-            const { id, title, quantity, format, unitPrice, mainImage } =
-                giftProduct;
-            addProductToCart({
-                id,
-                title,
-                quantity,
-                format,
-                unitPrice,
-                mainImage,
-            });
-            setGiftIsChoosen(id);
+            addGiftToCart(giftProduct);
         }
     };
     useEffect(() => {
         if (shoppingCartValue < 140 && choosenGiftId) {
-            setGiftIsNotChoosen();
-            deleteProductFromCart(choosenGiftId, "gift");
+            deleteGiftFromCart();
         }
-    }, [
-        shoppingCartValue,
-        setGiftIsNotChoosen,
-        choosenGiftId,
-        deleteProductFromCart,
-    ]);
+    }, [shoppingCartValue, choosenGiftId, deleteGiftFromCart]);
     return (
         <div className="gifts">
             {shoppingCartValue < 140 && (
-                <p
-                    className="gifts__info"
-                    data-order={`${
-                        productsInCart.length === 0
-                            ? 4
-                            : 3 + productsInCart.length
-                    }`}
-                >
+                <p className="gifts__info" data-animation="animation-item">
                     Another {(140 - shoppingCartValue).toFixed(2)} &euro; and
                     you can choose one of these gifts:
                 </p>
             )}
             {shoppingCartValue >= 140 && !choosenGiftId && (
-                <p
-                    className="gifts__info"
-                    data-order={`${
-                        productsInCart.length === 0
-                            ? 4
-                            : 3 + productsInCart.length
-                    }`}
-                >
+                <p className="gifts__info" data-animation="animation-item">
                     Congratulations! you can choose one of these gifts:
                 </p>
             )}
             {shoppingCartValue >= 140 && choosenGiftId && (
-                <p
-                    className="gifts__info"
-                    data-order={`${
-                        productsInCart.length === 0
-                            ? 4
-                            : 3 + productsInCart.length
-                    }`}
-                >
+                <p className="gifts__info" data-animation="animation-item">
                     Congratulations! You chose your panda gift:
                 </p>
             )}
@@ -98,11 +58,7 @@ export const Gifts = () => {
                                 "gifts__product--choosen"
                             }`}
                             key={id}
-                            data-order={`${
-                                productsInCart.length === 0
-                                    ? 5 + index
-                                    : 4 + productsInCart.length + index
-                            }`}
+                            data-animation="animation-item"
                         >
                             <Link to={`/product/${id}`} target="_blank">
                                 <img

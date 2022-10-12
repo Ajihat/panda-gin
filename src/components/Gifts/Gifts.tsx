@@ -49,7 +49,7 @@ export const Gifts = () => {
                 </p>
             )}
             <div className="gifts__products">
-                {giftProducts.map((giftProduct, index, format) => {
+                {giftProducts.map((giftProduct) => {
                     const { id, title, mainImage } = giftProduct;
                     return (
                         <div

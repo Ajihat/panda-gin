@@ -68,9 +68,7 @@ export const shoppingCartReducer: ShoppingCartReducer = (state, action) => {
         return {
             ...state,
             productsInCart: state.productsInCart.filter(
-                (productInCart) =>
-                    productInCart.id !== state.choosenGiftId &&
-                    productInCart.format !== "gift"
+                (productInCart) => productInCart.format !== "gift"
             ),
             choosenGiftId: null,
         };

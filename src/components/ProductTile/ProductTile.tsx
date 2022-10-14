@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+
+import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { ProductTileProps } from "./ProductTile.types";
 
@@ -14,8 +18,11 @@ export const ProductTile = ({
     discount,
     mainPictureUrl,
     index,
+    openInNewTab,
 }: ProductTileProps) => {
     const productTileRef = useRef<HTMLElement | null>(null);
+    const { handleLinkClick } = useAppContext();
+    const { pathname } = useLocation();
     useEffect(() => {
         const delay = (index + 1) * 100;
         const timeoutId = setTimeout(() => {
@@ -29,7 +36,12 @@ export const ProductTile = ({
             ref={productTileRef}
             className="producttile producttile--invisible"
         >
-            <Link to={`/products/${id}`} className="producttile__link">
+            <Link
+                to={`/product/${id}`}
+                className="producttile__link"
+                onClick={() => handleLinkClick(`/product-${id}`, pathname)}
+                target={openInNewTab ? "_blank" : ""}
+            >
                 <img
                     src={mainPictureUrl}
                     alt="panda-gin-product"
@@ -63,7 +75,7 @@ export const ProductTile = ({
                             </p>
                         )}
                     </div>
-                    {outOfStock && <div className="producttile__layer"></div>}
+                    {outOfStock && <OpacityLayer zIndex="2" />}
                 </div>
                 {outOfStock && (
                     <p className="producttile__out-of-stock">Out of stock</p>

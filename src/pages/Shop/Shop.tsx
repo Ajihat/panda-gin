@@ -5,6 +5,7 @@ import { Submenu } from "../../components/Submenu/Submenu";
 import { Loader } from "../../components/Loader/Loader";
 import { ProductTile } from "../../components/ProductTile/ProductTile";
 import { Pagination } from "../../components/Pagination/Pagination";
+import { ApiError } from "../../components/ApiError/ApiError";
 
 import { shopSubmenu } from "../../data/shopSubmenu/shopSubmenu";
 
@@ -20,6 +21,7 @@ export const Shop = () => {
         products,
         productsPage,
         setProductsPage,
+        apiError,
     } = useProductsContext();
     useEffect(() => {
         document.title = "Shop | Panda Gin";
@@ -55,9 +57,11 @@ export const Shop = () => {
                                 discount={discount}
                                 mainPictureUrl={images[0]}
                                 index={index}
+                                openInNewTab={false}
                             />
                         );
                     })}
+                {apiError && <ApiError text={apiError} />}
             </div>
             <Pagination />
         </div>

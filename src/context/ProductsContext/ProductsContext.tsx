@@ -19,7 +19,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
     const [productsCategory, setProductsCategory] = useState<string>("all");
     const [productsPage, setProductsPage] = useState<number>(0);
 
-    const { productsLoading, products, abortControler } =
+    const { productsLoading, products, abortControler, apiError } =
         useGetProducts(productsCategory);
 
     useEffect(() => {
@@ -53,6 +53,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
             increaseProductsPage,
             decreaseProductsPage,
             setProductsPage,
+            apiError,
         };
     }, [
         productsCategory,
@@ -63,6 +64,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
         increaseProductsPage,
         decreaseProductsPage,
         setProductsPage,
+        apiError,
     ]);
     return (
         <ProductsContext.Provider value={ProductsContextValue}>

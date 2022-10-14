@@ -10,9 +10,11 @@ import { Product } from "./ProductsContext.types";
 export const useGetProducts = (productsCategory: string) => {
     const [productsLoading, setProductsLoading] = useState<boolean>(false);
     const [products, setProducts] = useState<Product[][]>([]);
+    const [apiError, setApiError] = useState<string>("");
     const abortControler = useRef<AbortController>();
     useEffect(() => {
         setProductsLoading(true);
+        setApiError("");
         setProducts([]);
         abortControler.current = new AbortController();
         axios({
@@ -21,7 +23,6 @@ export const useGetProducts = (productsCategory: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setProductsLoading(false);
                 const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
                 if (productsCategory === "all") {
                     const paginatedProducts = frontendPagination(
@@ -64,8 +65,16 @@ export const useGetProducts = (productsCategory: string) => {
                 if (error.code === "ERR_CANCELED") {
                     return;
                 }
+                if (error.code === "ERR_NETWORK") {
+                    setApiError("Connection error");
+                    return;
+                }
+                setApiError("We are sorry. Something went wrong");
+            })
+            .finally(() => {
+                setProductsLoading(false);
             });
     }, [productsCategory]);
 
-    return { productsLoading, products, abortControler };
+    return { productsLoading, products, abortControler, apiError };
 };

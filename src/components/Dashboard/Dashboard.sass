@@ -1,0 +1,98 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.dashboard
+    font-family: variables.$second-font
+    width: 50%
+    padding: 3vw 3vw 0 3vw
+    &__text
+        font-size: 1.8rem
+        font-weight: 300
+        letter-spacing: .6px
+        line-height: 32px
+        color: variables.$text-gray
+    &__link
+        display: block
+        font-size: 1.4rem
+        color: variables.$text-gray
+        text-transform: uppercase
+        margin-top: 26px
+        letter-spacing: .6px
+        font-weight: 400
+        transition: .3s
+        margin-bottom: 75px
+        &:hover
+            color: variables.$text-hover-color
+    &__formats
+        margin-bottom: 40px
+    &__formats-btn
+        padding: 15px 10px
+        height: 50px
+        min-width: 50px
+        border: 1px solid black
+        margin-right: 20px
+        cursor: pointer
+        background-color: variables.$secondary-color
+        text-transform: uppercase
+        font-size: 1.2rem
+        font-weight: 400
+        transition: .3s
+        &.dashboard__formats-btn--active
+            background-color: variables.$main-color
+            color: variables.$secondary-color
+            &:hover
+                background-color: variables.$main-color
+                color: variables.$secondary-color
+        &:hover
+            background-color: variables.$gray-button
+            color: variables.$secondary-color
+    &__label
+        display: block
+        font-size: 1.2rem
+        text-transform: uppercase
+        color: variables.$text-gray
+        margin-bottom: 10px
+    &__quantity
+        +mixins.positioning(flex,row,flex-start,flex-start,nowrap)
+        border: 1px solid variables.$main-color
+        width: 120px
+        margin-bottom: 60px
+    &__quantity-button, &__quantity-output
+        +mixins.positioning(flex,row,center,center,nowrap)
+        width: 40px
+        height: 50px
+        padding: 15px 8px
+        font-size: 1.2rem
+        font-weight: 400
+        cursor: pointer
+    &__quantity-output
+        cursor: auto
+    &__quantity-button::selection
+        background-color: variables.$secondary-color
+    &__promotion
+        font-style: italic
+        font-size: 1.6rem
+    &__checkout
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        padding-top: 3vw
+        margin-top: 30px
+        border-top: 1px solid variables.$main-color
+    &__prices
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+    &__price
+        font-size: 1.8rem
+        margin-right: 30px
+        &.dashboard__price--gray
+            color: variables.$text-gray
+            text-decoration: line-through
+    &__btn-holder
+        position: relative
+    &__gray-layer
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background: rgba(255,255,255,0.7)
+        z-index: 2
+        cursor: no-drop

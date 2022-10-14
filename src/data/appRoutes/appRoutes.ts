@@ -6,4 +6,5 @@ export const appRoutes: AppRoutes = {
     faq: "/faq",
     contact: "/contact",
     personal: "/personal",
+    productPage: "/product/:id",
 };

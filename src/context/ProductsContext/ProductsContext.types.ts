@@ -11,6 +11,7 @@ export interface IProductsContext {
     increaseProductsPage: () => void;
     decreaseProductsPage: () => void;
     setProductsPage: React.Dispatch<React.SetStateAction<number>>;
+    apiError: string;
 }
 
 export interface Product {
@@ -23,4 +24,7 @@ export interface Product {
     discount: string;
     limitedEdition: boolean;
     images: string[];
+    imageThumbnail: string;
+    text: string;
+    formats: { id: number; text: string; promotion?: boolean }[];
 }

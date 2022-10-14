@@ -5,7 +5,8 @@ import ReactDom from "react-dom";
 import { Header } from "../Header/Header";
 import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
 import { Loader } from "../Loader/Loader";
-import { IoIosClose } from "react-icons/io";
+
+import closeBtn from "../../assets/close-btn.svg";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 import { useSubscribe } from "./useSubscribe";
@@ -227,12 +228,12 @@ export const SubscribePopup = () => {
                     </div>
                     {isLoading && <Loader />}
                 </form>
-                <div
-                    className="subscribepopup__close-btn"
+                <img
                     onClick={closeSubscribePopup}
-                >
-                    <IoIosClose className="loginpopup__close-icon" />
-                </div>
+                    src={closeBtn}
+                    alt="close-btn"
+                    className="loginpopup__close-btn"
+                />
             </div>
         </div>,
         document.getElementById("portal")!

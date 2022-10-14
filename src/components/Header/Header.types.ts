@@ -1,5 +1,5 @@
 export interface HeaderProps {
-    smallTitle: string;
+    smallTitle?: string;
     bigTitle: string;
     text?: string;
     alignment?: "left" | "right";

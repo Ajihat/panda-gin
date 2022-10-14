@@ -7,4 +7,5 @@ export interface ProductTileProps {
     discount: string;
     mainPictureUrl: string;
     index: number;
+    openInNewTab: boolean;
 }

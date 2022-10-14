@@ -25,23 +25,23 @@ export const useSubscribe = (url: string) => {
             signal: abortControler.current.signal,
         })
             .then((res) => {
-                setIsLoading(false);
-
                 if (res.status === 201) {
                     console.log(res);
                     closeSubscribePopup();
                 }
             })
             .catch((error) => {
-                setIsLoading(false);
                 setApiError(true);
-                if (!error?.response) {
+                if (error.code === "ERR_NETWORK") {
                     setApiErrorText("No server response");
                 } else if (error.response?.status === 400) {
                     setApiErrorText("User already exists");
                 } else {
                     setApiErrorText("Sorry, something went wrong");
                 }
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 

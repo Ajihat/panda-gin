@@ -1,9 +1,10 @@
-import { ContactLink } from "../ContactLink/ContactLink";
+import { PageLink } from "../PageLink/PageLink";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { useAppContext } from "../../context/AppContext/useAppContext";
 
 import { navLinks } from "../../data/navLinks/navLinks";
+import { appRoutes } from "../../data/appRoutes/appRoutes";
 
 export const FooterMid = () => {
     const { openCurtain } = useAppContext();
@@ -78,7 +79,12 @@ export const FooterMid = () => {
                     a delicatessen and wish to add our products to your
                     catalogue or your menu?
                 </span>
-                <ContactLink />
+                <PageLink
+                    text="Contact us"
+                    textColor="white"
+                    arrowPosition="right"
+                    url={appRoutes.contact}
+                />
             </div>
         </div>
     );

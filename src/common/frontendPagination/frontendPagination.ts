@@ -1,4 +1,4 @@
-import { range } from "../range/range";
+import { range } from "common/range/range";
 
 export const frontendPagination = <T>(data: T[], itemsPerPage: number) => {
     const numberOfProducts = data.length;

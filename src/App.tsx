@@ -1,27 +1,27 @@
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import { TopSlider } from "./components/TopSlider/TopSlider";
-import { Main } from "./components/Main/Main";
-import { Navigation } from "./components/Navigation/Navigation";
-import { InnerContainer } from "./components/InnerContainer/InnerContainer";
-import { Curtain } from "./components/Curtain/Curtain";
-import { LoginPopup } from "./components/LoginPopup/LoginPopup";
-import { SubscribePopup } from "./components/SubscribePopup/SubscribePopup";
-import { Newsletter } from "./components/Newsletter/Newsletter";
-import { Footer } from "./components/Footer/Footer";
-import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
-import { ProductPage } from "./pages/ProductPage/ProductPage";
-import { LegalPopup } from "./components/LegalPopup/LegalPopup";
-import { CartPopup } from "./components/CartPopup/CartPopup";
+import { TopSlider } from "components/TopSlider/TopSlider";
+import { Main } from "components/Main/Main";
+import { Navigation } from "components/Navigation/Navigation";
+import { InnerContainer } from "components/InnerContainer/InnerContainer";
+import { Curtain } from "components/Curtain/Curtain";
+import { LoginPopup } from "components/LoginPopup/LoginPopup";
+import { SubscribePopup } from "components/SubscribePopup/SubscribePopup";
+import { Newsletter } from "components/Newsletter/Newsletter";
+import { Footer } from "components/Footer/Footer";
+import { ProtectedRoute } from "components/ProtectedRoute/ProtectedRoute";
+import { ProductPage } from "pages/ProductPage/ProductPage";
+import { LegalPopup } from "components/LegalPopup/LegalPopup";
+import { CartPopup } from "components/CartPopup/CartPopup";
 
-import { useAppContext } from "./context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
-import { Shop } from "./pages/Shop/Shop";
-import { Faq } from "./pages/Faq/Faq";
-import { Personal } from "./pages/Personal/Personal";
+import { Shop } from "pages/Shop/Shop";
+import { Faq } from "pages/Faq/Faq";
+import { Personal } from "pages/Personal/Personal";
 
-import { appRoutes } from "./data/appRoutes/appRoutes";
+import { appRoutes } from "data/appRoutes/appRoutes";
 
 import "./sass/App.sass";
 

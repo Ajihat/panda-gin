@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 
-import { Header } from "../../components/Header/Header";
-import { Submenu } from "../../components/Submenu/Submenu";
-import { Loader } from "../../components/Loader/Loader";
-import { ProductTile } from "../../components/ProductTile/ProductTile";
-import { Pagination } from "../../components/Pagination/Pagination";
-import { ApiError } from "../../components/ApiError/ApiError";
+import { Header } from "components/Header/Header";
+import { Submenu } from "components/Submenu/Submenu";
+import { Loader } from "components/Loader/Loader";
+import { ProductTile } from "components/ProductTile/ProductTile";
+import { Pagination } from "components/Pagination/Pagination";
+import { ApiError } from "components/ApiError/ApiError";
 
-import { shopSubmenu } from "../../data/shopSubmenu/shopSubmenu";
+import { shopSubmenu } from "data/shopSubmenu/shopSubmenu";
 
-import { useProductsContext } from "../../context/ProductsContext/useProductsContext";
+import { useProductsContext } from "context/ProductsContext/useProductsContext";
 
 import "./Shop.sass";
 

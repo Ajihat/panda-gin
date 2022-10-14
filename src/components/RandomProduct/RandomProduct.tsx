@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-import { Header } from "../Header/Header";
-import { Loader } from "../Loader/Loader";
-import { ProductTile } from "../ProductTile/ProductTile";
-import { ApiError } from "../ApiError/ApiError";
+import { Header } from "components/Header/Header";
+import { Loader } from "components/Loader/Loader";
+import { ProductTile } from "components/ProductTile/ProductTile";
+import { ApiError } from "components/ApiError/ApiError";
 
 import { useGetRandomProducts } from "./useGetRandomProducts";
 

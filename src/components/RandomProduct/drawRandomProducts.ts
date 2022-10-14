@@ -1,4 +1,4 @@
-import { Product } from "../../context/ProductsContext/ProductsContext.types";
+import { Product } from "context/ProductsContext/ProductsContext.types";
 
 export const drawRandomProducts = (
     products: Product[],

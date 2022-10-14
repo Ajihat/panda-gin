@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-import { SubmenuLink } from "../SubmenuLink/SubmenuLink";
+import { SubmenuLink } from "components/SubmenuLink/SubmenuLink";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { SubmenuProps } from "./Submenu.types";
 

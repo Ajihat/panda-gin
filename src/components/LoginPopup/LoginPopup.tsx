@@ -2,19 +2,19 @@ import ReactDom from "react-dom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { Header } from "../Header/Header";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import { Loader } from "../Loader/Loader";
+import { Header } from "components/Header/Header";
+import { PrimaryButton } from "components/PrimaryButton/PrimaryButton";
+import { Loader } from "components/Loader/Loader";
 
-import closeBtn from "../../assets/close-btn.svg";
+import closeBtn from "assets/close-btn.svg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 import { useLogin } from "./useLogin";
-import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
+import { useNoScrollingWhilePopup } from "common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
 
-import { emailRegex } from "../../common/regexs/emailRegex";
+import { emailRegex } from "common/regexs/emailRegex";
 
-import { LOGIN_URL } from "../../api/apiEndpoints";
+import { LOGIN_URL } from "api/apiEndpoints";
 
 import { ILoginInputs } from "./LoginPopup.types";
 

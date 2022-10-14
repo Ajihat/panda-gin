@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
-import { useAuthContext } from "../../context/AuthContext/useAuthContext";
+import { useAppContext } from "context/AppContext/useAppContext";
+import { useAuthContext } from "context/AuthContext/useAuthContext";
 
-import { axiosInstance as axios } from "../../api/axios";
+import { axiosInstance as axios } from "api/axios";
 
 import { ILoginInputs } from "./LoginPopup.types";
 

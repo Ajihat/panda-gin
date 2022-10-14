@@ -1,20 +1,19 @@
-import { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import pandaLogo from "../../assets/panda-logo.jpg";
-import subLogo from "../../assets/organic-gin.png";
-import account from "../../assets/account.jpg";
-import cart from "../../assets/cart.jpg";
+import pandaLogo from "assets/panda-logo.jpg";
+import subLogo from "assets/organic-gin.png";
+import account from "assets/account.jpg";
+import cart from "assets/cart.jpg";
 
-import { NavLinks } from "../NavLinks/NavLinks";
-import { Socials } from "../Socials/Socials";
+import { NavLinks } from "components/NavLinks/NavLinks";
+import { Socials } from "components/Socials/Socials";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
-import { useAuthContext } from "../../context/AuthContext/useAuthContext";
-import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
+import { useAppContext } from "context/AppContext/useAppContext";
+import { useAuthContext } from "context/AuthContext/useAuthContext";
+import { useShoppingCartContext } from "context/ShoppingCartContext/useShoppingCartContext";
 import { useNavbarOnScroll } from "./useNavbarOnScroll";
 
-import { appRoutes } from "../../data/appRoutes/appRoutes";
+import { appRoutes } from "data/appRoutes/appRoutes";
 
 import "./Navigation.sass";
 

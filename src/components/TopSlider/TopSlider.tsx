@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-import { topSlides } from "../../data/topSlider/topSlider";
+import { topSlides } from "data/topSlider/topSlider";
 
-import { TopSlide } from "../TopSlide/TopSlide";
-import { TopSliderNavigator } from "../TopSliderNavigator/TopSliderNavigator";
+import { TopSlide } from "components/TopSlide/TopSlide";
+import { TopSliderNavigator } from "components/TopSliderNavigator/TopSliderNavigator";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import "./TopSlider.sass";
 

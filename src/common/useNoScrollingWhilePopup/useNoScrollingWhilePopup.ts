@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { NO_SMOOTH_SCROLLING } from "../../data/specialClasses/specialClasses";
+import { NO_SMOOTH_SCROLLING } from "data/specialClasses/specialClasses";
 
 export const useNoScrollingWhilePopup = () => {
     useEffect(() => {

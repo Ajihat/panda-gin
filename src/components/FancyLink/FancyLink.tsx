@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
-import { appRoutes } from "../../data/appRoutes/appRoutes";
+import { appRoutes } from "data/appRoutes/appRoutes";
 
-import pLetter from "../../assets/p-letter.png";
+import pLetter from "assets/p-letter.png";
 
 import "./FancyLink.sass";
 

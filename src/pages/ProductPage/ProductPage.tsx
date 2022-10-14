@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { PageLink } from "../../components/PageLink/PageLink";
-import { FancyLink } from "../../components/FancyLink/FancyLink";
-import { Gallery } from "../../components/Gallery/Gallery";
-import { Dashboard } from "../../components/Dashboard/Dashboard";
-import { Loader } from "../../components/Loader/Loader";
-import { RandomProduct } from "../../components/RandomProduct/RandomProduct";
-import { ApiError } from "../../components/ApiError/ApiError";
-import { RandomPicture } from "../../components/RandomPicture/RandomPicture";
+import { PageLink } from "components/PageLink/PageLink";
+import { FancyLink } from "components/FancyLink/FancyLink";
+import { Gallery } from "components/Gallery/Gallery";
+import { Dashboard } from "components/Dashboard/Dashboard";
+import { Loader } from "components/Loader/Loader";
+import { RandomProduct } from "components/RandomProduct/RandomProduct";
+import { ApiError } from "components/ApiError/ApiError";
+import { RandomPicture } from "components/RandomPicture/RandomPicture";
 
 import { useGetProduct } from "./useGetProduct";
 
-import { appRoutes } from "../../data/appRoutes/appRoutes";
+import { appRoutes } from "data/appRoutes/appRoutes";
 
 import "./ProductPage.sass";
 

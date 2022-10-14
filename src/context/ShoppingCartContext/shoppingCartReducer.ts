@@ -16,8 +16,7 @@ export const shoppingCartReducer: ShoppingCartReducer = (state, action) => {
                 productInCart.id === action.payload.id &&
                 productInCart.format === action.payload.format
         );
-        const productWithGivenIdAndFormatExists =
-            productIndex === -1 ? false : true;
+        const productWithGivenIdAndFormatExists = productIndex > -1;
         if (!productWithGivenIdAndFormatExists) {
             return {
                 ...state,

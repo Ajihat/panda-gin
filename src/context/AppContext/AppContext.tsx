@@ -15,9 +15,9 @@ import {
     OPEN_CART_POPUP,
 } from "./appStateActions";
 
-import { NO_SCROLL } from "../../data/specialClasses/specialClasses";
+import { NO_SCROLL } from "data/specialClasses/specialClasses";
 
-import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
+import { useLocalStorage } from "common/useLocalStorage/useLocalStorage";
 
 import { IAppState, IAppContext, AppProviderProps } from "./AppContext.types";
 

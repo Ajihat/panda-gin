@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import ReactDom from "react-dom";
 import { motion } from "framer-motion";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
-import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
+import { useAppContext } from "context/AppContext/useAppContext";
+import { useNoScrollingWhilePopup } from "common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
 
-import logoFull from "../../assets/logo-full.png";
+import logoFull from "assets/logo-full.png";
 
-import { NO_SCROLL } from "../../data/specialClasses/specialClasses";
+import { NO_SCROLL } from "data/specialClasses/specialClasses";
 
 import "./LegalPopup.sass";
 

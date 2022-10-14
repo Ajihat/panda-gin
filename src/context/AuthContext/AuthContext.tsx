@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 import { IAuthContext, AuthProviderProps } from "./AuthContext.types";
 
-import { useLocalStorage } from "../../common/useLocalStorage/useLocalStorage";
+import { useLocalStorage } from "common/useLocalStorage/useLocalStorage";
 
 export const AuthContext = createContext<IAuthContext | null>(null);
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { Header } from "../Header/Header";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+import { Header } from "components/Header/Header";
+import { PrimaryButton } from "components/PrimaryButton/PrimaryButton";
+import { OpacityLayer } from "components/OpacityLayer/OpacityLayer";
 
-import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useShoppingCartContext } from "context/ShoppingCartContext/useShoppingCartContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { DashboardProps } from "./Dashboard.types";
 

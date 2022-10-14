@@ -2,15 +2,16 @@ import { useEffect } from "react";
 import ReactDom from "react-dom";
 import { motion } from "framer-motion";
 
-import { CartListing } from "../CartListing/CartListing";
-import { Gifts } from "../Gifts/Gifts";
-import { CartSummary } from "../CartSummary/CartSummary";
+import { CartListing } from "components/CartListing/CartListing";
+import { Gifts } from "components/Gifts/Gifts";
+import { CartSummary } from "components/CartSummary/CartSummary";
 
-import closeBtn from "../../assets/close-btn.svg";
+import closeBtn from "assets/close-btn.svg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
-import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
-import { useNoScrollingWhilePopup } from "../../common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
+import { useAppContext } from "context/AppContext/useAppContext";
+import { useShoppingCartContext } from "context/ShoppingCartContext/useShoppingCartContext";
+
+import { useNoScrollingWhilePopup } from "common/useNoScrollingWhilePopup/useNoScrollingWhilePopup";
 
 import "./CartPopup.sass";
 

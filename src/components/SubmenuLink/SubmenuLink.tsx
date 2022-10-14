@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import { useProductsContext } from "../../context/ProductsContext/useProductsContext";
+import { useProductsContext } from "context/ProductsContext/useProductsContext";
 
 import { SubmenuLinkProps } from "./SubmenuLink.types";
 

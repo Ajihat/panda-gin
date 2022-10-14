@@ -1,8 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom";
 
-import { navLinks } from "../../data/navLinks/navLinks";
+import { navLinks } from "data/navLinks/navLinks";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { NavLinksProps } from "./NavLinks.type";
 

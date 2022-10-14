@@ -2,19 +2,19 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ReactDom from "react-dom";
 
-import { Header } from "../Header/Header";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import { Loader } from "../Loader/Loader";
+import { Header } from "components/Header/Header";
+import { PrimaryButton } from "components/PrimaryButton/PrimaryButton";
+import { Loader } from "components/Loader/Loader";
 
-import closeBtn from "../../assets/close-btn.svg";
+import closeBtn from "assets/close-btn.svg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 import { useSubscribe } from "./useSubscribe";
 
-import { emailRegex } from "../../common/regexs/emailRegex";
-import { nameRegex } from "../../common/regexs/nameRegex";
+import { emailRegex } from "common/regexs/emailRegex";
+import { nameRegex } from "common/regexs/nameRegex";
 
-import { SUBSCRIBE_URL } from "../../api/apiEndpoints";
+import { SUBSCRIBE_URL } from "api/apiEndpoints";
 
 import { ISubscribeInputs } from "./SubscribePopup.types";
 

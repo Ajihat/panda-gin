@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+import { OpacityLayer } from "components/OpacityLayer/OpacityLayer";
 
-import closeBtn from "../../assets/close-btn.svg";
+import closeBtn from "assets/close-btn.svg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
-import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
+import { useAppContext } from "context/AppContext/useAppContext";
+import { useShoppingCartContext } from "context/ShoppingCartContext/useShoppingCartContext";
 
 import { CartListingProps } from "./CartListing.types";
 

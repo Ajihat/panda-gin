@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
-import { axiosInstance as axios } from "../../api/axios";
-import { GET_PRODUCTS_URL } from "../../api/apiEndpoints";
+import { axiosInstance as axios } from "api/axios";
+import { GET_PRODUCTS_URL } from "api/apiEndpoints";
 
-import { frontendPagination } from "../../common/frontendPagination/frontendPagination";
+import { frontendPagination } from "common/frontendPagination/frontendPagination";
 
 import { Product } from "./ProductsContext.types";
 

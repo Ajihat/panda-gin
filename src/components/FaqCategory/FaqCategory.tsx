@@ -1,4 +1,4 @@
-import { FaqElement } from "../FaqElement/FaqElement";
+import { FaqElement } from "components/FaqElement/FaqElement";
 
 import { FaqCategoryProps } from "./FaqCategory.types";
 

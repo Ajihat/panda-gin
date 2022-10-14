@@ -1,10 +1,10 @@
-import { PageLink } from "../PageLink/PageLink";
+import { PageLink } from "components/PageLink/PageLink";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
-import { navLinks } from "../../data/navLinks/navLinks";
-import { appRoutes } from "../../data/appRoutes/appRoutes";
+import { navLinks } from "data/navLinks/navLinks";
+import { appRoutes } from "data/appRoutes/appRoutes";
 
 export const FooterMid = () => {
     const { openCurtain } = useAppContext();

@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import ReactDom from "react-dom";
 
-import pandaHead from "../../assets/panda-head.png";
+import pandaHead from "assets/panda-head.png";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import {
     NO_SCROLL,
     NO_SMOOTH_SCROLLING,
-} from "../../data/specialClasses/specialClasses";
+} from "data/specialClasses/specialClasses";
 
 import "./Curtain.sass";
 

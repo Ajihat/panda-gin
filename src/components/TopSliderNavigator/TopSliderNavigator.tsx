@@ -1,8 +1,8 @@
-import cancel from "../../assets/cancel.jpg";
-import nextBtn from "../../assets/next-btn.jpg";
-import prevBtn from "../../assets/prev-btn.jpg";
+import cancel from "assets/cancel.jpg";
+import nextBtn from "assets/next-btn.jpg";
+import prevBtn from "assets/prev-btn.jpg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { TopSliderNavigatorProps } from "./TopSliderNavigator.types";
 

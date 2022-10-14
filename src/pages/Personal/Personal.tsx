@@ -1,4 +1,4 @@
-import { useAuthContext } from "../../context/AuthContext/useAuthContext";
+import { useAuthContext } from "context/AuthContext/useAuthContext";
 
 export const Personal = () => {
     const { setUserJwtToken } = useAuthContext();

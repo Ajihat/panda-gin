@@ -1,7 +1,7 @@
-import { AuthProvider } from "../AuthContext/AuthContext";
-import { AppProvider } from "../AppContext/AppContext";
-import { ProductsProvider } from "../ProductsContext/ProductsContext";
-import { ShoppingCartProvider } from "../ShoppingCartContext/ShoppingCartContext";
+import { AuthProvider } from "context/AuthContext/AuthContext";
+import { AppProvider } from "context/AppContext/AppContext";
+import { ProductsProvider } from "context/ProductsContext/ProductsContext";
+import { ShoppingCartProvider } from "context/ShoppingCartContext/ShoppingCartContext";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
     return (

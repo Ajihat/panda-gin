@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 
-import longArrowBlack from "../../assets/long-arrow-black.svg";
-import longArrowWhite from "../../assets/long-arrow-white.svg";
+import longArrowBlack from "assets/long-arrow-black.svg";
+import longArrowWhite from "assets/long-arrow-white.svg";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { PageLinkProps } from "./PageLink.types";
 

@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback } from "react";
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 export const useNavbarOnScroll = () => {
     const { hideNavbars, showNavbars, scrollingDirectionIsBeingChecked } =

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
-import { Header } from "../../components/Header/Header";
-import { FaqCategory } from "../../components/FaqCategory/FaqCategory";
-import { Submenu } from "../../components/Submenu/Submenu";
+import { Header } from "components/Header/Header";
+import { FaqCategory } from "components/FaqCategory/FaqCategory";
+import { Submenu } from "components/Submenu/Submenu";
 
-import { useActiveCategory } from "../useActiveCategory";
+import { useActiveCategory } from "pages/useActiveCategory";
 
-import { faqCategories } from "../../data/faqCategories/faqCategories";
-import { faqSubmenu } from "../../data/faqSubmenu/faqSubmenu";
+import { faqCategories } from "data/faqCategories/faqCategories";
+import { faqSubmenu } from "data/faqSubmenu/faqSubmenu";
 
 import "./Faq.sass";
 

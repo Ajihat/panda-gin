@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
-import { axiosInstance as axios } from "../../api/axios";
+import { axiosInstance as axios } from "api/axios";
 
 import { ISubscribeInputs } from "./SubscribePopup.types";
 

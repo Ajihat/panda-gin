@@ -1,4 +1,4 @@
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { MainProps } from "./Main.types";
 

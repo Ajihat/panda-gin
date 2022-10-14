@@ -1,4 +1,3 @@
-//interfaces
 import { FaqSubmenuLink } from "./faqSubmenu.types";
 
 export const faqSubmenu: FaqSubmenuLink[] = [

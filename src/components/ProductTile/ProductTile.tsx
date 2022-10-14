@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+import { OpacityLayer } from "components/OpacityLayer/OpacityLayer";
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useAppContext } from "context/AppContext/useAppContext";
 
 import { ProductTileProps } from "./ProductTile.types";
 

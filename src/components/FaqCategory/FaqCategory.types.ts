@@ -1,4 +1,4 @@
-import { SingleQuestion } from "../../data/faqCategories/faqCategories.types";
+import { SingleQuestion } from "data/faqCategories/faqCategories.types";
 
 export interface FaqCategoryProps {
     category: string;

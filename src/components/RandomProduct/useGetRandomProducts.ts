@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-import { axiosInstance as axios } from "../../api/axios";
-import { GET_PRODUCTS_URL } from "../../api/apiEndpoints";
+import { axiosInstance as axios } from "api/axios";
+import { GET_PRODUCTS_URL } from "api/apiEndpoints";
 
 import { drawRandomProducts } from "./drawRandomProducts";
 
-import { Product } from "../../context/ProductsContext/ProductsContext.types";
+import { Product } from "context/ProductsContext/ProductsContext.types";
 
 export const useGetRandomProducts = (currentProductId: string) => {
     const [randomProducts, setRandomProducts] = useState<Product[]>([]);

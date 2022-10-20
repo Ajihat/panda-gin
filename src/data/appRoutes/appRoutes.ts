@@ -7,4 +7,5 @@ export const appRoutes: AppRoutes = {
     contact: "/contact",
     personal: "/personal",
     productPage: "/product/:id",
+    noMatch: "/*",
 };

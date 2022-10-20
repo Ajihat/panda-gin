@@ -5,4 +5,5 @@ export interface AppRoutes {
     contact: string;
     personal: string;
     productPage: string;
+    noMatch: string;
 }

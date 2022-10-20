@@ -18,8 +18,10 @@ import { CartPopup } from "components/CartPopup/CartPopup";
 import { useAppContext } from "context/AppContext/useAppContext";
 
 import { Shop } from "pages/Shop/Shop";
+import { About } from "pages/About/About";
 import { Faq } from "pages/Faq/Faq";
 import { Personal } from "pages/Personal/Personal";
+import { NoMatchPage } from "pages/NoMatchPage/NoMatchPage";
 
 import { appRoutes } from "data/appRoutes/appRoutes";
 
@@ -42,6 +44,7 @@ export const App = () => {
                 <InnerContainer>
                     <Routes>
                         <Route path={appRoutes.shop} element={<Shop />} />
+                        <Route path={appRoutes.about} element={<About />} />
                         <Route path={appRoutes.faq} element={<Faq />} />
                         <Route
                             path={appRoutes.productPage}
@@ -53,6 +56,10 @@ export const App = () => {
                                 element={<Personal />}
                             />
                         </Route>
+                        <Route
+                            path={appRoutes.noMatch}
+                            element={<NoMatchPage />}
+                        />
                     </Routes>
                 </InnerContainer>
                 <Newsletter />

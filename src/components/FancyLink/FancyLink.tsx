@@ -6,13 +6,20 @@ import { appRoutes } from "data/appRoutes/appRoutes";
 
 import pLetter from "assets/p-letter.png";
 
+import { FancyLinkProps } from "./FancyLink.types";
+
 import "./FancyLink.sass";
 
-export const FancyLink = () => {
+export const FancyLink = ({ alignment }: FancyLinkProps) => {
     const { pathname } = useLocation();
     const { handleLinkClick } = useAppContext();
     return (
-        <div className="fancylink">
+        <div
+            style={{
+                justifyContent: alignment,
+            }}
+            className="fancylink"
+        >
             <Link
                 to={appRoutes.shop}
                 className="fancylink__link"

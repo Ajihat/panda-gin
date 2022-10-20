@@ -59,7 +59,7 @@ export const ProductPage = () => {
                 </div>
             </div>
             <RandomProduct currentProductId={id as string} />
-            <FancyLink />
+            <FancyLink alignment="center" />
             <RandomPicture />
         </div>
     );

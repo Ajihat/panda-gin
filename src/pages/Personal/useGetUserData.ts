@@ -1,41 +1,43 @@
 import { useState, useEffect, useRef } from 'react';
 
 import { axiosInstance as axios } from 'api/axios';
-import { GET_PRODUCT_URL } from 'api/apiEndpoints';
+import { GET_USER_DATA } from 'api/apiEndpoints';
 
-import { Product } from 'context/ProductsContext/ProductsContext.types';
+import { User } from './Personal.types';
 
-export const useGetProduct = (productId: string) => {
-	const [product, setProduct] = useState<null | Product>(null);
-	const [productLoading, setProductLoading] = useState<boolean>(false);
+export const useGetUserData = (jwt: string) => {
+	const [user, setUser] = useState<User | null>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [apiError, setApiError] = useState<string>('');
 	const abortControler = useRef<AbortController>();
 
 	useEffect(() => {
-		setProductLoading(true);
-		setApiError('');
 		abortControler.current = new AbortController();
 		axios({
 			method: 'GET',
-			url: GET_PRODUCT_URL + productId,
+			url: GET_USER_DATA,
 			signal: abortControler.current.signal,
+			headers: {
+				accept: 'application/json',
+				Authorization: 'Bearer ' + jwt,
+			},
 		})
 			.then((res) => {
-				setProduct(res.data);
+				setUser(res.data);
 			})
 			.catch((e) => {
 				if (e.code === 'ERR_NETWORK') {
 					setApiError('Connection error');
 				} else if (e.code === 'ERR_BAD_RESPONSE') {
-					setApiError('Product does not exist');
+					setApiError('User does not exist');
 				} else {
 					setApiError('We are sorry. Something went wrong');
 				}
 			})
 			.finally(() => {
-				setProductLoading(false);
+				setIsLoading(false);
 			});
-	}, [productId]);
+	}, [jwt]);
 
-	return { product, productLoading, apiError, abortControler };
+	return { user, isLoading, abortControler, apiError };
 };

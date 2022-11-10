@@ -3,15 +3,15 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton';
 
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
 import './PersonalNav.sass';
 
 export const PersonalNav = () => {
-	const { setUserJwtToken } = useAuthContext();
-	const { openCurtain } = useAppContext();
+	const { setUserJwtToken, setUserData } = useAuthContext();
+	const { openCurtain } = useCurtainContext();
 	const navigate = useNavigate();
 
 	const scrollTop = () => {
@@ -20,6 +20,7 @@ export const PersonalNav = () => {
 
 	const handleSignOut = () => {
 		setUserJwtToken(null);
+		setUserData(null);
 		navigate(appRoutes.shop);
 		openCurtain();
 	};

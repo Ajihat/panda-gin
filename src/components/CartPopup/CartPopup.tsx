@@ -8,7 +8,7 @@ import { CartSummary } from 'components/CartSummary/CartSummary';
 
 import closeBtn from 'assets/close-btn.svg';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
 
 import { useNoScrollingWhilePopup } from 'common/useNoScrollingWhilePopup/useNoScrollingWhilePopup';
@@ -16,14 +16,13 @@ import { useNoScrollingWhilePopup } from 'common/useNoScrollingWhilePopup/useNoS
 import './CartPopup.sass';
 
 export const CartPopup = () => {
-	const { closeCartPopup } = useAppContext();
+	const { closeCartPopup } = useCartPopupContext();
 	const { numberOfProductsInCart, productsInCart } = useShoppingCartContext();
 
 	useNoScrollingWhilePopup();
 
 	useEffect(() => {
 		const animationItems = Array.from(document.querySelectorAll('[data-animation]')) as Array<HTMLElement>;
-
 		animationItems.forEach((animationItem, index) => {
 			animationItem.style.transitionDelay = `${index / 10}s`;
 			animationItem.style.bottom = '0px';
@@ -57,26 +56,16 @@ export const CartPopup = () => {
 					</div>
 					<div className='cartpopup__container'>
 						<div className='cartpopup__left'>
-							{numberOfProductsInCart > 0 ? (
-								<CartListing productsInCart={productsInCart} />
-							) : (
-								<p className='cartpopup__text' data-animation='animation-item'>
-									There are no more items in your cart
-								</p>
-							)}
+							<CartListing productsInCart={productsInCart} />
 							<Gifts />
 						</div>
 						<div className='cartpopup__right'>
 							<CartSummary />
 						</div>
 					</div>
-
-					<img
-						onClick={() => closeCartPopup()}
-						src={closeBtn}
-						alt='close-btn'
-						className='cartpopup__close-btn'
-					/>
+					<button onClick={() => closeCartPopup()} className='cartpopup__close-btn'>
+						<img src={closeBtn} alt='close-btn' className='cartpopup__close-btn-icon' />
+					</button>
 				</div>
 			</div>
 		</motion.div>,

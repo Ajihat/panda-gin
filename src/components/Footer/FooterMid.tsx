@@ -1,14 +1,14 @@
 import { PageLink } from 'components/PageLink/PageLink';
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
 
 import { navLinks } from 'data/navLinks/navLinks';
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
 export const FooterMid = () => {
-	const { openCurtain } = useAppContext();
+	const { openCurtain } = useCurtainContext();
 	const { userJwtToken } = useAuthContext();
 	const { pathname } = useLocation();
 

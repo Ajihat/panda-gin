@@ -1,20 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 import { topSlides } from 'data/topSlider/topSlider';
 
 import { TopSlide } from 'components/TopSlide/TopSlide';
 import { TopSliderNavigator } from 'components/TopSliderNavigator/TopSliderNavigator';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useTopSliderContext } from 'context/TopSliderContext/useTopSliderContext';
+import { useInterval } from 'common/useInterval/useInterval';
 
 import './TopSlider.sass';
 
 export const TopSlider = () => {
-	const [currentSlide, setCurrentSlide] = useState<number>(0);
+	const [currentSlide, setCurrentSlide] = useState(0);
 	const [slidingDirection, setSlidingDirection] = useState<'forward' | 'backward'>('forward');
-	const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
-	const { isTopSliderClosed, isTopSliderClosedByUser } = useAppContext();
+	const { isTopSliderClosed, isTopSliderClosedByUser } = useTopSliderContext();
 
 	const changeSlide = (direction: string) => {
 		if (direction === 'nextSlide') {
@@ -39,19 +39,15 @@ export const TopSlider = () => {
 		}
 	};
 
-	useEffect(() => {
-		intervalRef.current = setInterval(() => changeSlide('nextSlide'), 4000);
-		return () => clearInterval(intervalRef.current);
-	}, []);
+	const intervalRef = useInterval<number>(() => changeSlide('nextSlide'), 4000, currentSlide);
 
 	return (
 		<div className={isTopSliderClosed || isTopSliderClosedByUser ? 'topslider topslider--closed' : 'topslider'}>
 			<div className='topslider__inner'>
-				{topSlides.map((topSlide, index: number) => {
-					const { id } = topSlide;
+				{topSlides.map((topSlide, index) => {
 					return (
 						<TopSlide
-							key={id}
+							key={topSlide.id}
 							{...topSlide}
 							index={index}
 							currentSlide={currentSlide}

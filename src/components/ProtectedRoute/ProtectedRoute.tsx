@@ -9,5 +9,5 @@ export const ProtectedRoute = () => {
 
 	if (!userJwtToken) {
 		return <Navigate to={appRoutes.shop} />;
-	} else return <Outlet context={userJwtToken} />;
+	} else return <Outlet />;
 };

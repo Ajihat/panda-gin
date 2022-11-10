@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
 import { PageLink } from 'components/PageLink/PageLink';
@@ -18,22 +18,18 @@ import './ProductPage.sass';
 
 export const ProductPage = () => {
 	const { id } = useParams<string>();
+	if (!id) {
+		throw new Error('ProductPage component should be rendered inside route with `id` param');
+	}
 
-	const { product, productLoading, apiError, abortControler } = useGetProduct(id as string);
-
-	useEffect(() => {
-		if (product !== null) {
-			document.title = `${product.title} | Panda Gin`;
-		}
-	}, [product]);
-
-	useEffect(() => {
-		const controler = abortControler.current;
-		return () => controler?.abort();
-	}, [abortControler]);
+	const { product, productLoading, apiError } = useGetProduct(id);
 
 	return (
 		<div className='productpage'>
+			<Helmet>
+				<title>{`${product?.title} | Panda Gin`}</title>
+				<meta name='description' content={product?.text} />
+			</Helmet>
 			<div className='productpage__inner'>
 				<div className='productpage__link-holder'>
 					<PageLink

@@ -10,13 +10,9 @@ import { useGetProducts } from 'context/ProductsContext/useGetProducts';
 import './Listing.sass';
 
 export const Listing = () => {
-	const [currentPage, setCurrentPage] = useState<number>(0);
-	const { productsLoading, products, abortControler, apiError } = useGetProducts('all');
+	const [currentPage, setCurrentPage] = useState(0);
+	const { productsLoading, products, apiError } = useGetProducts('all');
 
-	useEffect(() => {
-		const controler = abortControler.current;
-		return () => controler?.abort();
-	}, [abortControler]);
 	return (
 		<div className='listing'>
 			{products.length !== 0 &&

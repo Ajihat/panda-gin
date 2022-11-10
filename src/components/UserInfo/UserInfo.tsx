@@ -1,13 +1,12 @@
-import { useOutletContext } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { User } from 'pages/Personal/Personal.types';
+import { useAuthContext } from 'context/AuthContext/useAuthContext';
 
 import './UserInfo.sass';
 import '../../sass/Forms.sass';
 
 export const UserInfo = () => {
-	const user = useOutletContext<User>();
+	const { userData } = useAuthContext();
 	return (
 		<AnimatePresence>
 			<motion.div
@@ -28,7 +27,7 @@ export const UserInfo = () => {
 						Email
 					</label>
 					<input
-						value={user.username}
+						value={userData?.username}
 						type='email'
 						id='username'
 						className='userinfo__input'
@@ -41,7 +40,7 @@ export const UserInfo = () => {
 						Firstname
 					</label>
 					<input
-						value={user.firstname}
+						value={userData?.firstname}
 						type='text'
 						id='firstname'
 						className='userinfo__input'
@@ -54,7 +53,7 @@ export const UserInfo = () => {
 						Lastname
 					</label>
 					<input
-						value={user.lastname}
+						value={userData?.lastname}
 						type='text'
 						id='lastname'
 						className='userinfo__input'
@@ -67,7 +66,7 @@ export const UserInfo = () => {
 						Identifier
 					</label>
 					<input
-						value={user.userId}
+						value={userData?.userId}
 						type='text'
 						id='identifier'
 						className='userinfo__input'

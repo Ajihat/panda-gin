@@ -6,12 +6,9 @@ import { useForm } from 'react-hook-form';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton';
 import { Loader } from 'components/Loader/Loader';
 import { ApiError } from 'components/ApiError/ApiError';
-
 import { PageLink } from 'components/PageLink/PageLink';
 
 import { appRoutes } from 'data/appRoutes/appRoutes';
-
-import { EDIT_PRODUCT } from 'api/apiEndpoints';
 
 import { useGetProduct } from 'pages/ProductPage/useGetProduct';
 import { useEditProduct } from './useEditProduct';
@@ -22,53 +19,38 @@ import './EditProduct.sass';
 import '../../sass/Forms.sass';
 
 export const EditProduct = () => {
-	const { id } = useParams();
+	const { id } = useParams<string>();
+	if (!id) {
+		throw new Error('EditProduct component should be rendered inside route with `id` param');
+	}
 	const {
 		register,
 		handleSubmit,
 		setFocus,
-		setValue,
+		reset,
 		formState: { errors },
 	} = useForm<IEditProductInputs>();
 
-	const {
-		product,
-		productLoading,
-		apiError: apiErrorGetProduct,
-		abortControler: getProductAbortControler,
-	} = useGetProduct(id as string);
+	const { product, productLoading, apiError: apiErrorGetProduct } = useGetProduct(id);
 	const {
 		onMutate,
 		productIsBeingUpdated,
 		productUpdatedWithSucces,
 		apiError: apiErrorEditProduct,
-		abortControler: editProductAbortControler,
-	} = useEditProduct(EDIT_PRODUCT, product);
-
-	useEffect(() => {
-		const getProductControler = getProductAbortControler.current;
-		return () => {
-			getProductControler?.abort();
-		};
-	}, [getProductAbortControler]);
-
-	useEffect(() => {
-		const editProductControler = editProductAbortControler.current;
-		return () => {
-			editProductControler?.abort();
-		};
-	}, [editProductAbortControler]);
+	} = useEditProduct();
 
 	useEffect(() => {
 		if (product) {
 			setFocus('title');
-			setValue('title', product.title);
-			setValue('description', product.description);
-			setValue('text', product.text);
-			setValue('price', product.price);
-			setValue('discount', product.discount === '' ? '0' : product.discount);
+			reset({
+				title: product.title,
+				description: product.description,
+				text: product.text,
+				price: product.price,
+				discount: product.discount === '' ? '0' : product.discount,
+			});
 		}
-	}, [product, setFocus, setValue]);
+	}, [product, setFocus, reset]);
 
 	return (
 		<motion.div
@@ -94,7 +76,11 @@ export const EditProduct = () => {
 				/>
 			</div>
 			<div className='editproduct__inner'>
-				<form noValidate onSubmit={handleSubmit(onMutate)} className='editproduct__form'>
+				<form
+					noValidate
+					onSubmit={product ? handleSubmit((payload) => onMutate(payload, product)) : () => null}
+					className='editproduct__form'
+				>
 					{productUpdatedWithSucces && <p className='editproduct__api-sucess'>Product data updated!</p>}
 					{apiErrorEditProduct && <p className='editproduct__api-error'>{apiErrorEditProduct}</p>}
 					<div className='editproduct__form-section'>

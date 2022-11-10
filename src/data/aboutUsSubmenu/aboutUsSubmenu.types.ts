@@ -1,5 +1,5 @@
 export interface AboutUsSubmenu {
-    id: number;
-    title: string;
-    href: string;
+	id: number;
+	title: string;
+	href: string;
 }

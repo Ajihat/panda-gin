@@ -1,4 +1,4 @@
 export interface TopSliderNavigatorProps {
-    changeSlide(direction: string): void;
-    intervalID: ReturnType<typeof setInterval> | undefined;
+	changeSlide(direction: string): void;
+	intervalID: ReturnType<typeof setInterval> | null;
 }

@@ -1,19 +1,18 @@
 import { useMemo } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { ApiError } from 'components/ApiError/ApiError';
 import { Listing } from 'components/Listing/Listing';
 
-import { User } from 'pages/Personal/Personal.types';
+import { useAuthContext } from 'context/AuthContext/useAuthContext';
 
 import './ManageProducts.sass';
 
 export const ManageProducts = () => {
-	const user = useOutletContext<User>();
+	const { userData } = useAuthContext();
 	const isAdmin = useMemo(() => {
-		return user.username === 'admin@admin.com';
-	}, [user.username]);
+		return userData?.username === 'admin@admin.com';
+	}, [userData?.username]);
 	return (
 		<AnimatePresence>
 			<motion.div

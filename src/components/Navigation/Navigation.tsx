@@ -2,16 +2,17 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import pandaLogo from 'assets/panda-logo.jpg';
 import subLogo from 'assets/organic-gin.png';
-import account from 'assets/account.jpg';
-import cart from 'assets/cart.jpg';
 
 import { NavLinks } from 'components/NavLinks/NavLinks';
 import { Socials } from 'components/Socials/Socials';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsHandbag } from 'react-icons/bs';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
+import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
+import { useNavBarsContext } from 'context/NavBarsContext/useNavBarsContext';
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
 import { useNavbarOnScroll } from './useNavbarOnScroll';
 
@@ -20,8 +21,10 @@ import { appRoutes } from 'data/appRoutes/appRoutes';
 import './Navigation.sass';
 
 export const Navigation = () => {
-	const { navBarsAreHidden, openLoginPopup, openCurtain, isCartPopupOpen, openCartPopup, closeCartPopup } =
-		useAppContext();
+	const { isCartPopupOpen, openCartPopup, closeCartPopup } = useCartPopupContext();
+	const { openCurtain } = useCurtainContext();
+	const { openLoginPopup } = useLoginPopupContext();
+	const { navBarsAreHidden } = useNavBarsContext();
 	const { numberOfProductsInCart } = useShoppingCartContext();
 	const { userJwtToken } = useAuthContext();
 	const navigate = useNavigate();

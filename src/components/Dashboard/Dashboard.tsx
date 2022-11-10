@@ -1,22 +1,27 @@
 import { useState } from 'react';
 
 import { Header } from 'components/Header/Header';
+import { ActualPriceCalculation } from 'components/ActualPriceCalculation/ActualPriceCalculation';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton';
 import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
 import { Link } from 'react-router-dom';
 
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 
-import { DashboardProps } from './Dashboard.types';
+import { DashboardProps, ActualPriceCalculationData } from './Dashboard.types';
 
-import './Dashboard.sass';
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
+import './Dashboard.sass';
+
+const BOTTLES_PER_CASE = 6;
+
 export const Dashboard = ({ product }: DashboardProps) => {
-	const { openCartPopup, openCurtain } = useAppContext();
+	const { openCartPopup } = useCartPopupContext();
+	const { openCurtain } = useCurtainContext();
 	const { addProductToCart } = useShoppingCartContext();
-	const BOTTLES_PER_CASE = 6;
 	const INITIAL_PRODUCT_DASHBOARD_DATA = {
 		format: {
 			type: product.formats[0]?.text ?? null,
@@ -27,19 +32,21 @@ export const Dashboard = ({ product }: DashboardProps) => {
 	const [productDashboardData, setProductDashboardData] = useState(INITIAL_PRODUCT_DASHBOARD_DATA);
 
 	const handleClick = (type: string, promotion = false) => {
-		setProductDashboardData({
-			...productDashboardData,
-			format: {
-				type,
-				promotion,
-			},
+		setProductDashboardData((prevState) => {
+			return {
+				...prevState,
+				format: {
+					type,
+					promotion,
+				},
+			};
 		});
 	};
 
 	const increaseQuantity = () =>
 		setProductDashboardData((prevState) => {
 			return {
-				...productDashboardData,
+				...prevState,
 				quantity: prevState.quantity + 1,
 			};
 		});
@@ -47,41 +54,50 @@ export const Dashboard = ({ product }: DashboardProps) => {
 	const decreaseQuantity = () => {
 		setProductDashboardData((prevState) => {
 			return {
-				...productDashboardData,
+				...prevState,
 				quantity: Math.max(prevState.quantity - 1, 1),
 			};
 		});
 	};
 
-	const actualPriceCalculation = (regularPrice: number, discount: number, formatPromotion: boolean) => {
-		let calculatedPrice: number = formatPromotion ? BOTTLES_PER_CASE * regularPrice : regularPrice;
+	const basePriceCalculation = (isCaseFormat: boolean) => {
+		return isCaseFormat ? BOTTLES_PER_CASE * Number(product.price) : Number(product.price);
+	};
+
+	const actualPriceCalculation = (actualPriceCalculationData: ActualPriceCalculationData) => {
+		const { regularPrice, discount, formatPromotion } = actualPriceCalculationData;
+		let calculatedPrice = regularPrice;
+		if (formatPromotion) {
+			calculatedPrice = calculatedPrice * BOTTLES_PER_CASE;
+		}
 		if (discount !== 0) {
 			calculatedPrice = calculatedPrice * ((100 - discount) / 100);
 		}
 		if (formatPromotion) {
-			calculatedPrice = calculatedPrice * 0.9; // 10% discont for case format
+			calculatedPrice = calculatedPrice * 0.9; // 10% discount for case format
 		}
 
-		return Number(calculatedPrice);
+		return calculatedPrice;
 	};
 
 	const handleButtonClick = () => {
-		if (!product.outOfStock) {
-			addProductToCart({
-				id: product.id,
-				title: product.title,
-				quantity: productDashboardData.quantity,
-				format: productDashboardData.format.type,
-				unitPrice: actualPriceCalculation(
-					Number(product.price),
-					Number(product.discount),
-					productDashboardData.format.promotion
-				),
-				mainImage: product.imageThumbnail,
-			});
-			setProductDashboardData(INITIAL_PRODUCT_DASHBOARD_DATA);
-			openCartPopup();
+		if (product.outOfStock) {
+			return;
 		}
+		addProductToCart({
+			id: product.id,
+			title: product.title,
+			quantity: productDashboardData.quantity,
+			format: productDashboardData.format.type,
+			unitPrice: actualPriceCalculation({
+				regularPrice: Number(product.price),
+				discount: Number(product.discount),
+				formatPromotion: productDashboardData.format.promotion,
+			}),
+			mainImage: product.imageThumbnail,
+		});
+		setProductDashboardData(INITIAL_PRODUCT_DASHBOARD_DATA);
+		openCartPopup();
 	};
 
 	return (
@@ -113,13 +129,13 @@ export const Dashboard = ({ product }: DashboardProps) => {
 			)}
 			<label className='dashboard__label'>Quantity</label>
 			<div className='dashboard__quantity'>
-				<div onClick={decreaseQuantity} className='dashboard__quantity-button'>
+				<button onClick={decreaseQuantity} className='dashboard__quantity-button'>
 					-
-				</div>
+				</button>
 				<div className='dashboard__quantity-output'>{productDashboardData.quantity}</div>
-				<div onClick={increaseQuantity} className='dashboard__quantity-button'>
+				<button onClick={increaseQuantity} className='dashboard__quantity-button'>
 					+
-				</div>
+				</button>
 			</div>
 
 			{productDashboardData.format.promotion && (
@@ -133,20 +149,15 @@ export const Dashboard = ({ product }: DashboardProps) => {
 							productDashboardData.format.promotion || product.discount ? 'dashboard__price--gray' : ''
 						}`}
 					>
-						{productDashboardData.format.promotion
-							? BOTTLES_PER_CASE * Number(product.price)
-							: product.price}
+						{basePriceCalculation(productDashboardData.format.promotion).toFixed(2)}
 						&euro;
 					</div>
 					{(productDashboardData.format.promotion || product.discount) && (
-						<div className='dashboard__price'>
-							{actualPriceCalculation(
-								Number(product.price),
-								Number(product.discount),
-								productDashboardData.format.promotion
-							).toFixed(2)}
-							&euro;
-						</div>
+						<ActualPriceCalculation
+							product={product}
+							productDashboardData={productDashboardData}
+							actualPriceCalculation={actualPriceCalculation}
+						/>
 					)}
 				</div>
 				<div className='dashboard__btn-holder' onClick={handleButtonClick}>

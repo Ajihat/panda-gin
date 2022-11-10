@@ -35,7 +35,9 @@ export const useGetProduct = (productId: string) => {
 			.finally(() => {
 				setProductLoading(false);
 			});
+
+		return () => abortControler.current?.abort();
 	}, [productId]);
 
-	return { product, productLoading, apiError, abortControler };
+	return { product, productLoading, apiError };
 };

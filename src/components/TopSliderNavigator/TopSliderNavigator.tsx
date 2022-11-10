@@ -2,22 +2,23 @@ import closeBtn from 'assets/close.svg';
 import nextBtn from 'assets/nextBtn.svg';
 import prevBtn from 'assets/prevBtn.svg';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useTopSliderContext } from 'context/TopSliderContext/useTopSliderContext';
 
 import { TopSliderNavigatorProps } from './TopSliderNavigator.types';
 
 import './TopSliderNavigator.sass';
 
 export const TopSliderNavigator = ({ changeSlide, intervalID }: TopSliderNavigatorProps) => {
-	const { closeTopSliderByUser } = useAppContext();
+	const { closeTopSliderByUser } = useTopSliderContext();
 
 	const handleCancel = () => {
-		clearInterval(intervalID);
+		if (intervalID !== null) {
+			clearInterval(intervalID);
+		}
 		closeTopSliderByUser();
 	};
 
 	const handleClick = (direction: string) => {
-		clearInterval(intervalID);
 		changeSlide(direction);
 	};
 

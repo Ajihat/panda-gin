@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
 
@@ -20,19 +20,22 @@ export const ProductTile = ({
 	index,
 	openInNewTab,
 }: ProductTileProps) => {
-	const productTileRef = useRef<HTMLElement | null>(null);
 	const { handleLinkClick } = useAppContext();
 	const { pathname } = useLocation();
-	useEffect(() => {
-		const delay = (index + 1) * 100;
-		const timeoutId = setTimeout(() => {
-			productTileRef.current?.classList.remove('producttile--invisible');
-		}, delay);
-		return () => clearTimeout(timeoutId);
-	}, [index]);
 
 	return (
-		<article ref={productTileRef} className='producttile producttile--invisible'>
+		<motion.article
+			initial={{
+				opacity: 0,
+				transform: 'scale(0.95)',
+			}}
+			animate={{
+				opacity: 1,
+				transform: 'scale(1)',
+			}}
+			transition={{ duration: 0.5, delay: index / 10 }}
+			className='producttile'
+		>
 			<Link
 				to={`/product/${id}`}
 				className='producttile__link'
@@ -68,6 +71,6 @@ export const ProductTile = ({
 				{outOfStock && <p className='producttile__out-of-stock'>Out of stock</p>}
 				{discount && <p className='producttile__out-of-stock'>{`${discount}% off`}</p>}
 			</Link>
-		</article>
+		</motion.article>
 	);
 };

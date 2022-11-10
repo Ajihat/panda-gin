@@ -1,5 +1,4 @@
 import ReactDom from 'react-dom';
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Header } from 'components/Header/Header';
@@ -9,8 +8,11 @@ import { Loader } from 'components/Loader/Loader';
 import closeBtn from 'assets/close-btn.svg';
 
 import { useAppContext } from 'context/AppContext/useAppContext';
+import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
+import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
 import { useLogin } from './useLogin';
 import { useNoScrollingWhilePopup } from 'common/useNoScrollingWhilePopup/useNoScrollingWhilePopup';
+import { useTimeout } from 'common/useTimeout/useTimeout';
 
 import { emailRegex } from 'common/regexs/emailRegex';
 
@@ -28,22 +30,11 @@ export const LoginPopup = () => {
 		setFocus,
 		formState: { errors },
 	} = useForm<ILoginInputs>();
-	const { isSubscribePopupOpen, closeLoginPopup, openSubscribePopup } = useAppContext();
-	const { apiError, apiErrorText, isLoading, abortControler, onMutate } = useLogin(LOGIN_URL);
+	const { openSubscribePopup } = useSubscribePopupContext();
+	const { closeLoginPopup } = useLoginPopupContext();
+	const { apiError, apiErrorText, isLoading, onMutate } = useLogin(LOGIN_URL);
 
-	useEffect(() => {
-		const timeoutID = setTimeout(() => {
-			setFocus('username');
-		}, 400);
-		return () => {
-			clearTimeout(timeoutID);
-		};
-	}, [isSubscribePopupOpen, setFocus]);
-
-	useEffect(() => {
-		const controler = abortControler.current;
-		return () => controler?.abort();
-	}, [abortControler]);
+	useTimeout(() => setFocus('username'), 400);
 
 	useNoScrollingWhilePopup();
 

@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Header } from 'components/Header/Header';
 import { ActualPriceCalculation } from 'components/ActualPriceCalculation/ActualPriceCalculation';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton';
 import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
+import { QuantitySelector } from 'components/QuantitySelector/QuantitySelector';
+import { Formats } from 'components/Formats/Formats';
 import { Link } from 'react-router-dom';
 
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
 import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 
-import { DashboardProps, ActualPriceCalculationData } from './Dashboard.types';
+import { DashboardProps } from './Dashboard.types';
+
+import { basePriceCalculation, actualPriceCalculation } from './dashboardHelpers';
 
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
 import './Dashboard.sass';
-
-const BOTTLES_PER_CASE = 6;
 
 export const Dashboard = ({ product }: DashboardProps) => {
 	const { openCartPopup } = useCartPopupContext();
@@ -31,7 +33,7 @@ export const Dashboard = ({ product }: DashboardProps) => {
 	};
 	const [productDashboardData, setProductDashboardData] = useState(INITIAL_PRODUCT_DASHBOARD_DATA);
 
-	const handleClick = (type: string, promotion = false) => {
+	const changeActiveFormat = useCallback((type: string, promotion = false) => {
 		setProductDashboardData((prevState) => {
 			return {
 				...prevState,
@@ -41,44 +43,25 @@ export const Dashboard = ({ product }: DashboardProps) => {
 				},
 			};
 		});
-	};
+	}, []);
 
-	const increaseQuantity = () =>
+	const increaseQuantity = useCallback(() => {
 		setProductDashboardData((prevState) => {
 			return {
 				...prevState,
 				quantity: prevState.quantity + 1,
 			};
 		});
+	}, []);
 
-	const decreaseQuantity = () => {
+	const decreaseQuantity = useCallback(() => {
 		setProductDashboardData((prevState) => {
 			return {
 				...prevState,
 				quantity: Math.max(prevState.quantity - 1, 1),
 			};
 		});
-	};
-
-	const basePriceCalculation = (isCaseFormat: boolean) => {
-		return isCaseFormat ? BOTTLES_PER_CASE * Number(product.price) : Number(product.price);
-	};
-
-	const actualPriceCalculation = (actualPriceCalculationData: ActualPriceCalculationData) => {
-		const { regularPrice, discount, formatPromotion } = actualPriceCalculationData;
-		let calculatedPrice = regularPrice;
-		if (formatPromotion) {
-			calculatedPrice = calculatedPrice * BOTTLES_PER_CASE;
-		}
-		if (discount !== 0) {
-			calculatedPrice = calculatedPrice * ((100 - discount) / 100);
-		}
-		if (formatPromotion) {
-			calculatedPrice = calculatedPrice * 0.9; // 10% discount for case format
-		}
-
-		return calculatedPrice;
-	};
+	}, []);
 
 	const handleButtonClick = () => {
 		if (product.outOfStock) {
@@ -110,34 +93,20 @@ export const Dashboard = ({ product }: DashboardProps) => {
 			{product.formats.length > 0 && (
 				<>
 					<label className='dashboard__label'>Format</label>
-					<div className='dashboard__formats'>
-						{product.formats.map((format) => (
-							<button
-								className={`dashboard__formats-btn ${
-									productDashboardData.format.type === format.text
-										? 'dashboard__formats-btn--active'
-										: ''
-								}`}
-								key={format.id}
-								onClick={() => handleClick(format.text, format.promotion)}
-							>
-								{format.text}
-							</button>
-						))}
-					</div>
+					<Formats
+						formats={product.formats}
+						activeFormat={productDashboardData.format.type}
+						changeActiveFormat={changeActiveFormat}
+					/>
 				</>
 			)}
 			<label className='dashboard__label'>Quantity</label>
-			<div className='dashboard__quantity'>
-				<button onClick={decreaseQuantity} className='dashboard__quantity-button'>
-					-
-				</button>
-				<div className='dashboard__quantity-output'>{productDashboardData.quantity}</div>
-				<button onClick={increaseQuantity} className='dashboard__quantity-button'>
-					+
-				</button>
-			</div>
-
+			<QuantitySelector
+				quantity={productDashboardData.quantity}
+				increaseQuantity={increaseQuantity}
+				decreaseQuantity={decreaseQuantity}
+				isGift={false}
+			/>
 			{productDashboardData.format.promotion && (
 				<p className='dashboard__promotion'>Additional 10% promotion by purchasing a case</p>
 			)}
@@ -149,7 +118,7 @@ export const Dashboard = ({ product }: DashboardProps) => {
 							productDashboardData.format.promotion || product.discount ? 'dashboard__price--gray' : ''
 						}`}
 					>
-						{basePriceCalculation(productDashboardData.format.promotion).toFixed(2)}
+						{basePriceCalculation(productDashboardData.format.promotion, product.price)}
 						&euro;
 					</div>
 					{(productDashboardData.format.promotion || product.discount) && (

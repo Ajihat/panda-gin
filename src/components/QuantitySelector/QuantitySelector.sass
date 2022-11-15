@@ -1,0 +1,24 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.quantityselector
+    position: relative
+    +mixins.positioning(flex,row,flex-start,flex-start,nowrap)
+    border: 1px solid variables.$main-color
+    width: 120px
+    &.quantityselector--inactive
+        border: 1px solid variables.$border-color
+    &__quantity-button, &__quantity-output
+        +mixins.positioning(flex,row,center,center,nowrap)
+        width: 40px
+        height: 50px
+        padding: 15px 8px
+        font-size: 1.2rem
+        font-weight: 400
+        border: none
+        background-color: transparent
+        cursor: pointer
+    &__quantity-output
+        cursor: auto
+    &__quantity-button::selection
+        background-color: variables.$secondary-color

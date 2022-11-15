@@ -3,13 +3,15 @@ import { useState, useRef, useEffect } from 'react';
 import { axiosInstance as axios } from 'api/axios';
 import { EDIT_PRODUCT } from 'api/apiEndpoints';
 
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
 import { IEditProductInputs } from './EditProducts.types';
 import { Product } from 'context/ProductsContext/ProductsContext.types';
 
 export const useEditProduct = () => {
 	const [productIsBeingUpdated, setProductIsBeingUpdated] = useState(false);
 	const [productUpdatedWithSucces, setProductUpdatedWithSucces] = useState(false);
-	const [apiError, setApiError] = useState('');
+	const [apiErrorText, setApiErrorText] = useState('');
 	const abortControler = useRef<AbortController>();
 
 	useEffect(() => {
@@ -24,7 +26,7 @@ export const useEditProduct = () => {
 			price: Number(payload.price).toFixed(2),
 		};
 		setProductIsBeingUpdated(true);
-		setApiError('');
+		setApiErrorText('');
 		abortControler.current = new AbortController();
 		try {
 			const response = await axios({
@@ -37,17 +39,11 @@ export const useEditProduct = () => {
 				setProductUpdatedWithSucces(true);
 			}
 			setProductIsBeingUpdated(false);
-		} catch (e) {
-			if (e.code === 'ERR_NETWORK') {
-				setApiError('Connection error');
-			} else if (e.code === 'ERR_BAD_RESPONSE') {
-				setApiError('User does not exist');
-			} else {
-				setApiError('We are sorry. Something went wrong');
-			}
+		} catch (error) {
+			setApiErrorText(drawApiErrorText(error, EDIT_PRODUCT));
 			setProductIsBeingUpdated(false);
 		}
 	};
 
-	return { onMutate, productIsBeingUpdated, apiError, productUpdatedWithSucces };
+	return { onMutate, productIsBeingUpdated, apiErrorText, productUpdatedWithSucces };
 };

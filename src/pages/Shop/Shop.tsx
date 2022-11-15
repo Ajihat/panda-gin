@@ -22,7 +22,7 @@ export const Shop = () => {
 		products,
 		productsPage,
 		setProductsPage,
-		apiError,
+		apiErrorText,
 	} = useProductsContext();
 	useEffect(() => {
 		changeProductsCategory('all');
@@ -60,7 +60,7 @@ export const Shop = () => {
 							/>
 						);
 					})}
-				{apiError && <ApiError text={apiError} />}
+				{apiErrorText && <ApiError text={apiErrorText} />}
 			</div>
 			<Pagination />
 		</div>

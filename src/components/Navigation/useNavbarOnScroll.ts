@@ -1,10 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { useNavBarsContext } from 'context/NavBarsContext/useNavBarsContext';
-import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 
 export const useNavbarOnScroll = () => {
-	const { hideNavbars, showNavbars } = useNavBarsContext();
-	const { scrollingDirectionIsBeingChecked } = useCartPopupContext();
+	const { hideNavbars, showNavbars, scrollingDirectionIsBeingChecked } = useNavBarsContext();
 	const lastScrollPositionRef = useRef<number>(0);
 
 	const checkScrollingDirection = useCallback(() => {

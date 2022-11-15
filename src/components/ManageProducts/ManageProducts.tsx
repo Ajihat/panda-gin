@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { ApiError } from 'components/ApiError/ApiError';
@@ -9,10 +8,8 @@ import { useAuthContext } from 'context/AuthContext/useAuthContext';
 import './ManageProducts.sass';
 
 export const ManageProducts = () => {
-	const { userData } = useAuthContext();
-	const isAdmin = useMemo(() => {
-		return userData?.username === 'admin@admin.com';
-	}, [userData?.username]);
+	const { isAdmin } = useAuthContext();
+
 	return (
 		<AnimatePresence>
 			<motion.div

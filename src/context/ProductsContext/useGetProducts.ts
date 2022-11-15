@@ -5,16 +5,18 @@ import { GET_PRODUCTS_URL } from 'api/apiEndpoints';
 
 import { frontendPagination } from 'common/frontendPagination/frontendPagination';
 
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
 import { Product, ProductsCategories } from './ProductsContext.types';
 
 export const useGetProducts = (productsCategory: ProductsCategories) => {
-	const [productsLoading, setProductsLoading] = useState<boolean>(false);
+	const [productsLoading, setProductsLoading] = useState(false);
 	const [products, setProducts] = useState<Product[][]>([]);
-	const [apiError, setApiError] = useState<string>('');
+	const [apiErrorText, setApiErrorText] = useState('');
 	const abortControler = useRef<AbortController>();
 	useEffect(() => {
 		setProductsLoading(true);
-		setApiError('');
+		setApiErrorText('');
 		setProducts([]);
 		abortControler.current = new AbortController();
 		axios({
@@ -50,14 +52,7 @@ export const useGetProducts = (productsCategory: ProductsCategories) => {
 				setProducts(paginatedAndFilteredProducts);
 			})
 			.catch((error) => {
-				if (error.code === 'ERR_CANCELED') {
-					return;
-				}
-				if (error.code === 'ERR_NETWORK') {
-					setApiError('Connection error');
-					return;
-				}
-				setApiError('We are sorry. Something went wrong');
+				setApiErrorText(drawApiErrorText(error, GET_PRODUCTS_URL));
 			})
 			.finally(() => {
 				setProductsLoading(false);
@@ -66,5 +61,5 @@ export const useGetProducts = (productsCategory: ProductsCategories) => {
 		return () => abortControler.current?.abort();
 	}, [productsCategory]);
 
-	return { productsLoading, products, apiError };
+	return { productsLoading, products, apiErrorText };
 };

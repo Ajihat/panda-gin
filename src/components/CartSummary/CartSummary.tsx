@@ -4,6 +4,8 @@ import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
 import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 
+import { getTotalShoppingCartSummary, drawNumberOfItems, drawShippingCost } from './cartSummaryHelpers';
+
 import './CartSummary.sass';
 
 export const CartSummary = () => {
@@ -14,20 +16,20 @@ export const CartSummary = () => {
 		<div className='cartsummary'>
 			<div className='cartsummary__inner' data-animation='animation-item'>
 				<div className='cartsummary__row'>
-					<div className='cartsummary__row-left'>{numberOfProductsInCart} items</div>
+					<div className='cartsummary__row-left'>{drawNumberOfItems(numberOfProductsInCart)}</div>
 					<div className='cartsummary__row-right'>{shoppingCartValue.toFixed(2)}&euro;</div>
 				</div>
 				{numberOfProductsInCart > 0 && (
 					<div className='cartsummary__row'>
 						<div className='cartsummary__row-left'>Shipping</div>
-						<div className='cartsummary__row-right'>{shippingCost === 0 ? 'FREE' : `${shippingCost}€`}</div>
+						<div className='cartsummary__row-right'>{drawShippingCost(shippingCost)}</div>
 					</div>
 				)}
 			</div>
 			<div className='cartsummary__row moved' data-animation='animation-item'>
 				<div className='cartsummary__row-left'>Total (tax incl.)</div>
 				<div className='cartsummary__row-right'>
-					{numberOfProductsInCart === 0 ? (0).toFixed(2) : (shoppingCartValue + shippingCost).toFixed(2)}
+					{getTotalShoppingCartSummary({ numberOfProductsInCart, shoppingCartValue, shippingCost })}
 					&euro;
 				</div>
 			</div>

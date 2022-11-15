@@ -62,26 +62,6 @@
         letter-spacing: .6px
         margin-top: 5px
         font-weight: 300
-    &__quantity
-        position: relative
-        +mixins.positioning(flex,row,flex-start,flex-start,nowrap)
-        border: 1px solid variables.$main-color
-        width: 120px
-        &.cartlisting__quantity--inactive
-            border: 1px solid variables.$border-color
-    &__quantity-button, &__quantity-output
-        +mixins.positioning(flex,row,center,center,nowrap)
-        width: 40px
-        height: 50px
-        padding: 15px 8px
-        font-size: 1.2rem
-        font-weight: 400
-        cursor: pointer
-    &__quantity-output
-        cursor: auto
-        font-size: 1.1rem
-    &__quantity-button::selection
-        background-color: variables.$secondary-color
     &__item-price
         font-family: variables.$second-font
         font-size: 1.7rem

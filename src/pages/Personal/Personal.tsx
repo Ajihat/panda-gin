@@ -23,11 +23,8 @@ const headerBigTitles = {
 export const Personal = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
-	const { userData, userJwtToken } = useAuthContext();
-	if (!userJwtToken) {
-		throw new Error('userJwtToken used in Personal Page cannot be null');
-	}
-	const { isLoading, apiError } = useGetUserData(userJwtToken);
+	const { userData } = useAuthContext();
+	const { isLoading, apiErrorText } = useGetUserData();
 
 	useEffect(() => {
 		navigate(appRoutes.personal_userInfo);
@@ -40,7 +37,7 @@ export const Personal = () => {
 				<meta name='description' content='Manage your account, watch orders and many more' />
 			</Helmet>
 			<div className='personal__inner'>
-				{!isLoading && !apiError && (
+				{!isLoading && !apiErrorText && (
 					<div className='personal__container'>
 						<Header
 							bigTitle={headerBigTitles[pathname as keyof typeof headerBigTitles] || 'You are editing'}
@@ -57,7 +54,7 @@ export const Personal = () => {
 					</div>
 				)}
 				{isLoading && <Loader />}
-				{apiError && <ApiError text={apiError} />}
+				{apiErrorText && <ApiError text={apiErrorText} />}
 			</div>
 		</div>
 	);

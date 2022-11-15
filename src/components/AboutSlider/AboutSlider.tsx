@@ -24,7 +24,7 @@ export const AboutSlider = () => {
 				return prevSlide + 1;
 			}
 		});
-	}, []);
+	}, [currentSlide]);
 
 	const prevSlide = () => {
 		setCurrentSlide((prevSlide) => {
@@ -35,7 +35,7 @@ export const AboutSlider = () => {
 			}
 		});
 	};
-	useInterval<number>(nextSlide, 7000, currentSlide);
+	useInterval(nextSlide, 7000);
 	return (
 		<div
 			className='aboutslider'
@@ -50,7 +50,7 @@ export const AboutSlider = () => {
 			/>
 			<a className='aboutslider__cta' href='#about'>
 				Scroll down
-				<br />|
+				<span className='aboutslider__cta-pipe'>|</span>
 			</a>
 			<button onClick={nextSlide} className='aboutslider__arrow aboutslider__arrow--right'>
 				<MdOutlineKeyboardArrowRight className='aboutslider__icon' />

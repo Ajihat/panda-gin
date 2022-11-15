@@ -7,7 +7,6 @@ import { Loader } from 'components/Loader/Loader';
 
 import closeBtn from 'assets/close-btn.svg';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
 import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
 import { useSubscribe } from './useSubscribe';
 import { useTimeout } from 'common/useTimeout/useTimeout';
@@ -30,7 +29,7 @@ export const SubscribePopup = () => {
 		formState: { errors },
 	} = useForm<ISubscribeInputs>();
 	const { closeSubscribePopup } = useSubscribePopupContext();
-	const { apiError, apiErrorText, isLoading, onMutate } = useSubscribe(SUBSCRIBE_URL);
+	const { apiErrorText, isLoading, onMutate } = useSubscribe(SUBSCRIBE_URL);
 
 	useTimeout(() => setFocus('username'), 400);
 
@@ -46,7 +45,7 @@ export const SubscribePopup = () => {
                     Access your complete order history.'
 				/>
 				<form className='subscribepopup__form' noValidate onSubmit={handleSubmit(onMutate)}>
-					{apiError && <p className='subscribepopup__api-error'>{apiErrorText}</p>}
+					{apiErrorText && <p className='subscribepopup__api-error'>{apiErrorText}</p>}
 					<div className='subscribepopup__form-section'>
 						<label htmlFor='email' className='subscribepopup__label'>
 							Email

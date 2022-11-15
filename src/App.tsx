@@ -18,8 +18,8 @@ import { CartPopup } from 'components/CartPopup/CartPopup';
 import { UserInfo } from 'components/UserInfo/UserInfo';
 import { ManageProducts } from 'components/ManageProducts/ManageProducts';
 import { EditProduct } from 'components/EditProduct/EditProduct';
+import { Orders } from 'components/Orders/Orders';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
 import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
 import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
@@ -35,7 +35,6 @@ import { NoMatchPage } from 'pages/NoMatchPage/NoMatchPage';
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
 import './sass/App.sass';
-import { Orders } from 'components/Orders/Orders';
 
 export const App = () => {
 	const { isLegalDrinkingAge } = useAuthContext();

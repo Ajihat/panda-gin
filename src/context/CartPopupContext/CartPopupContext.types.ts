@@ -4,7 +4,6 @@ export interface CartPopupProviderProps {
 
 export interface ICartPopupContext {
 	isCartPopupOpen: boolean;
-	scrollingDirectionIsBeingChecked: boolean;
 	openCartPopup: () => void;
 	closeCartPopup: () => void;
 }

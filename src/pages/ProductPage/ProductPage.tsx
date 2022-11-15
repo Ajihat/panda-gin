@@ -22,12 +22,12 @@ export const ProductPage = () => {
 		throw new Error('ProductPage component should be rendered inside route with `id` param');
 	}
 
-	const { product, productLoading, apiError } = useGetProduct(id);
+	const { product, productLoading, apiErrorText } = useGetProduct(id);
 
 	return (
 		<div className='productpage'>
 			<Helmet>
-				<title>{`${product?.title} | Panda Gin`}</title>
+				<title>{`${product?.title || 'Product not found'} | Panda Gin`}</title>
 				<meta name='description' content={product?.text} />
 			</Helmet>
 			<div className='productpage__inner'>
@@ -46,7 +46,7 @@ export const ProductPage = () => {
 					)}
 					{product && <Dashboard product={product} />}
 					{productLoading && <Loader />}
-					{apiError && <ApiError text={apiError} />}
+					{apiErrorText && <ApiError text={apiErrorText} />}
 				</div>
 			</div>
 			<RandomProduct currentProductId={id as string} />

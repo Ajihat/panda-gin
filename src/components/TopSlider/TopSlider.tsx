@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { topSlides } from 'data/topSlider/topSlider';
 
@@ -16,30 +16,33 @@ export const TopSlider = () => {
 
 	const { isTopSliderClosed, isTopSliderClosedByUser } = useTopSliderContext();
 
-	const changeSlide = (direction: string) => {
-		if (direction === 'nextSlide') {
-			setSlidingDirection('forward');
-			setCurrentSlide((prevSlide) => {
-				if (prevSlide === topSlides.length - 1) {
-					return 0;
-				} else {
-					return prevSlide + 1;
-				}
-			});
-		}
-		if (direction === 'prevSlide') {
-			setSlidingDirection('backward');
-			setCurrentSlide((prevSlide) => {
-				if (prevSlide === 0) {
-					return topSlides.length - 1;
-				} else {
-					return prevSlide - 1;
-				}
-			});
-		}
-	};
+	const changeSlide = useCallback(
+		(direction: string) => {
+			if (direction === 'nextSlide') {
+				setSlidingDirection('forward');
+				setCurrentSlide((prevSlide) => {
+					if (prevSlide === topSlides.length - 1) {
+						return 0;
+					} else {
+						return prevSlide + 1;
+					}
+				});
+			}
+			if (direction === 'prevSlide') {
+				setSlidingDirection('backward');
+				setCurrentSlide((prevSlide) => {
+					if (prevSlide === 0) {
+						return topSlides.length - 1;
+					} else {
+						return prevSlide - 1;
+					}
+				});
+			}
+		},
+		[currentSlide]
+	);
 
-	const intervalRef = useInterval<number>(() => changeSlide('nextSlide'), 4000, currentSlide);
+	const intervalRef = useInterval(() => changeSlide('nextSlide'), 4000);
 
 	return (
 		<div className={isTopSliderClosed || isTopSliderClosedByUser ? 'topslider topslider--closed' : 'topslider'}>

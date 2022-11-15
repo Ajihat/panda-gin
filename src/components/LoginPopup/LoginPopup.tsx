@@ -7,7 +7,6 @@ import { Loader } from 'components/Loader/Loader';
 
 import closeBtn from 'assets/close-btn.svg';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
 import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
 import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
 import { useLogin } from './useLogin';
@@ -32,7 +31,7 @@ export const LoginPopup = () => {
 	} = useForm<ILoginInputs>();
 	const { openSubscribePopup } = useSubscribePopupContext();
 	const { closeLoginPopup } = useLoginPopupContext();
-	const { apiError, apiErrorText, isLoading, onMutate } = useLogin(LOGIN_URL);
+	const { apiErrorText, isLoading, onMutate } = useLogin(LOGIN_URL);
 
 	useTimeout(() => setFocus('username'), 400);
 
@@ -48,7 +47,7 @@ export const LoginPopup = () => {
 					text='Faster payment with address and payment details saved. Access your complete order history'
 				/>
 				<form className='loginpopup__form' noValidate onSubmit={handleSubmit(onMutate)}>
-					{apiError && <p className='loginpopup__api-error'>{apiErrorText}</p>}
+					{apiErrorText && <p className='loginpopup__api-error'>{apiErrorText}</p>}
 					<div className='loginpopup__form-section'>
 						<label htmlFor='username' className='loginpopup__label'>
 							Login

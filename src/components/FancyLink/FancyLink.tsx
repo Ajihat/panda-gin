@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 
 import { appRoutes } from 'data/appRoutes/appRoutes';
 
@@ -12,7 +12,7 @@ import './FancyLink.sass';
 
 export const FancyLink = ({ alignment }: FancyLinkProps) => {
 	const { pathname } = useLocation();
-	const { handleLinkClick } = useAppContext();
+	const { handleLinkClick } = useCurtainContext();
 	return (
 		<div
 			style={{

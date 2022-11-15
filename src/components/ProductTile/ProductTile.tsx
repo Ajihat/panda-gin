@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 
 import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
+
+import { getProductPriceAfterDiscount } from './productTileHelpers';
 
 import { ProductTileProps } from './ProductTile.types';
 
@@ -20,7 +22,7 @@ export const ProductTile = ({
 	index,
 	openInNewTab,
 }: ProductTileProps) => {
-	const { handleLinkClick } = useAppContext();
+	const { handleLinkClick } = useCurtainContext();
 	const { pathname } = useLocation();
 
 	return (
@@ -61,7 +63,7 @@ export const ProductTile = ({
 						</p>
 						{discount && (
 							<p className='producttile__price'>
-								{(Number(price) * ((100 - Number(discount)) / 100)).toFixed(2)}
+								{getProductPriceAfterDiscount(price, discount)}
 								&euro;
 							</p>
 						)}

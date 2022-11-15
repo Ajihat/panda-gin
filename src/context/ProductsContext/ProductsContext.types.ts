@@ -20,7 +20,7 @@ export interface IProductsContext {
 	increaseProductsPage: () => void;
 	decreaseProductsPage: () => void;
 	setProductsPage: React.Dispatch<React.SetStateAction<number>>;
-	apiError: string;
+	apiErrorText: string;
 }
 
 export interface Product {

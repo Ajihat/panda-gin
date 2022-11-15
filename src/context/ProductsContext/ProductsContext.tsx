@@ -10,7 +10,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
 	const [productsCategory, setProductsCategory] = useState<ProductsCategories>('all');
 	const [productsPage, setProductsPage] = useState(0);
 
-	const { productsLoading, products, apiError } = useGetProducts(productsCategory);
+	const { productsLoading, products, apiErrorText } = useGetProducts(productsCategory);
 
 	const changeProductsCategory = useCallback((category: ProductsCategories) => {
 		setProductsCategory(category);
@@ -38,7 +38,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
 			increaseProductsPage,
 			decreaseProductsPage,
 			setProductsPage,
-			apiError,
+			apiErrorText,
 		};
 	}, [
 		productsCategory,
@@ -49,7 +49,7 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
 		increaseProductsPage,
 		decreaseProductsPage,
 		setProductsPage,
-		apiError,
+		apiErrorText,
 	]);
 	return <ProductsContext.Provider value={ProductsContextValue}>{children}</ProductsContext.Provider>;
 };

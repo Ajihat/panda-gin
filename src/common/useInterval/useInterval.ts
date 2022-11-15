@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-export const useInterval = <T>(callback: () => void, intervalTime: number, additionalDependency?: T) => {
+export const useInterval = (callback: () => void, intervalTime: number) => {
 	const intervalRef = useRef<null | NodeJS.Timer>(null);
 	useEffect(() => {
 		intervalRef.current = setInterval(callback, intervalTime);
-		return () => clearInterval(intervalRef.current as NodeJS.Timer);
-	}, [callback, intervalTime, additionalDependency]);
+		return () => {
+			if (intervalRef.current) clearInterval(intervalRef.current);
+		};
+	}, [callback, intervalTime]);
 	return intervalRef;
 };

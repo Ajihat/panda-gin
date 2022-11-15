@@ -3,17 +3,19 @@ import { useState, useEffect, useRef } from 'react';
 import { axiosInstance as axios } from 'api/axios';
 import { GET_PRODUCT_URL } from 'api/apiEndpoints';
 
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
 import { Product } from 'context/ProductsContext/ProductsContext.types';
 
 export const useGetProduct = (productId: string) => {
 	const [product, setProduct] = useState<null | Product>(null);
-	const [productLoading, setProductLoading] = useState<boolean>(false);
-	const [apiError, setApiError] = useState<string>('');
+	const [productLoading, setProductLoading] = useState(false);
+	const [apiErrorText, setApiErrorText] = useState('');
 	const abortControler = useRef<AbortController>();
 
 	useEffect(() => {
 		setProductLoading(true);
-		setApiError('');
+		setApiErrorText('');
 		abortControler.current = new AbortController();
 		axios({
 			method: 'GET',
@@ -23,14 +25,8 @@ export const useGetProduct = (productId: string) => {
 			.then((res) => {
 				setProduct(res.data);
 			})
-			.catch((e) => {
-				if (e.code === 'ERR_NETWORK') {
-					setApiError('Connection error');
-				} else if (e.code === 'ERR_BAD_RESPONSE') {
-					setApiError('Product does not exist');
-				} else {
-					setApiError('We are sorry. Something went wrong');
-				}
+			.catch((error) => {
+				setApiErrorText(drawApiErrorText(error, GET_PRODUCT_URL));
 			})
 			.finally(() => {
 				setProductLoading(false);
@@ -39,5 +35,5 @@ export const useGetProduct = (productId: string) => {
 		return () => abortControler.current?.abort();
 	}, [productId]);
 
-	return { product, productLoading, apiError };
+	return { product, productLoading, apiErrorText };
 };

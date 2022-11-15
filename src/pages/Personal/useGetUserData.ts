@@ -3,14 +3,16 @@ import { useState, useEffect, useRef } from 'react';
 import { axiosInstance as axios } from 'api/axios';
 import { GET_USER_DATA } from 'api/apiEndpoints';
 
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
 
-export const useGetUserData = (jwt: string) => {
+export const useGetUserData = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	const [apiError, setApiError] = useState('');
+	const [apiErrorText, setApiErrorText] = useState('');
 	const abortControler = useRef<AbortController>();
 
-	const { setUserData } = useAuthContext();
+	const { setUserData, userJwtToken } = useAuthContext();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -22,27 +24,21 @@ export const useGetUserData = (jwt: string) => {
 					signal: abortControler.current.signal,
 					headers: {
 						accept: 'application/json',
-						Authorization: 'Bearer ' + jwt,
+						Authorization: 'Bearer ' + userJwtToken,
 					},
 				});
 				if (response.status === 200) {
 					setUserData(response.data);
 					setIsLoading(false);
 				}
-			} catch (e) {
+			} catch (error) {
 				setIsLoading(false);
-				if (e.code === 'ERR_NETWORK') {
-					setApiError('Connection error');
-				} else if (e.code === 'ERR_BAD_RESPONSE') {
-					setApiError('User does not exist');
-				} else {
-					setApiError('We are sorry. Something went wrong');
-				}
+				setApiErrorText(drawApiErrorText(error, GET_USER_DATA));
 			}
 		};
 		fetchData();
 		return () => abortControler.current?.abort();
-	}, [jwt, setUserData]);
+	}, [setUserData, userJwtToken]);
 
-	return { isLoading, abortControler, apiError };
+	return { isLoading, abortControler, apiErrorText };
 };

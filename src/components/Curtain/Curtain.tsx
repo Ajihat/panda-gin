@@ -4,6 +4,7 @@ import ReactDom from 'react-dom';
 import pandaHead from 'assets/panda-head.png';
 
 import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
+import { useTimeout } from 'common/useTimeout/useTimeout';
 
 import { NO_SCROLL, NO_SMOOTH_SCROLLING } from 'data/specialClasses/specialClasses';
 
@@ -11,23 +12,18 @@ import './Curtain.sass';
 
 export const Curtain = () => {
 	const { closeCurtain } = useCurtainContext();
-	const timeoutRef = useRef<ReturnType<typeof setInterval>>();
 
 	const scrollToPageTop = () => {
 		window.scrollTo(0, 0);
 	};
 
+	useTimeout(closeCurtain, 1500);
+
 	useEffect(() => {
 		scrollToPageTop();
-		timeoutRef.current = setTimeout(() => {
-			closeCurtain();
-			scrollToPageTop();
-		}, 1500);
-
-		return () => {
-			clearTimeout(timeoutRef.current);
-		};
-	}, [closeCurtain]);
+		window.addEventListener('scroll', scrollToPageTop);
+		return () => window.removeEventListener('scroll', scrollToPageTop);
+	}, []);
 
 	useEffect(() => {
 		document.body.classList.add(NO_SCROLL);
@@ -37,11 +33,6 @@ export const Curtain = () => {
 			document.body.classList.remove(NO_SCROLL);
 			document.documentElement.classList.remove(NO_SMOOTH_SCROLLING);
 		};
-	}, []);
-
-	useEffect(() => {
-		window.addEventListener('scroll', scrollToPageTop);
-		return () => window.removeEventListener('scroll', scrollToPageTop);
 	}, []);
 
 	return ReactDom.createPortal(

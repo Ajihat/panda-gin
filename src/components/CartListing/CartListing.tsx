@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 
 import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
+import { QuantitySelector } from 'components/QuantitySelector/QuantitySelector';
 
 import closeBtn from 'assets/close-btn.svg';
 
 import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingCartContext';
 import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
+
+import { quantityAndPriceToTotalPriceLabel } from './cartListingHelpers';
 
 import { CartListingProps } from './CartListing.types';
 
@@ -41,7 +44,6 @@ export const CartListing = ({ productsInCart }: CartListingProps) => {
 		<ul className='cartlisting'>
 			{productsInCart.map((productInCart) => {
 				const { mainImage, id, title, format, quantity, unitPrice } = productInCart;
-				const totalPrice = unitPrice === 0 ? 'FREE' : `€${(quantity * unitPrice).toFixed(2)}`;
 
 				return (
 					<li key={format ? format + id : id} className='cartlisting__item' data-animation='animation-item'>
@@ -57,27 +59,15 @@ export const CartListing = ({ productsInCart }: CartListingProps) => {
 							</Link>
 						</div>
 						<div className='cartlisting__inner-right'>
-							<div
-								className={`cartlisting__quantity ${
-									format === 'gift' && 'cartlisting__quantity--inactive'
-								}`}
-							>
-								<div
-									className='cartlisting__quantity-button'
-									onClick={() => decreaseProductQuantity(productInCart)}
-								>
-									-
-								</div>
-								<div className='cartlisting__quantity-output'>{quantity}</div>
-								<div
-									className='cartlisting__quantity-button'
-									onClick={() => increaseProductQuantity(productInCart)}
-								>
-									+
-								</div>
-								{format === 'gift' && <OpacityLayer zIndex='1' />}
-							</div>
-							<p className='cartlisting__item-price'>{totalPrice}</p>
+							<QuantitySelector
+								quantity={quantity}
+								increaseQuantity={() => increaseProductQuantity(productInCart)}
+								decreaseQuantity={() => decreaseProductQuantity(productInCart)}
+								isGift={format === 'gift'}
+							/>
+							<p className='cartlisting__item-price'>
+								{quantityAndPriceToTotalPriceLabel(quantity, unitPrice)}
+							</p>
 						</div>
 						<div className='cartlisting__deletion'>
 							<button onClick={() => handleDeletion(id, format)} className='cartlisting__delete-btn'>

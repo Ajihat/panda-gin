@@ -1,5 +1,4 @@
 import { AuthProvider } from 'context/AuthContext/AuthContext';
-import { AppProvider } from 'context/AppContext/AppContext';
 import { TopSliderProvider } from 'context/TopSliderContext/TopSliderContext';
 import { CartPopupProvider } from 'context/CartPopupContext/CartPopupContext';
 import { LoginPopupProvider } from 'context/LoginPopupContext/LoginPopupContext';
@@ -16,15 +15,13 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 				<TopSliderProvider>
 					<CartPopupProvider>
 						<CurtainProvider>
-							<AppProvider>
-								<SubscribeProvider>
-									<LoginPopupProvider>
-										<ProductsProvider>
-											<ShoppingCartProvider>{children}</ShoppingCartProvider>
-										</ProductsProvider>
-									</LoginPopupProvider>
-								</SubscribeProvider>
-							</AppProvider>
+							<SubscribeProvider>
+								<LoginPopupProvider>
+									<ProductsProvider>
+										<ShoppingCartProvider>{children}</ShoppingCartProvider>
+									</ProductsProvider>
+								</LoginPopupProvider>
+							</SubscribeProvider>
 						</CurtainProvider>
 					</CartPopupProvider>
 				</TopSliderProvider>

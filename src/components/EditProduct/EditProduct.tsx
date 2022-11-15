@@ -31,25 +31,24 @@ export const EditProduct = () => {
 		formState: { errors },
 	} = useForm<IEditProductInputs>();
 
-	const { product, productLoading, apiError: apiErrorGetProduct } = useGetProduct(id);
+	const { product, productLoading, apiErrorText: apiErrorTextGetProduct } = useGetProduct(id);
 	const {
 		onMutate,
 		productIsBeingUpdated,
 		productUpdatedWithSucces,
-		apiError: apiErrorEditProduct,
+		apiErrorText: apiErrorTextEditProduct,
 	} = useEditProduct();
 
 	useEffect(() => {
-		if (product) {
-			setFocus('title');
-			reset({
-				title: product.title,
-				description: product.description,
-				text: product.text,
-				price: product.price,
-				discount: product.discount === '' ? '0' : product.discount,
-			});
-		}
+		if (!product) return;
+		setFocus('title');
+		reset({
+			title: product.title,
+			description: product.description,
+			text: product.text,
+			price: product.price,
+			discount: product.discount === '' ? '0' : product.discount,
+		});
 	}, [product, setFocus, reset]);
 
 	return (
@@ -82,7 +81,7 @@ export const EditProduct = () => {
 					className='editproduct__form'
 				>
 					{productUpdatedWithSucces && <p className='editproduct__api-sucess'>Product data updated!</p>}
-					{apiErrorEditProduct && <p className='editproduct__api-error'>{apiErrorEditProduct}</p>}
+					{apiErrorTextEditProduct && <p className='editproduct__api-error'>{apiErrorTextEditProduct}</p>}
 					<div className='editproduct__form-section'>
 						<label htmlFor='title' className='editproduct__label'>
 							Title
@@ -195,7 +194,7 @@ export const EditProduct = () => {
 						/>
 					</div>
 					{(productLoading || productIsBeingUpdated) && <Loader />}
-					{apiErrorGetProduct && <ApiError text={apiErrorGetProduct} />}
+					{apiErrorTextGetProduct && <ApiError text={apiErrorTextGetProduct} />}
 				</form>
 			</div>
 		</motion.div>

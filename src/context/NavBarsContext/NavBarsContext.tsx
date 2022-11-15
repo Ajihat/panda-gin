@@ -6,6 +6,7 @@ export const NavBarsContext = createContext<INavBarsContext | null>(null);
 
 export const NavBarsProvider = ({ children }: NavBarsProviderProps) => {
 	const [navBarsAreHidden, setNavBarsAreHidden] = useState(false);
+	const [scrollingDirectionIsBeingChecked, setScrollingDirectionIsBeingChecked] = useState(true);
 
 	const showNavbars = useCallback(() => {
 		setNavBarsAreHidden(false);
@@ -15,12 +16,23 @@ export const NavBarsProvider = ({ children }: NavBarsProviderProps) => {
 		setNavBarsAreHidden(true);
 	}, []);
 
+	const enableScrollingDirectionCheck = useCallback(() => {
+		setScrollingDirectionIsBeingChecked(true);
+	}, []);
+
+	const disableScrollingDirectionCheck = useCallback(() => {
+		setScrollingDirectionIsBeingChecked(false);
+	}, []);
+
 	return (
 		<NavBarsContext.Provider
 			value={{
 				navBarsAreHidden,
 				showNavbars,
 				hideNavbars,
+				scrollingDirectionIsBeingChecked,
+				enableScrollingDirectionCheck,
+				disableScrollingDirectionCheck,
 			}}
 		>
 			{children}

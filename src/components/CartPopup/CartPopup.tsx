@@ -13,6 +13,8 @@ import { useShoppingCartContext } from 'context/ShoppingCartContext/useShoppingC
 
 import { useNoScrollingWhilePopup } from 'common/useNoScrollingWhilePopup/useNoScrollingWhilePopup';
 
+import { drawNumberOfArticles } from './cartPopupHelpers';
+
 import './CartPopup.sass';
 
 export const CartPopup = () => {
@@ -47,7 +49,7 @@ export const CartPopup = () => {
 				<div className='cartpopup__wrapper'>
 					<div className='cartpopup__header'>
 						<h3 className='cartpopup__small' data-animation='animation-item'>
-							{numberOfProductsInCart} articles
+							{drawNumberOfArticles(numberOfProductsInCart)}
 							<div className='cartpopup__small-line'></div>
 						</h3>
 						<h1 className='cartpopup__big' data-animation='animation-item'>

@@ -5,6 +5,7 @@ export interface IAuthContext {
 	setUserData: React.Dispatch<React.SetStateAction<User | null>>;
 	isLegalDrinkingAge: boolean | null;
 	setIsLegalDrinkingAge: (newValue: boolean | null) => void;
+	isAdmin: boolean;
 }
 
 export interface AuthProviderProps {

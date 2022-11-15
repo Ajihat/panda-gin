@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useMemo } from 'react';
 
 import { IAuthContext, AuthProviderProps, User } from './AuthContext.types';
 
@@ -12,6 +12,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const { value: isLegalDrinkingAge, setNewValue: setIsLegalDrinkingAge } =
 		useLocalStorage<boolean>('isLegalDrinkingAge');
 
+	const isAdmin = useMemo(() => {
+		return userData?.username === 'admin@admin.com';
+	}, [userData?.username]);
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -21,6 +25,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 				setUserData,
 				isLegalDrinkingAge,
 				setIsLegalDrinkingAge,
+				isAdmin,
 			}}
 		>
 			{children}

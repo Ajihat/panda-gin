@@ -15,12 +15,22 @@ export const CurtainProvider = ({ children }: CurtainContextProps) => {
 		setIsCurtainOpen(false);
 	}, []);
 
+	const handleLinkClick = useCallback(
+		(url: string, pathName: string, shouldOpenCurtain: boolean) => {
+			if (url !== pathName && shouldOpenCurtain) {
+				openCurtain();
+			}
+		},
+		[openCurtain]
+	);
+
 	return (
 		<CurtainContext.Provider
 			value={{
 				isCurtainOpen,
 				openCurtain,
 				closeCurtain,
+				handleLinkClick,
 			}}
 		>
 			{children}

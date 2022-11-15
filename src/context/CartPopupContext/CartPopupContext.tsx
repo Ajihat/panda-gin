@@ -13,14 +13,12 @@ const TOP_SLIDER_HEIGHT = 65;
 
 export const CartPopupProvider = ({ children }: CartPopupProviderProps) => {
 	const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
-	const [scrollingDirectionIsBeingChecked, setScrollingDirectionIsBeingChecked] = useState(true);
 
 	const { isTopSliderClosed, closeTopSlider, openTopSlider } = useTopSliderContext();
 	const { hideNavbars, showNavbars } = useNavBarsContext();
 
 	const openCartPopup = useCallback(() => {
 		setIsCartPopupOpen(true);
-		setScrollingDirectionIsBeingChecked(false);
 		if (!isTopSliderClosed && window.pageYOffset < TOP_SLIDER_HEIGHT) {
 			closeTopSlider();
 		}
@@ -30,7 +28,6 @@ export const CartPopupProvider = ({ children }: CartPopupProviderProps) => {
 
 	const closeCartPopup = useCallback(() => {
 		setIsCartPopupOpen(false);
-		setScrollingDirectionIsBeingChecked(true);
 		showNavbars();
 		document.body.classList.remove(NO_SCROLL);
 		if (isTopSliderClosed && window.pageYOffset < TOP_SLIDER_HEIGHT) {
@@ -42,7 +39,6 @@ export const CartPopupProvider = ({ children }: CartPopupProviderProps) => {
 		<CartPopupContext.Provider
 			value={{
 				isCartPopupOpen,
-				scrollingDirectionIsBeingChecked,
 				openCartPopup,
 				closeCartPopup,
 			}}

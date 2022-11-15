@@ -11,7 +11,7 @@ import './Listing.sass';
 
 export const Listing = () => {
 	const [currentPage, setCurrentPage] = useState(0);
-	const { productsLoading, products, apiError } = useGetProducts('all');
+	const { productsLoading, products, apiErrorText } = useGetProducts('all');
 
 	return (
 		<div className='listing'>
@@ -67,7 +67,7 @@ export const Listing = () => {
 				)}
 			</div>
 			{productsLoading && <Loader />}
-			{apiError && <ApiError text={apiError} />}
+			{apiErrorText && <ApiError text={apiErrorText} />}
 		</div>
 	);
 };

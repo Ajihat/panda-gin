@@ -3,14 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import longArrowBlack from 'assets/long-arrow-black.svg';
 import longArrowWhite from 'assets/long-arrow-white.svg';
 
-import { useAppContext } from 'context/AppContext/useAppContext';
+import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 
 import { PageLinkProps } from './PageLink.types';
 
 import './PageLink.sass';
 
 export const PageLink = ({ text, textColor, arrowPosition, url, shouldOpenCurtain }: PageLinkProps) => {
-	const { handleLinkClick } = useAppContext();
+	const { handleLinkClick } = useCurtainContext();
 	const { pathname } = useLocation();
 
 	return (

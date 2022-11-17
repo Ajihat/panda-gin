@@ -47,7 +47,7 @@ export const LoginPopup = () => {
 					text='Faster payment with address and payment details saved. Access your complete order history'
 				/>
 				<form className='loginpopup__form' noValidate onSubmit={handleSubmit(onMutate)}>
-					{apiErrorText && <p className='loginpopup__api-error'>{apiErrorText}</p>}
+					{apiErrorText.length > 0 && <p className='loginpopup__api-error'>{apiErrorText}</p>}
 					<div className='loginpopup__form-section'>
 						<label htmlFor='username' className='loginpopup__label'>
 							Login

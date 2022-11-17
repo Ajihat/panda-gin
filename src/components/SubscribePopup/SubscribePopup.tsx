@@ -45,7 +45,7 @@ export const SubscribePopup = () => {
                     Access your complete order history.'
 				/>
 				<form className='subscribepopup__form' noValidate onSubmit={handleSubmit(onMutate)}>
-					{apiErrorText && <p className='subscribepopup__api-error'>{apiErrorText}</p>}
+					{apiErrorText.length > 0 && <p className='subscribepopup__api-error'>{apiErrorText}</p>}
 					<div className='subscribepopup__form-section'>
 						<label htmlFor='email' className='subscribepopup__label'>
 							Email

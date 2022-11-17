@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
 import { PageLink } from 'components/PageLink/PageLink';
-import { FancyLink } from 'components/FancyLink/FancyLink';
+import { AnimatedPageLink } from 'components/AnimatedPageLink/AnimatedPageLink';
 import { Gallery } from 'components/Gallery/Gallery';
 import { Dashboard } from 'components/Dashboard/Dashboard';
 import { Loader } from 'components/Loader/Loader';
@@ -46,11 +46,11 @@ export const ProductPage = () => {
 					)}
 					{product && <Dashboard product={product} />}
 					{productLoading && <Loader />}
-					{apiErrorText && <ApiError text={apiErrorText} />}
+					{apiErrorText.length > 0 && <ApiError text={apiErrorText} />}
 				</div>
 			</div>
 			<RandomProduct currentProductId={id as string} />
-			<FancyLink alignment='center' />
+			<AnimatedPageLink alignment='center' />
 			<RandomPicture />
 		</div>
 	);

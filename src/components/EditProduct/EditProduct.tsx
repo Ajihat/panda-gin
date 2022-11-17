@@ -81,7 +81,9 @@ export const EditProduct = () => {
 					className='editproduct__form'
 				>
 					{productUpdatedWithSucces && <p className='editproduct__api-sucess'>Product data updated!</p>}
-					{apiErrorTextEditProduct && <p className='editproduct__api-error'>{apiErrorTextEditProduct}</p>}
+					{apiErrorTextEditProduct.length > 0 && (
+						<p className='editproduct__api-error'>{apiErrorTextEditProduct}</p>
+					)}
 					<div className='editproduct__form-section'>
 						<label htmlFor='title' className='editproduct__label'>
 							Title
@@ -194,7 +196,7 @@ export const EditProduct = () => {
 						/>
 					</div>
 					{(productLoading || productIsBeingUpdated) && <Loader />}
-					{apiErrorTextGetProduct && <ApiError text={apiErrorTextGetProduct} />}
+					{apiErrorTextGetProduct.length > 0 && <ApiError text={apiErrorTextGetProduct} />}
 				</form>
 			</div>
 		</motion.div>

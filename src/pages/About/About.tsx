@@ -4,7 +4,7 @@ import { AboutSlider } from 'components/AboutSlider/AboutSlider';
 import { Header } from 'components/Header/Header';
 import { Submenu } from 'components/Submenu/Submenu';
 import { Motto } from 'components/Motto/Motto';
-import { FancyLink } from 'components/FancyLink/FancyLink';
+import { AnimatedPageLink } from 'components/AnimatedPageLink/AnimatedPageLink';
 
 import { useActiveCategory } from 'pages/useActiveCategory';
 
@@ -132,7 +132,7 @@ export const About = () => {
 							<p className='about__category-paragraph about__category-paragraph--right'>
 								Ecology and organic are for us a way of taking care of our planet
 							</p>
-							<FancyLink alignment='flex-end' />
+							<AnimatedPageLink alignment='flex-end' />
 						</div>
 						<div className='about__category-picture about__category-picture--big'>
 							<img src={sustainabilityPicture} alt='panda-bottle' className='about__category-img ' />

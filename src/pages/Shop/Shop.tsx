@@ -60,7 +60,7 @@ export const Shop = () => {
 							/>
 						);
 					})}
-				{apiErrorText && <ApiError text={apiErrorText} />}
+				{apiErrorText.length > 0 && <ApiError text={apiErrorText} />}
 			</div>
 			<Pagination />
 		</div>

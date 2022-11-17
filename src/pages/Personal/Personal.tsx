@@ -54,7 +54,7 @@ export const Personal = () => {
 					</div>
 				)}
 				{isLoading && <Loader />}
-				{apiErrorText && <ApiError text={apiErrorText} />}
+				{apiErrorText.length > 0 && <ApiError text={apiErrorText} />}
 			</div>
 		</div>
 	);

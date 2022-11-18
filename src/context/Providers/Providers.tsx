@@ -7,25 +7,28 @@ import { CurtainProvider } from 'context/CurtainContext/CurtainContext';
 import { NavBarsProvider } from 'context/NavBarsContext/NavBarsContext';
 import { ProductsProvider } from 'context/ProductsContext/ProductsContext';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext/ShoppingCartContext';
+import { MobileMenuProvider } from 'context/MobileMenuContext/MobileMenuContext';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<AuthProvider>
-			<NavBarsProvider>
-				<TopSliderProvider>
-					<CartPopupProvider>
-						<CurtainProvider>
-							<SubscribeProvider>
-								<LoginPopupProvider>
-									<ProductsProvider>
-										<ShoppingCartProvider>{children}</ShoppingCartProvider>
-									</ProductsProvider>
-								</LoginPopupProvider>
-							</SubscribeProvider>
-						</CurtainProvider>
-					</CartPopupProvider>
-				</TopSliderProvider>
-			</NavBarsProvider>
+			<MobileMenuProvider>
+				<NavBarsProvider>
+					<TopSliderProvider>
+						<CartPopupProvider>
+							<CurtainProvider>
+								<SubscribeProvider>
+									<LoginPopupProvider>
+										<ProductsProvider>
+											<ShoppingCartProvider>{children}</ShoppingCartProvider>
+										</ProductsProvider>
+									</LoginPopupProvider>
+								</SubscribeProvider>
+							</CurtainProvider>
+						</CartPopupProvider>
+					</TopSliderProvider>
+				</NavBarsProvider>
+			</MobileMenuProvider>
 		</AuthProvider>
 	);
 };

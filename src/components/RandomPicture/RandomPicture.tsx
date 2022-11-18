@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 
-import { randomPicture } from "../../data/randomPicture/randomPicture";
+import { randomPicture } from "data/randomPicture/randomPicture";
 
 import "./RandomPicture.sass";
 

@@ -1,0 +1,73 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.listing
+    position: relative
+    height: 100%
+    &__item
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        padding-bottom: 15px
+        margin-bottom: 15px
+        border-bottom: 1px solid variables.$border-color
+        list-style: none
+    &__item-left
+        +mixins.positioning(flex,row,flex-start,center,nowrap)
+        width: 60%
+        color: variables.$main-color
+        text-decoration: none
+    &__item-img
+        display: block
+        width: 120px
+        padding: 10px
+    &__item-name
+        font-family: variables.$main-font
+        margin-left: 1.5vw
+        font-size: 2.4rem
+        font-weight: 500
+        letter-spacing: .6px
+    &__item-category
+        font-family: "Work Sans", sans-serif
+        color: rgb(100, 100, 100)
+        font-size: 1.2rem
+        text-transform: uppercase
+        letter-spacing: 0.6px
+        margin-top: 5px
+        font-weight: 300
+    &__item-right
+        font-family: variables.$second-font
+        color: variables.$main-color
+        border: none
+        background: transparent
+        text-transform: uppercase
+        letter-spacing: .6px
+        font-size: 1.7rem
+        cursor: pointer
+        text-decoration: none
+        transition: .3s
+        &:hover
+            color: variables.$text-hover-color
+    &__pagination
+        +mixins.positioning(flex,row,flex-end,center,nowrap)
+        font-family: variables.$second-font
+        font-size: 2.4rem
+        color: variables.$main-color
+        letter-spacing: .22px
+        margin-top: 50px
+    &__pagination-list
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        list-style: none
+    &__pagination-link
+        position: relative
+        display: block
+        color: variables.$main-color
+        padding: 15px
+        text-decoration: none
+        cursor: pointer
+    &__pagination-line
+        position: absolute
+        top: 20%
+        left: 50%
+        transform: translateX(-50%)
+        width: 50%
+        height: 1px
+        background-color: rgb(0, 0, 0)

@@ -14,7 +14,7 @@
         transition-timing-function: cubic-bezier(.17,.67,.33,.97)
     &__products
         position: relative
-        +mixins.positioning(flex,row,space-between,center,nowrap)
+        +mixins.positioning(flex,row,space-between,stretch,nowrap)
         margin-top: 15px
     &__product
         position: relative
@@ -30,6 +30,7 @@
             border: 1px solid variables.$main-color
     &__product-img
         display: block
+        aspect-ratio: 1/1
         width: 100%
     &__product-title
         font-family: variables.$main-font

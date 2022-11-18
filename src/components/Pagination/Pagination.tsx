@@ -1,6 +1,6 @@
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 
-import { useProductsContext } from "../../context/ProductsContext/useProductsContext";
+import { useProductsContext } from "context/ProductsContext/useProductsContext";
 
 import "./Pagination.sass";
 

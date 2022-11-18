@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import { OpacityLayer } from "../OpacityLayer/OpacityLayer";
+import { PrimaryButton } from "components/PrimaryButton/PrimaryButton";
+import { OpacityLayer } from "components/OpacityLayer/OpacityLayer";
 
-import { useShoppingCartContext } from "../../context/ShoppingCartContext/useShoppingCartContext";
+import { useShoppingCartContext } from "context/ShoppingCartContext/useShoppingCartContext";
 
-import { ShoppingCartProduct } from "../../context/ShoppingCartContext/ShoppingCartContext.types";
+import { ShoppingCartProduct } from "context/ShoppingCartContext/ShoppingCartContext.types";
 
-import { giftProducts } from "../../data/giftProducts/giftProducts";
+import { giftProducts } from "data/giftProducts/giftProducts";
 
 import "./Gifts.sass";
 

@@ -23,55 +23,16 @@
         margin-bottom: 75px
         &:hover
             color: variables.$text-hover-color
-    &__formats
-        margin-bottom: 40px
-    &__formats-btn
-        padding: 15px 10px
-        height: 50px
-        min-width: 50px
-        border: 1px solid black
-        margin-right: 20px
-        cursor: pointer
-        background-color: variables.$secondary-color
-        text-transform: uppercase
-        font-size: 1.2rem
-        font-weight: 400
-        transition: .3s
-        &.dashboard__formats-btn--active
-            background-color: variables.$main-color
-            color: variables.$secondary-color
-            &:hover
-                background-color: variables.$main-color
-                color: variables.$secondary-color
-        &:hover
-            background-color: variables.$gray-button
-            color: variables.$secondary-color
     &__label
         display: block
         font-size: 1.2rem
         text-transform: uppercase
         color: variables.$text-gray
         margin-bottom: 10px
-    &__quantity
-        +mixins.positioning(flex,row,flex-start,flex-start,nowrap)
-        border: 1px solid variables.$main-color
-        width: 120px
-        margin-bottom: 60px
-    &__quantity-button, &__quantity-output
-        +mixins.positioning(flex,row,center,center,nowrap)
-        width: 40px
-        height: 50px
-        padding: 15px 8px
-        font-size: 1.2rem
-        font-weight: 400
-        cursor: pointer
-    &__quantity-output
-        cursor: auto
-    &__quantity-button::selection
-        background-color: variables.$secondary-color
     &__promotion
         font-style: italic
         font-size: 1.6rem
+        margin-top: 60px
     &__checkout
         +mixins.positioning(flex,row,space-between,center,nowrap)
         padding-top: 3vw

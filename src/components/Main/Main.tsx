@@ -1,14 +1,14 @@
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useTopSliderContext } from 'context/TopSliderContext/useTopSliderContext';
 
-import { MainProps } from "./Main.types";
+import { MainProps } from './Main.types';
 
-import "./Main.sass";
+import './Main.sass';
 
 export const Main = ({ children }: MainProps) => {
-    const { isTopSliderClosed } = useAppContext();
-    return (
-        <main className={isTopSliderClosed ? "main main--notopslider" : "main"}>
-            {children}
-        </main>
-    );
+	const { isTopSliderClosed, isTopSliderClosedByUser } = useTopSliderContext();
+	return (
+		<main className={isTopSliderClosed || isTopSliderClosedByUser ? 'main main--notopslider' : 'main'}>
+			{children}
+		</main>
+	);
 };

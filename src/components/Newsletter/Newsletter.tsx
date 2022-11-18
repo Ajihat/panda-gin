@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 
-import { Header } from "../Header/Header";
-import { PrimaryButton } from "../PrimaryButton/PrimaryButton";
-import { Loader } from "../Loader/Loader";
+import { Header } from "components/Header/Header";
+import { PrimaryButton } from "components/PrimaryButton/PrimaryButton";
+import { Loader } from "components/Loader/Loader";
 
 import { useNewsletter } from "./useNewsletter";
 
-import { emailRegex } from "../../common/regexs/emailRegex";
+import { emailRegex } from "common/regexs/emailRegex";
 
 import { INewsletterInputs } from "./Newsletter.types";
 

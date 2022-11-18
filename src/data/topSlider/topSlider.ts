@@ -13,7 +13,7 @@ export const topSlides: TopSlides = [
     },
     {
         id: 3,
-        header: "Summer sale is now",
+        header: "Atumn sale is now",
         text: "Discount on more items",
     },
 ];

@@ -1,9 +1,9 @@
-import award1 from "../../assets/awards/award1.jpg";
-import award2 from "../../assets/awards/award2.png";
-import award3 from "../../assets/awards/award3.png";
-import award4 from "../../assets/awards/award4.png";
-import award5 from "../../assets/awards/award5.png";
-import award6 from "../../assets/awards/award6.png";
+import award1 from "assets/awards/award1.jpg";
+import award2 from "assets/awards/award2.png";
+import award3 from "assets/awards/award3.png";
+import award4 from "assets/awards/award4.png";
+import award5 from "assets/awards/award5.png";
+import award6 from "assets/awards/award6.png";
 
 export const FooterTop = () => {
     return (

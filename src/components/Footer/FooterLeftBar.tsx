@@ -1,7 +1,7 @@
-import { Socials } from "../Socials/Socials";
-import fullLogo from "../../assets/logo-full.png";
+import { Socials } from "components/Socials/Socials";
+import fullLogo from "assets/logo-full.png";
 
-import "../Footer/Footer.sass";
+import "./Footer.sass";
 
 export const FooterLeftBar = () => {
     return (

@@ -1,49 +1,47 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from 'react';
 
-import { useAppContext } from "../../context/AppContext/useAppContext";
+import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
 
-import { axiosInstance as axios } from "../../api/axios";
+import { axiosInstance as axios } from 'api/axios';
 
-import { ISubscribeInputs } from "./SubscribePopup.types";
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
+import { ISubscribeInputs } from './SubscribePopup.types';
 
 export const useSubscribe = (url: string) => {
-    const [apiError, setApiError] = useState<boolean>(false);
-    const [apiErrorText, setApiErrorText] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { closeSubscribePopup } = useAppContext();
-    const abortControler = useRef<AbortController>();
+	const [apiErrorText, setApiErrorText] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
+	const { closeSubscribePopup } = useSubscribePopupContext();
+	const abortControler = useRef<AbortController>();
 
-    const onMutate = (payload: ISubscribeInputs) => {
-        setApiError(false);
-        setIsLoading(true);
-        const { termsChecked, ...newPayload } = payload;
-        abortControler.current = new AbortController();
-        axios({
-            method: "POST",
-            url,
-            data: newPayload,
-            signal: abortControler.current.signal,
-        })
-            .then((res) => {
-                if (res.status === 201) {
-                    console.log(res);
-                    closeSubscribePopup();
-                }
-            })
-            .catch((error) => {
-                setApiError(true);
-                if (error.code === "ERR_NETWORK") {
-                    setApiErrorText("No server response");
-                } else if (error.response?.status === 400) {
-                    setApiErrorText("User already exists");
-                } else {
-                    setApiErrorText("Sorry, something went wrong");
-                }
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    };
+	useEffect(() => {
+		return () => abortControler.current?.abort();
+	}, []);
 
-    return { apiError, apiErrorText, isLoading, abortControler, onMutate };
+	const onMutate = (payload: ISubscribeInputs) => {
+		setApiErrorText('');
+		setIsLoading(true);
+		const { termsChecked, ...newPayload } = payload;
+		abortControler.current = new AbortController();
+		axios({
+			method: 'POST',
+			url,
+			data: newPayload,
+			signal: abortControler.current.signal,
+		})
+			.then((res) => {
+				if (res.status === 201) {
+					console.log(res);
+					closeSubscribePopup();
+				}
+			})
+			.catch((error) => {
+				setApiErrorText(drawApiErrorText(error, url));
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	};
+
+	return { apiErrorText, isLoading, abortControler, onMutate };
 };

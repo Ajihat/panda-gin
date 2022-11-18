@@ -1,7 +1,7 @@
 @use '../../sass/mixins'
 @use '../../sass/variables'
 
-.fancylink
+.animatedpagelink
     +mixins.positioning(flex,row,center,center,nowrap)
     padding: 6vw 0
     &__link
@@ -12,9 +12,9 @@
         text-transform: uppercase
         font-size: 1.5rem
         letter-spacing: 2.4px
-        &:hover .fancylink__letter
+        &:hover .animatedpagelink__letter
             opacity: 1
-        &:hover .fancylink__circle
+        &:hover .animatedpagelink__circle
             left: 50%
             transform: translateX(-50%)
     &__left
@@ -32,7 +32,7 @@
         background-color: variables.$main-color
         z-index: 1
         transition: .2s
-        &.fancylink__circle--white
+        &.animatedpagelink__circle--white
             left: 100%
             transform: translateX(-100%)
             background-color: white

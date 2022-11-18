@@ -1,4 +1,4 @@
-import paymentMethods from "../../assets/payment-methods.png";
+import paymentMethods from "assets/payment-methods.png";
 
 export const FooterBottom = () => {
     return (
@@ -9,8 +9,8 @@ export const FooterBottom = () => {
                 className="footer__payments"
             />
             <p className="footer__orginals">
-                2017 - 2022 Panda Gin &copy; All rights belong to their
-                respective owners
+                2017 - {new Date().getFullYear()} Panda Gin &copy; All rights
+                belong to their respective owners
             </p>
         </div>
     );

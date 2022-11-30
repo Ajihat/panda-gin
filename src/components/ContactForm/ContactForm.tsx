@@ -2,9 +2,12 @@ import { useForm } from 'react-hook-form';
 
 import { Header } from 'components/Header/Header';
 import { PrimaryButton } from 'components/PrimaryButton/PrimaryButton';
+import { Loader } from 'components/Loader/Loader';
 
 import { nameRegex } from 'common/regexs/nameRegex';
 import { emailRegex } from 'common/regexs/emailRegex';
+
+import { useContactForm } from './useContactForm';
 
 import { IContactFormInputs } from './ContactForm.types';
 
@@ -17,11 +20,12 @@ export const ContactForm = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IContactFormInputs>();
-	const onSubmit = (data: IContactFormInputs) => console.log(data);
+	const { sendForm, isSuccess, isLoading } = useContactForm();
 	return (
 		<div className='contactform'>
 			<Header alignment='left' bigTitle='Specyfic request' smallTitle='Need help?' />
-			<form onSubmit={handleSubmit(onSubmit)} className='contactform__form' noValidate>
+			{isSuccess && <p className='newsletter__api-sucess'>Message send</p>}
+			<form onSubmit={handleSubmit(sendForm)} className='contactform__form' noValidate>
 				<div className='contactform__left'>
 					<div className='contactform__form-section'>
 						<label htmlFor='nickname' className='contactform__label'>
@@ -153,9 +157,10 @@ export const ContactForm = () => {
 						{errors.terms && <p className='subscribepopup__error-info'>{errors.terms.message}</p>}
 					</div>
 					<div className='contactform__btn-holder'>
-						<PrimaryButton text='Send your message' type='submit' />
+						<PrimaryButton text='Send your message' type='submit' isDisabled={isLoading} />
 					</div>
 				</div>
+				{isLoading && <Loader />}
 			</form>
 		</div>
 	);

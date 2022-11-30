@@ -19,17 +19,20 @@ import { UserInfo } from 'components/UserInfo/UserInfo';
 import { ManageProducts } from 'components/ManageProducts/ManageProducts';
 import { EditProduct } from 'components/EditProduct/EditProduct';
 import { Orders } from 'components/Orders/Orders';
+import { MobileMenu } from 'components/MobileMenu/MobileMenu';
 
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
 import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
 import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubscribePopupContext';
 import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
+import { useMobileMenuContext } from 'context/MobileMenuContext/useMobileMenuContext';
 
 import { Shop } from 'pages/Shop/Shop';
 import { About } from 'pages/About/About';
 import { Faq } from 'pages/Faq/Faq';
 import { Personal } from 'pages/Personal/Personal';
+import { Contact } from 'pages/Contact/Contact';
 import { NoMatchPage } from 'pages/NoMatchPage/NoMatchPage';
 
 import { appRoutes } from 'data/appRoutes/appRoutes';
@@ -42,6 +45,7 @@ export const App = () => {
 	const { isLoginPopupOpen } = useLoginPopupContext();
 	const { isSubscribePopupOpen } = useSubscribePopupContext();
 	const { isCurtainOpen } = useCurtainContext();
+	const { isMobileMenuOpen } = useMobileMenuContext();
 
 	return (
 		<>
@@ -54,6 +58,7 @@ export const App = () => {
 							<Route path={appRoutes.shop} element={<Shop />} />
 							<Route path={appRoutes.about} element={<About />} />
 							<Route path={appRoutes.faq} element={<Faq />} />
+							<Route path={appRoutes.contact} element={<Contact />} />
 							<Route path={appRoutes.productPage} element={<ProductPage />} />
 							<Route element={<ProtectedRoute />}>
 								<Route path={appRoutes.personal} element={<Personal />}>
@@ -79,6 +84,7 @@ export const App = () => {
 				<AnimatePresence>
 					{!isLegalDrinkingAge && <LegalPopup />}
 					{isCartPopupOpen && <CartPopup />}
+					{isMobileMenuOpen && <MobileMenu />}
 				</AnimatePresence>
 			</HelmetProvider>
 		</>

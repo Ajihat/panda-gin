@@ -44,7 +44,7 @@
         cursor: pointer
     &__header
         text-align: left
-        margin-bottom: 60px
+        margin-bottom: 3vw
     &__small
         position: relative
         font-family: variables.$second-font
@@ -70,7 +70,7 @@
     &__big
         position: relative
         font-family: variables.$main-font
-        font-size: 44px
+        font-size: calc(24px + 20 * ((100vw - 320px) / 1600))
         letter-spacing: .6px
         font-weight: 500
         bottom: -120px
@@ -84,3 +84,34 @@
     &__right
         width: 25%
         min-width: 250px
+
+@media (max-width: 1400px)
+    .cartpopup
+        &__left
+            width: 58%
+
+@media (max-width: 1200px)
+    .cartpopup
+        &__container
+            flex-wrap: wrap
+        &__left
+            width: 100%
+        &__right
+            width: 100%
+        &__header
+            margin-bottom: 50px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .cartpopup
+        &__big
+            font-size: 3.3rem
+
+@media (max-width: variables.$small-mobile-width-breakpoint)
+    .cartpopup
+        &__wrapper
+            padding: 10vw 6vw
+        &__big
+            font-size: 2.8rem
+            letter-spacing: 3.5px
+        &__small
+            font-size: 1.75rem

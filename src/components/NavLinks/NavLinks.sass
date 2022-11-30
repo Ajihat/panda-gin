@@ -6,7 +6,7 @@
     +mixins.positioning(flex,row,center,center,nowrap)
     left: 0
     bottom: -57px
-    padding: 0px 50px
+    padding: 0px 2.6vw
     width: 100%
     overflow: hidden
     height: 57px
@@ -22,3 +22,7 @@
         transition: opacity .2s
         &.navlinks__list--hidden
             opacity: 0
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .navlinks
+        bottom: 0

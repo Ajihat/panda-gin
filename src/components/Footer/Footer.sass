@@ -21,6 +21,10 @@
         position: relative
         margin-top: 30px
         padding-top: 30px
+    &__socials
+        width: 100%
+        +mixins.positioning(flex,row,center,center,nowrap)
+        gap: 20px
     &__contact-phones
         width: 235px
         +mixins.positioning(flex,row,space-between,center,nowrap)
@@ -109,7 +113,7 @@
         border-bottom: 1px solid variables.$secondary-color
     &__nav
         +mixins.positioning(flex,row,space-between,flex-start,nowrap)
-        width: 70%
+        width: 65%
     &__nav-inner
         width: 50%
     &__nav-inner:nth-child(2)
@@ -143,10 +147,78 @@
             color: variables.$text-hover-color
     &__professional
         +mixins.positioning(flex,column,space-between,flex-start,nowrap)
-        width: 30%
+        width: 35%
         padding-left: 3vw
     &__bottom
         +mixins.positioning(flex,row,space-between,center,nowrap)
         padding-top: 30px
     &__orginals
         color: variables.$secondary-color
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .footer
+        flex-wrap: wrap
+        &__logo-full
+            max-width: 170px
+        &__left-side
+            width: 100%
+            padding: 50px 6vw
+        &__right-side
+            width: 100%
+            padding: 50px 6vw 50px 6vw
+        &__top
+            flex-wrap: wrap
+        &__motto
+            +mixins.positioning(flex,row,center,center,nowrap)
+            width: 100%
+            margin-bottom: 50px
+        &__motto-text
+            text-align: center
+        &__awards
+            width: 100%
+            +mixins.positioning(flex,row,center,center,nowrap)
+        &__mid
+            flex-wrap: wrap
+            padding-bottom: 0
+        &__nav
+            flex-wrap: wrap
+            width: 100%
+        &__nav-inner
+            +mixins.positioning(flex,column,center,center,wrap)
+            width: 100%
+        &__nav-inner:nth-child(2)
+            border-right: none
+            border-bottom: 1px solid variables.$secondary-color
+            margin-top: 50px
+            padding-bottom: 50px
+        &__nav-list
+            +mixins.positioning(flex,column,center,center,nowrap)
+        &__line
+            &.footer__line--white
+                left: 50%
+                transform: translateX(-50%)
+        &__professional
+            +mixins.positioning(flex,column,center,center,nowrap)
+            width: 100%
+            padding: 50px 0
+        &__address-text
+            text-align: center
+            &.footer__address-text--small
+                text-align: center
+                margin-bottom: 25px
+                width: 80%
+        &__bottom
+            +mixins.positioning(flex,column,center,center,wrap)
+            padding-top: 50px
+            padding-bottom: 0
+        &__orginals
+            width: 80%
+            margin-top: 25px
+            text-align: center
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .footer
+        &__awards
+            gap: 15px
+        &__awards-img
+            height: 45px

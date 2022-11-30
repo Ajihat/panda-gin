@@ -1,2 +1,9 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
 .innercontainer
     padding-top: 57px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .innercontainer
+        padding-top: 0px

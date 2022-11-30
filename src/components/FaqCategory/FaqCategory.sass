@@ -2,12 +2,23 @@
 @use '../../sass/variables'
 
 .faqcategory
-    padding-top: 140px
+    padding-top: 10vw
     &__header
         font-family: variables.$main-font
         color: variables.$main-color
         font-size: 1.8rem
         font-weight: 700
-        margin: 16px 0 45px 0
+        margin-bottom: 45px
     &__inner
         font-size: inherit
+
+.faqcategory:nth-child(1)
+    padding-top: 4vw
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .faqcategory:nth-child(1)
+        padding-top: 50px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .faqcategory
+        padding-top: 80px

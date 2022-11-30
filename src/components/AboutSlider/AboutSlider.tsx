@@ -43,11 +43,13 @@ export const AboutSlider = () => {
 				backgroundImage: `url(${slides[currentSlide]})`,
 			}}
 		>
-			<Header
-				bigTitle='All about Panda Gin'
-				smallTitle='Panda Gin'
-				text='Discover our history, our philosophy, our manufacturing process and our commitments'
-			/>
+			<div className='aboutslider__header-holder'>
+				<Header
+					bigTitle='All about Panda Gin'
+					smallTitle='Panda Gin'
+					text='Discover our history, our philosophy, our manufacturing process and our commitments'
+				/>
+			</div>
 			<a className='aboutslider__cta' href='#about'>
 				Scroll down
 				<span className='aboutslider__cta-pipe'>|</span>

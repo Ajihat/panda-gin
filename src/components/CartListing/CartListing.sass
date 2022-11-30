@@ -67,6 +67,7 @@
         font-size: 1.7rem
         color: variables.$main-color
         letter-spacing: .2px
+        margin-left: 20px
     &__text
         position: relative
         font-family: variables.$second-font
@@ -77,3 +78,49 @@
         opacity: 0
         transition-duration: .8s
         transition-timing-function: cubic-bezier(.17,.67,.33,.97)
+
+@media (max-width: 1200px)
+    .cartlisting
+        &__deletion
+            justify-content: flex-start
+        &__delete-img
+            transform: translateX(-100%)
+        &__item-price
+            margin-left: 0
+            margin-right: 50px
+        &__inner-right
+            width: 300px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .cartlisting
+        &__item
+            flex-wrap: wrap
+            margin-bottom: 30px
+            padding-bottom: 30px
+        &__inner
+            width: 100%
+            flex-direction: column
+            margin-bottom: 20px
+        &__item-img
+            padding: 0
+            width: 100%
+        &__item-price
+            margin-right: 0
+        &__item-title
+            padding-left: 0
+            margin-top: 10px
+            font-size: 2.2rem
+        &__inner-right
+            width: 100%
+        &__deletion
+            justify-content: center
+            top: 0
+            right: -60px
+            width: 40px
+            height: 40px
+            background-color: variables.$secondary-color
+            right: 0
+        &__delete-btn
+            bottom: 0
+        &__delete-img
+            transform: translateX(0)

@@ -35,10 +35,12 @@ export const Submenu = ({ data, activeCategory }: SubmenuProps) => {
 	return (
 		<div id='submenu' className={navBarsAreHidden ? 'submenu' : 'submenu submenu--down'}>
 			<ul ref={submenuList} className='submenu__list'>
-				{data.map((item) => {
-					const { id, title, href } = item;
-					return <SubmenuLink key={id} title={title} href={href} activeCategory={activeCategory} />;
-				})}
+				<div className='submenu__list-wrapper'>
+					{data.map((item) => {
+						const { id, title, href } = item;
+						return <SubmenuLink key={id} title={title} href={href} activeCategory={activeCategory} />;
+					})}
+				</div>
 			</ul>
 		</div>
 	);

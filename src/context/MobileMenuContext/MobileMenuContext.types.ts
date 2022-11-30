@@ -4,5 +4,6 @@ export interface MobileMenuProviderProps {
 
 export interface IMobileMenuContext {
 	isMobileMenuOpen: boolean;
-	toggleMobileMenu: () => void;
+	openMobileMenu: () => void;
+	closeMobileMenu: () => void;
 }

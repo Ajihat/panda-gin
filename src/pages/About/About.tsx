@@ -72,7 +72,7 @@ export const About = () => {
 						<Motto />
 					</section>
 					<section className='about__category about__category--nopading' id='processus'>
-						<div className='about__category-picture'>
+						<div className='about__category-picture about__category-picture--absolute'>
 							<img
 								src={processusPicture}
 								alt='panda-bottle'

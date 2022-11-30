@@ -51,3 +51,21 @@
         transform: scale(1.2)
     100%
         transform: scale(1.0)
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .motto
+        order: 3
+        padding: 12vw 6vw 6vw 6vw
+        &__text
+            font-size: 3.8rem
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .motto
+        &__text
+            font-size: 3.3rem
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .motto
+        &__text
+            font-size: 3.0rem
+            width: 260px

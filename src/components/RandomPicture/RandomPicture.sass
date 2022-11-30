@@ -1,5 +1,17 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
 .randompicture
     height: 900px
     background-position: center
     background-repeat: no-repeat
     background-size: cover
+    margin-bottom: 100px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .randompicture
+        height: 600px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .randompicture
+        height: 400px

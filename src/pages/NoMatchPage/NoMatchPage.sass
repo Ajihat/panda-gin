@@ -4,6 +4,13 @@
 .nomatchpage
     padding: 180px 6vw
     height: 870px
+    background-repeat: no-repeat
     +mixins.positioning(flex,column,center,center,wrap)
     &__link
         +mixins.positioning(flex,column,center,center,wrap)
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .nomatchpage
+        height: 680px
+        background-position: left
+        margin-bottom: 80px

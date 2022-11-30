@@ -6,12 +6,13 @@
     top: 0
     left: 0
     background-color: variables.$secondary-color
+    height: 91px
     z-index: 5
     &__wrapper
         position: relative
         +mixins.positioning(flex,row,space-between,center,nowrap)
         height: 100%
-        padding: 15px 50px
+        padding: 15px 2.6vw
         background-color: variables.$secondary-color
         z-index: 3
     &__inner
@@ -24,6 +25,9 @@
         &.navigation__inner--right
             justify-content: flex-end
             gap: 15px
+    &__logo
+        display: block
+        width: 202px
     &__utils-icon
         display: block
         font-size: 22px
@@ -60,3 +64,17 @@
         height: 15px
         border-radius: 50%
         border: 1px solid variables.$main-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .navigation
+        .socials
+            display: none
+        &__cart-holder
+            margin-right: 10px
+        &__sublogo
+            bottom: 10px
+
+@media (max-width: variables.$small-mobile-width-breakpoint)
+    .navigation
+        &__logo
+            width: 150px

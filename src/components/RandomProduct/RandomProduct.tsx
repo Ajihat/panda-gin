@@ -14,26 +14,28 @@ export const RandomProduct = ({ currentProductId }: RandomProductProps) => {
 	return (
 		<div className='randomproduct'>
 			<Header bigTitle='You may also like' smallTitle='Panda fan shop' alignment='left' />
-			<div className='randomproduct__inner'>
-				{randomProducts.map((randomProduct, index) => {
-					const { id, title, description, price, outOfStock, discount, images } = randomProduct;
-					return (
-						<ProductTile
-							key={id}
-							id={id}
-							title={title}
-							description={description}
-							price={price}
-							outOfStock={outOfStock}
-							discount={discount}
-							mainPictureUrl={images[0]}
-							index={index}
-							openInNewTab={true}
-						/>
-					);
-				})}
-				{isLoading && <Loader />}
-				{apiError && <ApiError text={apiError} />}
+			<div className='randomproduct__container'>
+				<div className='randomproduct__inner'>
+					{randomProducts.map((randomProduct, index) => {
+						const { id, title, description, price, outOfStock, discount, images } = randomProduct;
+						return (
+							<ProductTile
+								key={id}
+								id={id}
+								title={title}
+								description={description}
+								price={price}
+								outOfStock={outOfStock}
+								discount={discount}
+								mainPictureUrl={images[0]}
+								index={index}
+								openInNewTab={true}
+							/>
+						);
+					})}
+					{isLoading && <Loader />}
+					{apiError && <ApiError text={apiError} />}
+				</div>
 			</div>
 		</div>
 	);

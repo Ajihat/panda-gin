@@ -14,6 +14,8 @@
         text-transform: uppercase
         height: 100%
         font-size: 1.4rem
+        text-align: center
+        line-height: 150%
         letter-spacing: 0.6px
         transition: .3s
         &:hover
@@ -33,3 +35,18 @@
     &__border-bottom
         bottom: -1px
         left: 0
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .submenulink
+        &__link
+            font-size: 1.2rem
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .submenulink
+        margin: 0 35px
+        height: 42px
+        &__border-top
+            top: 0px
+        &__link
+            &:hover
+                color: variables.$main-color

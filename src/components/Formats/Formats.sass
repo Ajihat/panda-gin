@@ -2,13 +2,14 @@
 @use '../../sass/variables'
 
 .formats
+    +mixins.positioning(flex,row,flex-start,center,wrap)
+    gap: 25px
     margin-bottom: 40px
     &__btn
         padding: 15px 10px
         height: 50px
         min-width: 50px
         border: 1px solid black
-        margin-right: 20px
         cursor: pointer
         background-color: variables.$secondary-color
         text-transform: uppercase
@@ -24,3 +25,7 @@
         &:hover
             background-color: variables.$gray-button
             color: variables.$secondary-color
+
+@media (max-width: variables.$small-mobile-width-breakpoint)
+    .formats
+        gap: 15px

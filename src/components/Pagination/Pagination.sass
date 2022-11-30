@@ -3,8 +3,7 @@
 
 .pagination
     +mixins.positioning(flex,row,flex-end,center,nowrap)
-    margin: 50px 0
-    margin-right: 6vw
+    margin-top: 2.5vw
     &__inner
         +mixins.positioning(flex,row,center,center,nowrap)
     &__list
@@ -32,3 +31,12 @@
         width: 50%
         height: 1px
         background-color: variables.$main-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .pagination
+        &__link
+            font-size: 2.2rem
+        &__arrow
+            font-size: 2rem
+        &__list-item
+            padding: 10px

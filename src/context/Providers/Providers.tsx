@@ -12,9 +12,9 @@ import { MobileMenuProvider } from 'context/MobileMenuContext/MobileMenuContext'
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<AuthProvider>
-			<MobileMenuProvider>
-				<NavBarsProvider>
-					<TopSliderProvider>
+			<NavBarsProvider>
+				<TopSliderProvider>
+					<MobileMenuProvider>
 						<CartPopupProvider>
 							<CurtainProvider>
 								<SubscribeProvider>
@@ -26,9 +26,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 								</SubscribeProvider>
 							</CurtainProvider>
 						</CartPopupProvider>
-					</TopSliderProvider>
-				</NavBarsProvider>
-			</MobileMenuProvider>
+					</MobileMenuProvider>
+				</TopSliderProvider>
+			</NavBarsProvider>
 		</AuthProvider>
 	);
 };

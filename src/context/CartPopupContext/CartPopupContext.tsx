@@ -4,6 +4,7 @@ import { CartPopupProviderProps, ICartPopupContext } from './CartPopupContext.ty
 
 import { useTopSliderContext } from 'context/TopSliderContext/useTopSliderContext';
 import { useNavBarsContext } from 'context/NavBarsContext/useNavBarsContext';
+import { useMobileMenuContext } from 'context/MobileMenuContext/useMobileMenuContext';
 
 import { NO_SCROLL } from 'data/specialClasses/specialClasses';
 
@@ -16,15 +17,17 @@ export const CartPopupProvider = ({ children }: CartPopupProviderProps) => {
 
 	const { isTopSliderClosed, closeTopSlider, openTopSlider } = useTopSliderContext();
 	const { hideNavbars, showNavbars } = useNavBarsContext();
+	const { isMobileMenuOpen } = useMobileMenuContext();
 
 	const openCartPopup = useCallback(() => {
+		if (isMobileMenuOpen) return;
 		setIsCartPopupOpen(true);
 		if (!isTopSliderClosed && window.pageYOffset < TOP_SLIDER_HEIGHT) {
 			closeTopSlider();
 		}
 		document.body.classList.add(NO_SCROLL);
 		hideNavbars();
-	}, [isTopSliderClosed, closeTopSlider, hideNavbars]);
+	}, [isTopSliderClosed, closeTopSlider, hideNavbars, isMobileMenuOpen]);
 
 	const closeCartPopup = useCallback(() => {
 		setIsCartPopupOpen(false);

@@ -1,7 +1,7 @@
 @use './mixins'
 @use './variables'
 
-.loginpopup, .subscribepopup, .newsletter, .userinfo, .editproduct
+.loginpopup, .subscribepopup, .newsletter, .userinfo, .editproduct, .contactform
     font-family: variables.$second-font
     &__form
         position: relative
@@ -19,6 +19,17 @@
         order: 2
         margin-left: 20px
         cursor: pointer
+    &__textarea
+        min-height: 142px
+        width: 100%
+        resize: none
+        padding: 15px
+        background-color: variables.$input-bg-color
+        border: 1px solid variables.$input-bg-color
+        transition: .3s
+        &:focus
+            outline: none
+            border: 1px solid variables.$main-color
     &__input
         display: block
         width: 100%
@@ -30,7 +41,6 @@
         border: 1px solid variables.$input-bg-color
         outline: none
         box-shadow: none
-        appearance: none
         border-radius: 0px
         transition: .3s
         &--newsletter
@@ -74,3 +84,14 @@
         margin-bottom: 30px
     &__api-sucess
         background-color: variables.$sucess-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .loginpopup, .subscribepopup, .newsletter, .userinfo, .editproduct
+        &__input
+            &--newsletter
+                width: 100%
+                margin-bottom: 38px
+        &__form-section
+            &--horizontal
+                flex-wrap: wrap
+                justify-content: center

@@ -26,7 +26,7 @@
         transform: translate(-50%,-50%)
         background-color: variables.$secondary-color
         z-index: 5
-        padding: 50px 125px
+        padding: 3vw 6vw
         overflow-y: scroll
     &__close-btn
         position: absolute
@@ -62,3 +62,15 @@
         opacity: 0
     100%
         opacity: 1
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .loginpopup
+        &__content
+            width: 85%
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .loginpopup
+        &__content
+            width: 98%
+            min-height: 98%
+            padding: 10vw 10vw

@@ -7,6 +7,8 @@ import { frontendPagination } from 'common/frontendPagination/frontendPagination
 
 import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
 
+import { numberOfProductsPerPage } from './numberOfProductsPerPage.helpers';
+
 import { Product, ProductsCategories } from './ProductsContext.types';
 
 export const useGetProducts = (productsCategory: ProductsCategories) => {
@@ -27,7 +29,7 @@ export const useGetProducts = (productsCategory: ProductsCategories) => {
 			.then((res) => {
 				const arrayOfProducts: Product[] = Object.values(res.data); // Transforming object of objects into array of objects
 				if (productsCategory === 'all') {
-					const paginatedProducts = frontendPagination(arrayOfProducts, 9);
+					const paginatedProducts = frontendPagination(arrayOfProducts, numberOfProductsPerPage());
 					setProducts(paginatedProducts);
 					return;
 				}
@@ -48,7 +50,7 @@ export const useGetProducts = (productsCategory: ProductsCategories) => {
 					return false;
 				});
 
-				const paginatedAndFilteredProducts = frontendPagination(filteredProducts, 9);
+				const paginatedAndFilteredProducts = frontendPagination(filteredProducts, numberOfProductsPerPage());
 				setProducts(paginatedAndFilteredProducts);
 			})
 			.catch((error) => {

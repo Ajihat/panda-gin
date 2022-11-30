@@ -50,3 +50,23 @@
         color: variables.$text-gray
     &__product-btn-holder
         position: relative
+
+@media (max-width: 1200px)
+    .gifts
+        margin-bottom: 80px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .gifts
+        &__wrapper
+            overflow-x: scroll
+            -ms-overflow-style: none
+            scrollbar-width: none
+        &__products
+            width: 766px
+        &__wrapper::-webkit-scrollbar
+            display: none
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .gifts
+        &__products
+            width: 650px

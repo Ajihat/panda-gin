@@ -16,7 +16,7 @@
         font-size: 1.4rem
         color: variables.$text-gray
         text-transform: uppercase
-        margin-top: 26px
+        margin-top: 30px
         letter-spacing: .6px
         font-weight: 400
         transition: .3s
@@ -57,3 +57,17 @@
         background: rgba(255,255,255,0.7)
         z-index: 2
         cursor: no-drop
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .dashboard
+        width: 100%
+        margin-top: 30px
+        padding: 3vw 0
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .dashboard
+        &__checkout
+            flex-wrap: wrap
+        &__btn-holder
+            width: 100%
+            margin-top: 40px

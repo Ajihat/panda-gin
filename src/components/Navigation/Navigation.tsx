@@ -5,6 +5,7 @@ import subLogo from 'assets/organic-gin.png';
 
 import { NavLinks } from 'components/NavLinks/NavLinks';
 import { Socials } from 'components/Socials/Socials';
+import { MobileBurger } from 'components/MobileBurger/MobileBurger';
 import { IoPersonOutline } from 'react-icons/io5';
 import { BsHandbag } from 'react-icons/bs';
 
@@ -53,7 +54,8 @@ export const Navigation = () => {
 		<nav className='navigation'>
 			<div className='navigation__wrapper'>
 				<div className='navigation__inner navigation__inner--left'>
-					<Socials version='small' />
+					<Socials />
+					<MobileBurger />
 				</div>
 				<div className='navigation__inner'>
 					<img src={pandaLogo} alt='panda-gin-logo' className='navigation__logo' />

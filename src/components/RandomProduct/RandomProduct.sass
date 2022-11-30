@@ -8,3 +8,15 @@
         padding-top: 2vw
         +mixins.positioning(flex,row,space-between,stretch,nowrap)
         min-height: 10vw
+        gap: 20px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .randomproduct
+        &__container
+            overflow-x: scroll
+            -ms-overflow-style: none
+            scrollbar-width: none
+        &__container::-webkit-scrollbar
+            display: none
+        &__inner
+            width: 896px

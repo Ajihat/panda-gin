@@ -1,2 +1,9 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
 .faq
-    padding: 120px 6vw
+    padding: 6vw 6vw
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .faq
+        padding: 60px 6vw

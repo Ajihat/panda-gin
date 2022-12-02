@@ -57,8 +57,13 @@ export const Gifts = () => {
 								</Link>
 								<h4 className='gifts__product-title'>{title}</h4>
 								<p className='gifts__product-price'>FREE</p>
-								<div onClick={() => handleClick(giftProduct)} className='gifts__product-btn-holder'>
-									<PrimaryButton text='choose' type='button' isDisabled={shoppingCartValue < 140} />
+								<div className='gifts__product-btn-holder'>
+									<PrimaryButton
+										onClick={() => handleClick(giftProduct)}
+										text='choose'
+										type='button'
+										isDisabled={shoppingCartValue < 140}
+									/>
 									{id === choosenGiftId && <OpacityLayer zIndex='2' />}
 								</div>
 

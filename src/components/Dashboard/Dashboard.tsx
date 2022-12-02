@@ -129,8 +129,13 @@ export const Dashboard = ({ product }: DashboardProps) => {
 						/>
 					)}
 				</div>
-				<div className='dashboard__btn-holder' onClick={handleButtonClick}>
-					<PrimaryButton text='Add to cart' type='button' isDisabled={product.outOfStock} />
+				<div className='dashboard__btn-holder'>
+					<PrimaryButton
+						onClick={handleButtonClick}
+						text='Add to cart'
+						type='button'
+						isDisabled={product.outOfStock}
+					/>
 					{product.outOfStock && <OpacityLayer zIndex='2' />}
 				</div>
 			</div>

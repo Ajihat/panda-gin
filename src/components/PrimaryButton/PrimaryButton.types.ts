@@ -1,5 +1,6 @@
 export interface PrimaryButtonProps {
-    text: string;
-    type: "button" | "submit" | "reset";
-    isDisabled?: boolean;
+	text: string;
+	type: 'button' | 'submit' | 'reset';
+	isDisabled?: boolean;
+	onClick?: () => void;
 }

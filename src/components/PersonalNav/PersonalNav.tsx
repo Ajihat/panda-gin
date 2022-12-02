@@ -69,8 +69,8 @@ export const PersonalNav = () => {
 					</li>
 				</ul>
 			</nav>
-			<div onClick={handleSignOut} className='personalnav__btn-holder'>
-				<PrimaryButton text='Sign out' type='button' />
+			<div className='personalnav__btn-holder'>
+				<PrimaryButton onClick={handleSignOut} text='Sign out' type='button' />
 			</div>
 		</div>
 	);

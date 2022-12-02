@@ -33,8 +33,8 @@ export const CartSummary = () => {
 					&euro;
 				</div>
 			</div>
-			<div onClick={closeCartPopup} className='cartsummary__btn-holder' data-animation='animation-item'>
-				<PrimaryButton text='Continue Shopping' type='button' />
+			<div className='cartsummary__btn-holder' data-animation='animation-item'>
+				<PrimaryButton onClick={closeCartPopup} text='Continue Shopping' type='button' />
 			</div>
 			<div className='cartsummary__btn-holder' data-animation='animation-item'>
 				<PrimaryButton text='Proceed to checkout' type='button' />

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { CartListing } from 'components/CartListing/CartListing';
 import { Gifts } from 'components/Gifts/Gifts';
 import { CartSummary } from 'components/CartSummary/CartSummary';
-import { Header } from 'components/Header/Header';
 
 import closeBtn from 'assets/close-btn.svg';
 

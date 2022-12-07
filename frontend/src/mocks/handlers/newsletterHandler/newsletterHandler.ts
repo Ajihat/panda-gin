@@ -1,11 +1,9 @@
 import { rest } from 'msw';
 
-import { NewsletterRequestBody } from './handlers.types';
+import { NewsletterRequestBody } from './newsletterHandler.types';
 
-const RESPONSE_DELAY = 2000;
-
-export const handlers = [
-	rest.post<NewsletterRequestBody>('http://localhost:9595/newsletter', (req, res, ctx) => {
+export const newsletterHandler = () => {
+	return rest.post<NewsletterRequestBody>('http://localhost:9595/newsletter', (req, res, ctx) => {
 		const { newsletterEmail } = req.body;
 		const newsletterEmails = localStorage.getItem('newsletterEmails');
 		if (newsletterEmails) {
@@ -14,7 +12,7 @@ export const handlers = [
 			if (doesEmailExist) {
 				return res(
 					ctx.status(400),
-					ctx.delay(RESPONSE_DELAY),
+					ctx.delay(1000),
 					ctx.json({
 						errorMessage: `Email: '${newsletterEmail}' already in use`,
 					})
@@ -25,15 +23,12 @@ export const handlers = [
 					'newsletterEmails',
 					JSON.stringify([...JSON.parse(newsletterEmails), newsletterEmail])
 				);
-				return res(ctx.status(200), ctx.delay(RESPONSE_DELAY));
+				return res(ctx.status(200), ctx.delay(1000));
 			}
 		}
 		if (newsletterEmails === null) {
 			localStorage.setItem('newsletterEmails', JSON.stringify([newsletterEmail]));
-			return res(ctx.status(200), ctx.delay(RESPONSE_DELAY));
+			return res(ctx.status(200), ctx.delay(1000));
 		}
-	}),
-	rest.post('http://localhost:9595/contact', (req, res, ctx) => {
-		return res(ctx.status(200), ctx.delay(RESPONSE_DELAY));
-	}),
-];
+	});
+};

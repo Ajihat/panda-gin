@@ -30,6 +30,7 @@ import { useMobileMenuContext } from 'context/MobileMenuContext/useMobileMenuCon
 
 import { Shop } from 'pages/Shop/Shop';
 import { About } from 'pages/About/About';
+import { Cocktails } from 'pages/Cocktails/Cocktails';
 import { Faq } from 'pages/Faq/Faq';
 import { Personal } from 'pages/Personal/Personal';
 import { Contact } from 'pages/Contact/Contact';
@@ -57,6 +58,7 @@ export const App = () => {
 						<Routes>
 							<Route path={appRoutes.shop} element={<Shop />} />
 							<Route path={appRoutes.about} element={<About />} />
+							<Route path={appRoutes.cocktails} element={<Cocktails />} />
 							<Route path={appRoutes.faq} element={<Faq />} />
 							<Route path={appRoutes.contact} element={<Contact />} />
 							<Route path={appRoutes.productPage} element={<ProductPage />} />

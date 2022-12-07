@@ -2,6 +2,7 @@ export interface AppRoutes {
 	shop: string;
 	about: string;
 	faq: string;
+	cocktails: string;
 	contact: string;
 	personal: string;
 	personal_userInfo: string;

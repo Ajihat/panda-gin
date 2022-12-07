@@ -4,6 +4,7 @@ export const appRoutes: AppRoutes = {
 	shop: '/',
 	about: '/about',
 	faq: '/faq',
+	cocktails: '/cocktails',
 	contact: '/contact',
 	personal: '/personal',
 	personal_userInfo: '/personal/user-info',

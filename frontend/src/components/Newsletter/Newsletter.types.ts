@@ -1,4 +1,4 @@
 export interface INewsletterInputs {
-    emailAddress: "string";
-    termsChecked: boolean;
+	newsletterEmail: 'string';
+	termsChecked: boolean;
 }

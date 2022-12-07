@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { axiosInstance as axios } from 'api/axios';
 
 import './Orders.sass';
 
 export const Orders = () => {
+	useEffect(() => {
+		axios({
+			method: 'GET',
+			url: '/orders',
+		}).then((res) => console.log(res));
+	}, []);
 	return (
 		<AnimatePresence>
 			<motion.div

@@ -37,9 +37,9 @@ export const Contact = () => {
 							<a href='mailto:info@panda-gin.com' className='contact__details-email'>
 								info@panda-gin.com
 							</a>
-							<p className='contact__text'>
+							<span className='contact__text'>
 								The head office (9 a.m. to 5 p.m.) - 31 Drève de la Meute - 1410 Waterloo, Belgium
-							</p>
+							</span>
 						</p>
 						<div className='contact__socials'>
 							<Socials />

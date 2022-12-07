@@ -7,7 +7,7 @@ import { Loader } from 'components/Loader/Loader';
 import { nameRegex } from 'common/regexs/nameRegex';
 import { emailRegex } from 'common/regexs/emailRegex';
 
-import { useContactForm } from './useContactForm';
+import { useContact } from './useContact';
 
 import { IContactFormInputs } from './ContactForm.types';
 
@@ -20,11 +20,15 @@ export const ContactForm = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IContactFormInputs>();
-	const { sendForm, isSuccess, isLoading } = useContactForm();
+	const {
+		sendForm,
+		contactState: { isLoading, isSuccess, apiErrorText },
+	} = useContact();
 	return (
 		<div className='contactform'>
 			<Header alignment='left' bigTitle='Specyfic request' smallTitle='Need help?' />
-			{isSuccess && <p className='newsletter__api-sucess'>Message send</p>}
+			{isSuccess && <p className='newsletter__api-sucess'>Message sent</p>}
+			{apiErrorText.length > 0 && <p className='newsletter__api-error'>apiErrorText</p>}
 			<form onSubmit={handleSubmit(sendForm)} className='contactform__form' noValidate>
 				<div className='contactform__left'>
 					<div className='contactform__form-section'>

@@ -64,7 +64,7 @@ export const LoginPopup = () => {
 							})}
 							className='loginpopup__input'
 							placeholder='Enter your email address'
-							autoComplete='off'
+							autoComplete='on'
 							disabled={isLoading}
 						/>
 						{errors.username && <p className='loginpopup__error-info'>{errors.username.message}</p>}
@@ -81,6 +81,7 @@ export const LoginPopup = () => {
 							})}
 							className='loginpopup__input'
 							placeholder='Enter your password'
+							autoComplete='on'
 							disabled={isLoading}
 						/>
 						{errors.password && <p className='loginpopup__error-info'>{errors.password.message}</p>}

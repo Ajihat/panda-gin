@@ -8,27 +8,30 @@ import { NavBarsProvider } from 'context/NavBarsContext/NavBarsContext';
 import { ProductsProvider } from 'context/ProductsContext/ProductsContext';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext/ShoppingCartContext';
 import { MobileMenuProvider } from 'context/MobileMenuContext/MobileMenuContext';
+import { CocktailsProvider } from 'context/CocktailsContext/CocktailsContext';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<AuthProvider>
-			<NavBarsProvider>
-				<TopSliderProvider>
-					<MobileMenuProvider>
-						<CartPopupProvider>
-							<CurtainProvider>
-								<SubscribeProvider>
-									<LoginPopupProvider>
-										<ProductsProvider>
-											<ShoppingCartProvider>{children}</ShoppingCartProvider>
-										</ProductsProvider>
-									</LoginPopupProvider>
-								</SubscribeProvider>
-							</CurtainProvider>
-						</CartPopupProvider>
-					</MobileMenuProvider>
-				</TopSliderProvider>
-			</NavBarsProvider>
-		</AuthProvider>
+		<CocktailsProvider>
+			<AuthProvider>
+				<NavBarsProvider>
+					<TopSliderProvider>
+						<MobileMenuProvider>
+							<CartPopupProvider>
+								<CurtainProvider>
+									<SubscribeProvider>
+										<LoginPopupProvider>
+											<ProductsProvider>
+												<ShoppingCartProvider>{children}</ShoppingCartProvider>
+											</ProductsProvider>
+										</LoginPopupProvider>
+									</SubscribeProvider>
+								</CurtainProvider>
+							</CartPopupProvider>
+						</MobileMenuProvider>
+					</TopSliderProvider>
+				</NavBarsProvider>
+			</AuthProvider>
+		</CocktailsProvider>
 	);
 };

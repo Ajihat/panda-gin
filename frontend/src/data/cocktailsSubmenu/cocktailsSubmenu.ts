@@ -1,4 +1,6 @@
-export const cocktailsSubmenu = [
+import { CocktailsSubmenuLink } from './cocktailsSubmenu.types';
+
+export const cocktailsSubmenu: CocktailsSubmenuLink[] = [
 	{
 		id: 1,
 		title: 'all',

@@ -1,4 +1,6 @@
-interface Cocktail {
+export type CocktailsCategories = 'signature' | 'classic' | 'all';
+
+export interface Cocktail {
 	id: number;
 	category: 'signature' | 'classic';
 	title: string;
@@ -12,9 +14,10 @@ interface Cocktail {
 
 export interface ICocktailsContext {
 	cocktails: Cocktail[] | null;
-	setCocktails: React.Dispatch<React.SetStateAction<null>>;
-	cocktailsCategory: 'all' | 'classic' | 'signature';
-	setCocktailsCategory: React.Dispatch<React.SetStateAction<'signature' | 'classic' | 'all'>>;
+	cocktailsCategory: CocktailsCategories;
+	isLoading: boolean;
+	apiErrorText: string;
+	setCocktailsCategory: React.Dispatch<React.SetStateAction<CocktailsCategories>>;
 }
 
 export interface CocktailsContextProps {

@@ -3,3 +3,9 @@
 
 .cocktails
     padding: 6vw 6vw
+    &__listing
+        position: relative
+        +mixins.positioning(flex,row,flex-start,stretch,wrap)
+        gap: 3.06vw
+        padding-top: 4vw
+        min-height: 500px

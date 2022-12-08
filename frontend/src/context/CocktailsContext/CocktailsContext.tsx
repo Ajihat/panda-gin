@@ -1,21 +1,26 @@
 import { createContext, useState } from 'react';
 
-import { CocktailsContextProps, ICocktailsContext } from './CocktailsContext.types';
+import { useGetCocktails } from './useGetCocktails';
+
+import { CocktailsContextProps, ICocktailsContext, CocktailsCategories } from './CocktailsContext.types';
 
 export const CocktailsContext = createContext<null | ICocktailsContext>(null);
 
 export const CocktailsProvider = ({ children }: CocktailsContextProps) => {
-	const [cocktails, setCocktails] = useState(null);
-	const [cocktailsCategory, setCocktailsCategory] = useState<'all' | 'classic' | 'signature'>('all');
+	const [cocktailsCategory, setCocktailsCategory] = useState<CocktailsCategories>('all');
+	const { cocktails, isLoading, apiErrorText } = useGetCocktails(cocktailsCategory);
 
-	<CocktailsContext.Provider
-		value={{
-			cocktails,
-			setCocktails,
-			cocktailsCategory,
-			setCocktailsCategory,
-		}}
-	>
-		{children}
-	</CocktailsContext.Provider>;
+	return (
+		<CocktailsContext.Provider
+			value={{
+				cocktails,
+				isLoading,
+				apiErrorText,
+				cocktailsCategory,
+				setCocktailsCategory,
+			}}
+		>
+			{children}
+		</CocktailsContext.Provider>
+	);
 };

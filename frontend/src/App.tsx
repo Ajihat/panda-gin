@@ -20,6 +20,7 @@ import { ManageProducts } from 'components/ManageProducts/ManageProducts';
 import { EditProduct } from 'components/EditProduct/EditProduct';
 import { Orders } from 'components/Orders/Orders';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
+import { CocktailPopup } from 'components/CocktailPopup/CocktailPopup';
 
 import { useAuthContext } from 'context/AuthContext/useAuthContext';
 import { useLoginPopupContext } from 'context/LoginPopupContext/useLoginPopupContext';
@@ -27,6 +28,7 @@ import { useSubscribePopupContext } from 'context/SubscribePopupContext/useSubsc
 import { useCurtainContext } from 'context/CurtainContext/useCurtainContext';
 import { useCartPopupContext } from 'context/CartPopupContext/useCartPopupContext';
 import { useMobileMenuContext } from 'context/MobileMenuContext/useMobileMenuContext';
+import { useCocktailPopupContext } from 'context/CocktailPopupContext/useCocktailPopupContext';
 
 import { Shop } from 'pages/Shop/Shop';
 import { About } from 'pages/About/About';
@@ -47,6 +49,7 @@ export const App = () => {
 	const { isSubscribePopupOpen } = useSubscribePopupContext();
 	const { isCurtainOpen } = useCurtainContext();
 	const { isMobileMenuOpen } = useMobileMenuContext();
+	const { isCocktailPopupOpen } = useCocktailPopupContext();
 
 	return (
 		<>
@@ -83,6 +86,7 @@ export const App = () => {
 				{isLoginPopupOpen && <LoginPopup />}
 				{isSubscribePopupOpen && <SubscribePopup />}
 				{isCurtainOpen && <Curtain />}
+				{isCocktailPopupOpen && <CocktailPopup />}
 				<AnimatePresence>
 					{!isLegalDrinkingAge && <LegalPopup />}
 					{isCartPopupOpen && <CartPopup />}

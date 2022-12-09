@@ -20,6 +20,6 @@ export const cocktailsHandler = () => {
 				break;
 		}
 
-		return res(ctx.status(200), ctx.delay(300), ctx.json({ requestedCocktails }));
+		return res(ctx.status(200), ctx.delay(100), ctx.json({ requestedCocktails }));
 	});
 };

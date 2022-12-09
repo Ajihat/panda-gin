@@ -2,13 +2,22 @@ import { motion } from 'framer-motion';
 
 import arrow from 'assets/long-arrow.png';
 
+import { useCocktailPopupContext } from 'context/CocktailPopupContext/useCocktailPopupContext';
+
 import { CocktailTileProps } from './CocktailTile.types';
 
 import './CocktailTile.sass';
 
 export const CocktailTile = ({ id, index, imageUrl, title, subtitle }: CocktailTileProps) => {
+	const { setIsCocktailPopupOpen, setCocktailId } = useCocktailPopupContext();
+
+	const handleClick = () => {
+		setIsCocktailPopupOpen(true);
+		setCocktailId(id);
+	};
 	return (
 		<motion.article
+			onClick={handleClick}
 			className='cocktailtile'
 			initial={{
 				opacity: 0,

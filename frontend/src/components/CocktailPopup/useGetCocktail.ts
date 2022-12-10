@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react';
 import { axiosInstance as axios } from 'api/axios';
 import { GET_COCKTAIL_URL } from 'api/apiEndpoints';
 
+import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
+
 import { Cocktail } from 'context/CocktailsContext/CocktailsContext.types';
 
-export const useGetCocktail = (cocktailId: number) => {
+export const useGetCocktail = (cocktailId: number | null) => {
 	type CocktailState =
 		| {
 				isLoading: false; //idle
@@ -20,7 +22,11 @@ export const useGetCocktail = (cocktailId: number) => {
 		| {
 				isLoading: false; // on success
 				apiErrorText: '';
-				cocktail: Cocktail;
+				cocktail: {
+					data: Cocktail;
+					isNextCocktail: boolean;
+					isPrevCocktail: boolean;
+				};
 		  }
 		| {
 				isLoading: false; // on error
@@ -35,12 +41,25 @@ export const useGetCocktail = (cocktailId: number) => {
 	});
 
 	useEffect(() => {
+		if (cocktailId === null) return;
 		setCocktailState({ cocktail: null, isLoading: true, apiErrorText: '' });
 		axios({
 			method: 'POST',
 			url: GET_COCKTAIL_URL,
 			data: cocktailId,
-		});
+		})
+			.then((res) => {
+				if (res.status === 200) {
+					setCocktailState({ isLoading: false, apiErrorText: '', cocktail: res.data });
+				}
+			})
+			.catch((error) => {
+				setCocktailState({
+					isLoading: false,
+					apiErrorText: drawApiErrorText(error, GET_COCKTAIL_URL),
+					cocktail: null,
+				});
+			});
 	}, [cocktailId]);
 
 	return cocktailState;

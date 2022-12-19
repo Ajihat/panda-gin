@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import ReactDom from 'react-dom';
 
 import pandaHead from 'assets/panda-head.png';

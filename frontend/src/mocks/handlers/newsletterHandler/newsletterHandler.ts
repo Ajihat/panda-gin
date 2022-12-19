@@ -1,9 +1,11 @@
 import { rest } from 'msw';
 
+import { NEWSLETTER_URL } from 'api/apiEndpoints';
+
 import { NewsletterRequestBody } from './newsletterHandler.types';
 
 export const newsletterHandler = () => {
-	return rest.post<NewsletterRequestBody>('http://localhost:9595/newsletter', (req, res, ctx) => {
+	return rest.post<NewsletterRequestBody>(process.env.REACT_APP_API_URL + NEWSLETTER_URL, (req, res, ctx) => {
 		const { newsletterEmail } = req.body;
 		const newsletterEmails = localStorage.getItem('newsletterEmails');
 		if (newsletterEmails) {

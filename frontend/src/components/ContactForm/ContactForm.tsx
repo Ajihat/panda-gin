@@ -28,7 +28,7 @@ export const ContactForm = () => {
 		<div className='contactform'>
 			<Header alignment='left' bigTitle='Specyfic request' smallTitle='Need help?' />
 			{isSuccess && <p className='newsletter__api-sucess'>Message sent</p>}
-			{apiErrorText.length > 0 && <p className='newsletter__api-error'>apiErrorText</p>}
+			{apiErrorText.length > 0 && <p className='newsletter__api-error'>{apiErrorText}</p>}
 			<form onSubmit={handleSubmit(sendForm)} className='contactform__form' noValidate>
 				<div className='contactform__left'>
 					<div className='contactform__form-section'>

@@ -36,10 +36,14 @@ export const Submenu = ({ data, activeCategory }: SubmenuProps) => {
 		<div id='submenu' className={navBarsAreHidden ? 'submenu' : 'submenu submenu--down'}>
 			<ul ref={submenuList} className='submenu__list'>
 				<div className='submenu__list-wrapper'>
-					{data.map((item) => {
-						const { id, title, href } = item;
-						return <SubmenuLink key={id} title={title} href={href} activeCategory={activeCategory} />;
-					})}
+					{data.map((item) => (
+						<SubmenuLink
+							key={item.id}
+							title={item.title}
+							href={item.href}
+							activeCategory={activeCategory}
+						/>
+					))}
 				</div>
 			</ul>
 		</div>

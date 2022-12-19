@@ -22,17 +22,16 @@ export const Cocktails = () => {
 			<Header smallTitle='Need a cocktail recipe?' bigTitle='Panda Gin Cocktails' />
 			<Submenu data={cocktailsSubmenu} activeCategory={cocktailsCategory} />
 			<div className='cocktails__listing'>
-				{cocktails &&
-					cocktails.map((cocktail, index) => (
-						<CocktailTile
-							key={cocktail.id}
-							id={cocktail.id}
-							index={index}
-							title={cocktail.title}
-							subtitle={cocktail.subtitle}
-							imageUrl={cocktail.firstImage}
-						/>
-					))}
+				{cocktails?.map((cocktail, index) => (
+					<CocktailTile
+						key={cocktail.id}
+						id={cocktail.id}
+						index={index}
+						title={cocktail.title}
+						subtitle={cocktail.subtitle}
+						imageUrl={cocktail.firstImage}
+					/>
+				))}
 				{isLoading && <Loader />}
 			</div>
 		</div>

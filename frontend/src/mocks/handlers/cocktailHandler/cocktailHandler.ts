@@ -7,7 +7,6 @@ import { cocktailsDatabase } from 'mocks/handlers/cocktailsHandler/cocktailsData
 export const cocktailHandler = () => {
 	return rest.post(process.env.REACT_APP_API_URL + GET_COCKTAIL_URL, (req, res, ctx) => {
 		const cocktailId = req.body;
-		console.log(cocktailId);
 		const requestedCocktail = cocktailsDatabase.find((cocktail) => cocktail.id === cocktailId);
 		if (requestedCocktail && cocktailId) {
 			const response = {

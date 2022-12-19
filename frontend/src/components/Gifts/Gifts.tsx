@@ -12,32 +12,35 @@ import { giftProducts } from 'data/giftProducts/giftProducts';
 
 import './Gifts.sass';
 
+const SHOPPING_CART_VALUE_TO_OBTAIN_GIFT = 140;
+
 export const Gifts = () => {
 	const { shoppingCartValue, choosenGiftId, addGiftToCart, deleteGiftFromCart } = useShoppingCartContext();
 
 	const handleClick = (giftProduct: ShoppingCartProduct) => {
-		if (shoppingCartValue >= 140 && !choosenGiftId) {
+		if (shoppingCartValue >= SHOPPING_CART_VALUE_TO_OBTAIN_GIFT && !choosenGiftId) {
 			addGiftToCart(giftProduct);
 		}
 	};
 	useEffect(() => {
-		if (shoppingCartValue < 140 && choosenGiftId) {
+		if (shoppingCartValue < SHOPPING_CART_VALUE_TO_OBTAIN_GIFT && choosenGiftId) {
 			deleteGiftFromCart();
 		}
 	}, [shoppingCartValue, choosenGiftId, deleteGiftFromCart]);
 	return (
 		<div className='gifts'>
-			{shoppingCartValue < 140 && (
+			{shoppingCartValue < SHOPPING_CART_VALUE_TO_OBTAIN_GIFT && (
 				<p className='gifts__info' data-animation='animation-item'>
-					Another {(140 - shoppingCartValue).toFixed(2)} &euro; and you can choose one of these gifts:
+					Another {(SHOPPING_CART_VALUE_TO_OBTAIN_GIFT - shoppingCartValue).toFixed(2)} &euro; and you can
+					choose one of these gifts:
 				</p>
 			)}
-			{shoppingCartValue >= 140 && !choosenGiftId && (
+			{shoppingCartValue >= SHOPPING_CART_VALUE_TO_OBTAIN_GIFT && !choosenGiftId && (
 				<p className='gifts__info' data-animation='animation-item'>
 					Congratulations! you can choose one of these gifts:
 				</p>
 			)}
-			{shoppingCartValue >= 140 && choosenGiftId && (
+			{shoppingCartValue >= SHOPPING_CART_VALUE_TO_OBTAIN_GIFT && choosenGiftId && (
 				<p className='gifts__info' data-animation='animation-item'>
 					Congratulations! You chose your panda gift:
 				</p>
@@ -67,9 +70,8 @@ export const Gifts = () => {
 									{id === choosenGiftId && <OpacityLayer zIndex='2' />}
 								</div>
 
-								{(shoppingCartValue < 140 || (choosenGiftId && id !== choosenGiftId)) && (
-									<OpacityLayer zIndex='2' />
-								)}
+								{(shoppingCartValue < SHOPPING_CART_VALUE_TO_OBTAIN_GIFT ||
+									(choosenGiftId && id !== choosenGiftId)) && <OpacityLayer zIndex='2' />}
 							</div>
 						);
 					})}

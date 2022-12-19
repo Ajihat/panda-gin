@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import { OpacityLayer } from 'components/OpacityLayer/OpacityLayer';
 import { QuantitySelector } from 'components/QuantitySelector/QuantitySelector';
 
 import closeBtn from 'assets/close-btn.svg';

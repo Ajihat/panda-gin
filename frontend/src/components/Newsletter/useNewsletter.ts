@@ -6,63 +6,41 @@ import { NEWSLETTER_URL } from 'api/apiEndpoints';
 import { drawApiErrorText } from 'common/drawApiErrorText/drawApiErrorText';
 
 import { INewsletterInputs } from './Newsletter.types';
+import { NewsletterState } from './useNewsletter.types';
 
 export const useNewsletter = () => {
-	type NewsletterState =
-		| {
-				isLoading: false; //gdy sukces
-				apiErrorText: '';
-				isSuccess: true;
-		  }
-		| {
-				isLoading: true; // gdy ładowanie
-				apiErrorText: '';
-				isSuccess: false;
-		  }
-		| {
-				isLoading: false; // gdy błąd
-				apiErrorText: string;
-				isSuccess: false;
-		  }
-		| {
-				isLoading: false; // stan początkowy
-				apiErrorText: '';
-				isSuccess: false;
-		  };
-
 	const [newsletterState, setNewsletterState] = useState<NewsletterState>({
 		isLoading: false,
 		apiErrorText: '',
 		isSuccess: false,
 	});
 
-	const onMutate = (payload: INewsletterInputs) => {
+	const onMutate = async (payload: INewsletterInputs) => {
 		setNewsletterState({
 			isLoading: true,
 			apiErrorText: '',
 			isSuccess: false,
 		});
-		axios({
-			method: 'POST',
-			url: NEWSLETTER_URL,
-			data: payload,
-		})
-			.then((res) => {
-				if (res.status === 200) {
-					setNewsletterState({
-						isLoading: false,
-						apiErrorText: '',
-						isSuccess: true,
-					});
-				}
-			})
-			.catch((e) => {
+		try {
+			const response = await axios({
+				method: 'POST',
+				url: NEWSLETTER_URL,
+				data: payload,
+			});
+			if (response.status === 200) {
 				setNewsletterState({
 					isLoading: false,
-					apiErrorText: drawApiErrorText(e, NEWSLETTER_URL),
-					isSuccess: false,
+					apiErrorText: '',
+					isSuccess: true,
 				});
+			}
+		} catch (error) {
+			setNewsletterState({
+				isLoading: false,
+				apiErrorText: drawApiErrorText(error, NEWSLETTER_URL),
+				isSuccess: false,
 			});
+		}
 	};
 
 	return { newsletterState, onMutate };

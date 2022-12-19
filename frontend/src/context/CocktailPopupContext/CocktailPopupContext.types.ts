@@ -5,6 +5,6 @@ export interface CocktailPopupProviderProps {
 export interface ICocktailPopupContext {
 	isCocktailPopupOpen: boolean;
 	setIsCocktailPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	cocktailId: number;
-	setCocktailId: React.Dispatch<React.SetStateAction<number>>;
+	cocktailId: number | null;
+	setCocktailId: React.Dispatch<React.SetStateAction<number | null>>;
 }

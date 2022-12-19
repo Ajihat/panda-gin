@@ -6,7 +6,7 @@ export const CocktailPopupContext = createContext<ICocktailPopupContext | null>(
 
 export const CocktailPopupProvider = ({ children }: CocktailPopupProviderProps) => {
 	const [isCocktailPopupOpen, setIsCocktailPopupOpen] = useState(false);
-	const [cocktailId, setCocktailId] = useState<number>(-1);
+	const [cocktailId, setCocktailId] = useState<number | null>(null);
 
 	return (
 		<CocktailPopupContext.Provider

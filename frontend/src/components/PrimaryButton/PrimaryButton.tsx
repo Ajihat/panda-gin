@@ -1,34 +1,12 @@
-import { useRef } from 'react';
-
 import { PrimaryButtonProps } from './PrimaryButton.types';
 
 import './PrimaryButton.sass';
 
 export const PrimaryButton = ({ text, type, isDisabled, onClick }: PrimaryButtonProps) => {
-	const primaryButtonRef = useRef<HTMLButtonElement | null>(null);
-	const primaryButtonLayerRef = useRef<HTMLDivElement | null>(null);
-
-	const handleOnMouseEnter = () => {
-		primaryButtonLayerRef.current?.classList.add('primarybutton__layer--up');
-	};
-
-	const handleOnMouseLeave = () => {
-		primaryButtonLayerRef.current?.classList.add('primarybutton__layer--down');
-		primaryButtonLayerRef.current?.classList.remove('primarybutton__layer--up');
-	};
-
 	return (
-		<button
-			onClick={onClick}
-			className='primarybutton'
-			type={type}
-			ref={primaryButtonRef}
-			onMouseEnter={handleOnMouseEnter}
-			onMouseLeave={handleOnMouseLeave}
-			disabled={isDisabled}
-		>
+		<button onClick={onClick} className='primarybutton' type={type} disabled={isDisabled}>
 			<span className='primarybutton__text'>{text}</span>
-			<div ref={primaryButtonLayerRef} className='primarybutton__layer primarybutton__layer--up'></div>
+			<div className='primarybutton__layer'></div>
 		</button>
 	);
 };

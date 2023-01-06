@@ -1,0 +1,49 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.mobilemenu
+    position: fixed
+    width: 100%
+    padding: 0 6vw
+    height: calc( 100vh - 91px )
+    max-width: 1920px
+    top: 91px
+    left: 0
+    background-color: variables.$secondary-color
+    opacity: 0
+    z-index: 6
+    &__nav
+        position: absolute
+        top: 40%
+        left: 50%
+        transform: translate(-50%,-50%)
+    &__list
+        +mixins.positioning(flex,column,center,center,nowrap)
+        list-style: none
+    &__item
+        opacity: 0
+        transition: opacity .4s,
+        transition-delay: 0s
+    &__link
+        display: block
+        text-decoration: none
+        font-size: 2.8rem
+        font-family: variables.$main-font
+        margin: 15px 0
+        font-weight: 500
+        color: variables.$main-color
+        transition: .3s
+        &.mobilemenu__link--active
+            color: variables.$text-hover-color
+
+        &:hover
+            color: variables.$text-hover-color
+    &__socials-holder
+        position: absolute
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        gap: 20px
+        left: 50%
+        transform: translateX(-50%)
+        bottom: 4%
+        opacity: 0
+        transition: .3s

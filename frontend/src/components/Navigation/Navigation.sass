@@ -1,0 +1,80 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.navigation
+    position: sticky
+    top: 0
+    left: 0
+    background-color: variables.$secondary-color
+    height: 91px
+    z-index: 5
+    &__wrapper
+        position: relative
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        height: 100%
+        padding: 15px 2.6vw
+        background-color: variables.$secondary-color
+        z-index: 3
+    &__inner
+        position: relative
+        +mixins.positioning(flex,row,center,center,nowrap)
+        width: 25%
+        &.navigation__inner--left
+            justify-content: flex-start
+            gap: 15px
+        &.navigation__inner--right
+            justify-content: flex-end
+            gap: 15px
+    &__logo
+        display: block
+        width: 202px
+    &__utils-icon
+        display: block
+        font-size: 22px
+        cursor: pointer
+        transition: color .35s
+        &:hover
+            color: variables.$text-hover-color
+        &--bigger
+            font-size: 24px
+    &__sublogo
+        position: absolute
+        bottom: 7px
+        left: 50%
+        transform: translateX(-50%)
+        opacity: 1
+        transition: opacity .35s , bottom .3s
+        z-index: 3
+        &.navigation__sublogo--hidden
+            opacity: 0
+            bottom: 20px
+    &__cart-holder
+        position: relative
+        width: 25px
+        height: 22px
+        cursor: pointer
+    &__cart-items-counter
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: -6px
+        right: -4px
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        border: 1px solid variables.$main-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .navigation
+        .socials
+            display: none
+        &__cart-holder
+            margin-right: 10px
+        &__sublogo
+            bottom: 10px
+
+@media (max-width: variables.$small-mobile-width-breakpoint)
+    .navigation
+        &__logo
+            width: 150px

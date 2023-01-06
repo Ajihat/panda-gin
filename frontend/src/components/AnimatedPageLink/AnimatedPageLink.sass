@@ -1,0 +1,47 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.animatedpagelink
+    +mixins.positioning(flex,row,center,center,nowrap)
+    padding: 100px 0
+    &__link
+        +mixins.positioning(flex,row,center,center,nowrap)
+        font-family: variables.$second-font
+        color: variables.$main-color
+        text-decoration: none
+        text-transform: uppercase
+        font-size: 1.5rem
+        letter-spacing: 2.4px
+        &:hover .animatedpagelink__letter
+            opacity: 1
+        &:hover .animatedpagelink__circle
+            left: 50%
+            transform: translateX(-50%)
+    &__left
+        position: relative
+        width: 45px
+        height: 30px
+    &__circle
+        position: absolute
+        top: 0%
+        left: 0%
+        width: 30px
+        height: 30px
+        border-radius: 50%
+        border: 1px solid variables.$main-color
+        background-color: variables.$main-color
+        z-index: 1
+        transition: .2s
+        &.animatedpagelink__circle--white
+            left: 100%
+            transform: translateX(-100%)
+            background-color: white
+            overflow: hidden
+            z-index: 2
+    &__letter
+        display: block
+        width: 100%
+        opacity: 0
+        transition: opacity .4s
+    &__right
+        margin-left: 10px

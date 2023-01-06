@@ -1,0 +1,38 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.pagelink
+    cursor: pointer
+    font-family: variables.$second-font
+    color: variables.$secondary-color
+    &.pagelink--black
+        color: variables.$main-color
+    &__link
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        text-decoration: none
+        transition: .3s
+        color: inherit
+        &:hover
+            color: variables.$text-hover-color
+    &__text
+        text-transform: uppercase
+        font-size: 1.5rem
+        letter-spacing: 2.4px
+        order: 2
+    &__arrow
+        margin-left: 10px
+        font-size: 2.6rem
+        transform: rotate(180deg)
+        order: 3
+        &.pagelink__arrow--left
+            margin-left: 0
+            margin-right: 10px
+            transform: rotate(0deg)
+            order: 1
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .pagelink
+        &__text
+            font-size: 1.3rem
+        &__arrow
+            transform: rotate(180deg) scale(0.8)

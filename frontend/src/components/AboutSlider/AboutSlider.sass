@@ -1,0 +1,70 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'  
+
+.aboutslider
+    position: relative
+    +mixins.positioning(flex,row,center,center,wrap)
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    color: variables.$secondary-color
+    height: 870px
+    padding: 6vw 6vw
+    transition: .6s
+    &__header-holder
+        max-width: 50%
+        min-width: 500px
+    &__cta
+        position: absolute
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        font-family: variables.$second-font
+        color: variables.$secondary-color
+        text-decoration: none
+        font-size: 1.2rem
+        letter-spacing: .6px
+        text-align: center
+        cursor: default
+    &__cta-pipe
+        display: block
+        font-size: 1.5rem
+        margin-top: 5px
+    &__arrow
+        +mixins.positioning(flex,row,center,center,wrap)
+        position: absolute
+        width: 50px
+        height: 50px
+        background-color: variables.$secondary-color
+        border-radius: 50%
+        border: none
+        cursor: pointer
+        transition: .3s
+        &:hover
+            background-color: variables.$main-color
+        &:hover .aboutslider__icon
+            color: variables.$secondary-color
+        &.aboutslider__arrow--right
+            top: 50%
+            right: 2%
+            transform: translateY(-50%)
+        &.aboutslider__arrow--left
+            top: 50%
+            left: 2%
+            transform: translateY(-50%)
+    &__icon
+        color: variables.$main-color
+        font-size: 2.6rem
+        transition: .3s
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .aboutslider
+        &__arrow
+            width: 40px
+            height: 40px
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .aboutslider
+        height: 680px
+        &__header-holder
+            min-width: 350px

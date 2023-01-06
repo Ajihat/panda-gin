@@ -1,0 +1,25 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.newsletter
+    padding: 6vw
+    margin: 6vw 6vw 6vw 6vw
+    border: 1px solid variables.$main-color
+    &__inner
+        max-width: 700px
+        margin: 0 auto
+    &__btn-holder
+        width: 30%
+    & .primarybutton
+        min-width: 210px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .newsletter
+        &__btn-holder
+            width: 100%
+        & .primarybutton
+            width: 100%
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .newsletter
+        padding: 10vw 6vw

@@ -1,0 +1,89 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.legalpopup
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background-image: url(https://raw.githubusercontent.com/Ajihat/panda-gin-images/main/legalImage/legal-cover.jpg)
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    z-index: 10
+    &__white-layer
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background-color: variables.$secondary-color
+        z-index: 11
+        opacity: 0.85
+    &__terms
+        position: absolute
+        bottom: 3%
+        left: 50%
+        width: 90%
+        transform: translate(-50%, 0)
+        padding: 15px
+        font-family: variables.$second-font
+        font-size: 1.2rem
+        line-height: 1.4rem
+        letter-spacing: .6px
+        font-weight: 300
+        text-transform: uppercase
+        text-align: center
+        z-index: 12
+    &__inner
+        +mixins.positioning(flex,column,space-between,center,nowrap)
+        position: absolute
+        top: 45%
+        left: 50%
+        transform: translate(-50%,-50%)
+        min-width: 610px
+        z-index: 12
+    &__full
+        width: 220px
+    &__logo
+        margin-bottom: 50px
+    &__buttons
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+    &__btn
+        position: relative
+        display: block
+        bottom: 0
+        font-family: variables.$second-font
+        letter-spacing: 2.4px
+        text-transform: uppercase
+        font-weight: 700
+        padding: 15px 30px
+        border: 1px solid variables.$main-color
+        margin: 50px
+        background-color: variables.$secondary-color
+        cursor: pointer
+        transition: .3s
+        &:hover
+            color: variables.$secondary-color
+            background-color: variables.$main-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .legalpopup
+        &__buttons
+            flex-direction: column
+        &__btn
+            margin: 15px
+
+@media (max-width: 937px) and (orientation: landscape)
+    .legalpopup
+        &__inner
+            top: 35%
+        &__full
+            width: 150px
+        &__logo
+            margin-bottom: 15px
+        &__buttons
+            flex-direction: row
+        &__btn
+            margin: 25px

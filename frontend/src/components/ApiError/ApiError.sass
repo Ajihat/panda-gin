@@ -1,0 +1,20 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.apierror
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+    font-size: 1.6rem
+    text-align: center
+    line-height: 150%
+    letter-spacing: 2.4px
+    text-transform: uppercase
+    min-width: 250px
+    color: variables.$main-color
+    font-family: variables.$second-font
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .apierror
+        font-size: 1.4rem

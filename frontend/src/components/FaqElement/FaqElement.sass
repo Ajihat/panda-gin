@@ -1,0 +1,61 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.faqelement
+    font-family: variables.$second-font
+    font-size: 1.5rem
+    font-weight: 400
+    text-transform: uppercase
+    letter-spacing: .6px
+    margin-bottom: 15px
+    &__question
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        border: 1px solid variables.$border-color
+        padding: 8px 50px
+        cursor: pointer
+        transition: .4s
+        &:hover
+            border: 1px solid variables.$main-color
+        &.faqelement__question--active
+            border: 1px solid variables.$main-color
+    &__text
+        margin-right: 15px
+        line-height: 150%
+    &__button
+        +mixins.positioning(flex,row,center,center,nowrap)
+        padding: 3px
+        border: 1px solid variables.$main-color
+        border-radius: 50%
+        font-size: 2.3rem
+        &.faqelement__button--active
+            background-color: variables.$main-color
+    &__icon-plus
+        color: rgba(0, 0, 0, 0.5)
+    &__icon-minus
+        color: variables.$secondary-color
+    &__answer
+        display: none
+        padding: 30px 50px 15px 50px
+        &.faqelement__answer--visible
+            display: block
+            text-transform: none
+            font-size: 1.4rem
+            line-height: 150%
+            color: variables.$text-gray
+            animation-name: answer-opacity
+            animation-duration: 1s
+
+@keyframes answer-opacity
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
+@media (max-width: variables.$medium-mobile-width-breakpoint)
+    .faqelement
+        font-size: 1.3rem
+        &__question
+            padding: 8px 15px
+        &__answer
+            padding: 30px 15px 15px 15px
+            font-size: 1.3rem

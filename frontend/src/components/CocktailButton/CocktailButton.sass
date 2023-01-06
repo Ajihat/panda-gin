@@ -1,0 +1,18 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.cocktailbutton
+    position: absolute
+    +mixins.positioning(flex,row,center,center,nowrap)
+    top: 50%
+    left: 30px
+    width: 40px
+    height: 40px
+    background-color: transparent
+    border-radius: 50%
+    border: 1px solid variables.$main-color
+    transform: translateY(-50%)
+    cursor: pointer
+    &.cocktailbutton--right
+        left: initial
+        right: 30px

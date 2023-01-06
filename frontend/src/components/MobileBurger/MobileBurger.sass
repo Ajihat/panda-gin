@@ -1,0 +1,38 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.mobileburger
+    +mixins.positioning(none,row,center,center,nowrap)
+    padding: 15px 10px
+    cursor: pointer
+    &__inner
+        position: relative
+        width: 30px
+        height: 20px
+    &__bar
+        position: absolute
+        display: block
+        height: 2px
+        width: 100%
+        background-color: variables.$main-color
+        transition: .15s linear
+    &__bar:first-child
+        top: 0
+        left: 0
+    &__bar:nth-child(2)
+        top: 50%
+        left: 0
+    &__bar:last-child
+        top: 100%
+        left: 0
+    &.mobileburger--active
+        .mobileburger__bar:first-child
+            top: 50%
+            left: 0
+        .mobileburger__bar:last-child
+            top: 50%
+            left: 0
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .mobileburger
+        display: block

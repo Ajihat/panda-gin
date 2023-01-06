@@ -1,0 +1,21 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.shop
+    padding: 6vw 6vw
+    &__listing
+        position: relative
+        +mixins.positioning(flex,row,flex-start,stretch,wrap)
+        gap: 3.06vw
+        padding-top: 4vw
+        min-height: 500px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .shop
+        &__listing
+            padding-top: 50px
+            gap: 5.2vw
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .shop
+        padding: 60px 6vw

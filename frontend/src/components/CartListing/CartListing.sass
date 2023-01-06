@@ -1,0 +1,126 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.cartlisting
+    list-style: none
+    &__item
+        position: relative
+        +mixins.positioning(flex,row,space-between,stretch,nowrap)
+        padding-bottom: 15px
+        margin-bottom: 15px
+        bottom: -120px
+        opacity: 0
+        transition-duration: .8s
+        transition-timing-function: cubic-bezier(.17,.67,.33,.97)
+        border-bottom: 1px solid variables.$border-color
+    &__inner
+        +mixins.positioning(flex,row,flex-start,stretch,nowrap)
+        width: 50%
+    &__inner-right
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        width: 40%
+    &__item-img
+        display: block
+        width: 120px
+        padding: 10px
+    &__item-title
+        position: relative
+        font-family: variables.$main-font
+        font-size: 2.4rem
+        color: variables.$main-color
+        align-self: flex-start
+        font-weight: 500
+        letter-spacing: .6px
+        padding-left: 1.5vw
+    &__link
+        +mixins.positioning(flex,column,space-between,flex-start,nowrap)
+        text-decoration: none
+    &__deletion
+        +mixins.positioning(flex,row,flex-end,center,nowrap)
+        position: absolute
+        top: 0
+        right: -60px
+        width: 60px
+        height: 100%
+    &__delete-btn
+        display: block
+        position: relative
+        bottom: 8px
+        display: block
+        width: 15px
+        border: none
+        background-color: transparent
+        cursor: pointer
+    &__delete-img
+        display: block
+        width: 15px
+    &__format
+        font-family: variables.$second-font
+        color: variables.$text-gray
+        font-size: 1.2rem
+        text-transform: uppercase
+        letter-spacing: .6px
+        margin-top: 5px
+        font-weight: 300
+    &__item-price
+        font-family: variables.$second-font
+        font-size: 1.7rem
+        color: variables.$main-color
+        letter-spacing: .2px
+        margin-left: 20px
+    &__text
+        position: relative
+        font-family: variables.$second-font
+        font-size: 1.6rem
+        font-weight: 300
+        letter-spacing: .6px
+        bottom: -120px
+        opacity: 0
+        transition-duration: .8s
+        transition-timing-function: cubic-bezier(.17,.67,.33,.97)
+
+@media (max-width: 1200px)
+    .cartlisting
+        &__deletion
+            justify-content: flex-start
+        &__delete-img
+            transform: translateX(-100%)
+        &__item-price
+            margin-left: 0
+            margin-right: 50px
+        &__inner-right
+            width: 300px
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .cartlisting
+        &__item
+            flex-wrap: wrap
+            margin-bottom: 30px
+            padding-bottom: 30px
+        &__inner
+            width: 100%
+            flex-direction: column
+            margin-bottom: 20px
+        &__item-img
+            padding: 0
+            width: 100%
+        &__item-price
+            margin-right: 0
+        &__item-title
+            padding-left: 0
+            margin-top: 10px
+            font-size: 2.2rem
+        &__inner-right
+            width: 100%
+        &__deletion
+            justify-content: center
+            top: 0
+            right: -60px
+            width: 40px
+            height: 40px
+            background-color: variables.$secondary-color
+            right: 0
+        &__delete-btn
+            bottom: 0
+        &__delete-img
+            transform: translateX(0)

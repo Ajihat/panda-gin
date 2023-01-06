@@ -1,0 +1,29 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.contactform
+    padding: 6vw 6vw 0 6vw
+    width: 100%
+    &__form
+        +mixins.positioning(flex,row,space-between,flex-start,nowrap)
+        width: 100%
+        margin-top: 50px
+    &__left
+        width: 50%
+        padding-right: 3vw
+    &__right
+        width: 50%
+        padding-left: 3vw
+    &__btn-holder
+        margin-top: 45px
+
+@media (max-width: variables.$tablet-width-breakpoint)
+    .contactform
+        &__form
+            flex-wrap: wrap
+        &__left
+            width: 100%
+            padding-right: 0
+        &__right
+            width: 100%
+            padding-left: 0

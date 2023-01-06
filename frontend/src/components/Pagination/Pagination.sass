@@ -1,0 +1,42 @@
+@use '../../sass/mixins'
+@use '../../sass/variables'
+
+.pagination
+    +mixins.positioning(flex,row,flex-end,center,nowrap)
+    margin-top: 2.5vw
+    &__inner
+        +mixins.positioning(flex,row,center,center,nowrap)
+    &__list
+        +mixins.positioning(flex,row,space-between,center,nowrap)
+        list-style: none
+    &__list-item
+        position: relative
+        padding: 15px
+    &__link
+        text-decoration: none
+        font-size: 2.4rem
+        font-family: variables.$second-font
+        color: variables.$main-color
+        letter-spacing: .22px
+        padding: 15px 0
+    &__arrow
+        font-size: 2rem
+        height: 100%
+        cursor: pointer
+    &__line
+        position: absolute
+        top: 20%
+        left: 50%
+        transform: translateX(-50%)
+        width: 50%
+        height: 1px
+        background-color: variables.$main-color
+
+@media (max-width: variables.$big-mobile-width-breakpoint)
+    .pagination
+        &__link
+            font-size: 2.2rem
+        &__arrow
+            font-size: 2rem
+        &__list-item
+            padding: 10px

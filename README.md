@@ -89,6 +89,7 @@ You can also register as new user
 
 ## Screenshots
 
+![alt text](https://raw.githubusercontent.com/Ajihat/panda-gin-images/main/screenshots/6.png)
 ![alt text](https://raw.githubusercontent.com/Ajihat/panda-gin-images/main/screenshots/1.jpg)
 ![alt text](https://raw.githubusercontent.com/Ajihat/panda-gin-images/main/screenshots/2.jpg)
 ![alt text](https://raw.githubusercontent.com/Ajihat/panda-gin-images/main/screenshots/3.jpg)

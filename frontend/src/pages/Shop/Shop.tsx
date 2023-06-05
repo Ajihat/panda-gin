@@ -29,6 +29,7 @@ export const Shop = () => {
 		setProductsPage(0);
 	}, [changeProductsCategory, setProductsPage]);
 
+	console.log('products');
 	return (
 		<div className='shop'>
 			<Helmet>

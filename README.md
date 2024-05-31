@@ -22,7 +22,7 @@ Inside the repository, you'll find the following folder structure
 
 ```
 PROJECT_ROOT
-├── backend                 # backend repository
+├── backend                 # backend 
 └── frontend
     ├── public              # static assets
     └── src
